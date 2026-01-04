@@ -1,21 +1,3 @@
-// ===== THEME TOGGLE =====
-// Initialize theme from localStorage or default to dark
-const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-
-// Check for saved theme preference or default to dark
-const currentTheme = localStorage.getItem('theme') || 'dark';
-htmlElement.setAttribute('data-theme', currentTheme);
-
-// Toggle theme function
-themeToggle.addEventListener('click', () => {
-  const currentTheme = htmlElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  htmlElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
-
 // ===== MOBILE NAVIGATION =====
 // Mobile Navigation Toggle
 const navToggle = document.getElementById("navToggle")
@@ -93,6 +75,13 @@ if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault()
 
+    // Anti-spam honeypot: si el campo "website" está lleno, es un bot
+    const honeypot = document.getElementById("website");
+    if (honeypot && honeypot.value !== "") {
+      // Silenciosamente ignorar el envío (no alertar al bot)
+      return false;
+    }
+
     // Get form data
     const formData = {
       nombre: document.getElementById("nombre").value,
@@ -137,7 +126,7 @@ ${formData.mensaje}
 
 ¡Espero su respuesta!`
 
-    const whatsappUrl = `https://wa.me/506934707?text=${encodeURIComponent(whatsappMessage)}`
+    const whatsappUrl = `https://wa.me/50769347097?text=${encodeURIComponent(whatsappMessage)}`
 
     // Auto-redirect to WhatsApp after 2 seconds
     setTimeout(() => {
@@ -247,14 +236,24 @@ if (contactForm) {
   })
 }
 
-// Parallax effect for hero section
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const hero = document.querySelector(".hero")
-  const speed = scrolled * 0.5
+// Parallax effect for hero section (optimized with requestAnimationFrame)
+let parallaxTicking = false;
 
-  if (hero && scrolled < hero.offsetHeight) {
-    hero.style.transform = `translateY(${speed}px)`
+window.addEventListener("scroll", () => {
+  if (!parallaxTicking) {
+    window.requestAnimationFrame(() => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector(".hero");
+      
+      if (hero && scrolled < hero.offsetHeight) {
+        const speed = scrolled * 0.5;
+        hero.style.transform = `translateY(${speed}px)`;
+      }
+      
+      parallaxTicking = false;
+    });
+    
+    parallaxTicking = true;
   }
 })
 
@@ -327,7 +326,7 @@ document
 const portfolioItems = document.querySelectorAll(".showcase-item")
 portfolioItems.forEach((item) => {
   item.addEventListener("mouseenter", () => {
-    console.log("[v0] Portfolio item hovered")
+    // Hover effect handled by CSS
   })
 })
 
@@ -335,7 +334,7 @@ portfolioItems.forEach((item) => {
 const ctaButtons = document.querySelectorAll(".btn-primary")
 ctaButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    console.log("[v0] CTA button clicked:", button.textContent)
+    // Click tracking can be added here for analytics
   })
 })
 

@@ -1,0 +1,11 @@
+# Archivos del proyecto principal que no necesita Vercel
+node_modules
+.git
+.github
+.vscode
+css/main-backup.css
+*.md
+!README-CATEGORIZER.md
+minify.bat
+package.json
+index.html

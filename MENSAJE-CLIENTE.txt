@@ -1,0 +1,111 @@
+// MENSAJE PARA ENVIAR AL CLIENTE (WhatsApp o Email)
+// Copia y personaliza según necesites
+
+---
+
+¡Hola! 👋
+
+Te comparto un link especial para que organices las imágenes de tu portafolio de Studio CreArtes:
+
+🔗 **[TU-LINK-AQUI].vercel.app**
+
+## ¿Qué necesito hacer?
+
+Es súper sencillo, solo toma 10-15 minutos:
+
+1️⃣ **Abre el link** (funciona en celular, tablet o computadora)
+
+2️⃣ **Mira cada imagen** y selecciona su categoría:
+   • 🎨 Branding → Logos, identidad visual
+   • 📣 Publicidad → Vallas, rótulos, letreros
+   • 💻 Web → Sitios web, landing pages
+   • 🎁 Merchandising → Camisetas, tazas, promocionales
+   • 📱 Redes Sociales → Posts, stories
+
+3️⃣ **Al terminar**, haz clic en el botón verde "Generar Script"
+
+4️⃣ **Copia el texto** que aparece y envíamelo por aquí
+
+## 💾 Tranquilo/a
+
+• Tu progreso se guarda automáticamente
+• Puedes cerrar y volver después sin perder nada
+• Si tienes dudas de alguna imagen, déjala sin categorizar y la vemos después
+
+## ❓ ¿Dudas?
+
+Cualquier cosa me avisas por aquí o llamamos. ¡Es muy intuitivo! 😊
+
+Gracias! 🙌
+
+---
+
+// MENSAJE ALTERNATIVO (Más Corto)
+
+---
+
+Hola! 👋
+
+Link para categorizar las imágenes del portafolio:
+🔗 **[TU-LINK].vercel.app**
+
+Solo toma 15 min:
+1. Abre el link
+2. Selecciona la categoría de cada imagen
+3. Copia el resultado y envíamelo
+
+Tu progreso se guarda solo. Cualquier duda me avisas! 😊
+
+---
+
+// EMAIL FORMAL
+
+---
+
+Asunto: Categorización de Imágenes - Studio CreArtes
+
+Estimado/a [Nombre],
+
+Como parte del proceso de desarrollo de tu sitio web profesional, hemos preparado una herramienta interactiva para que puedas categorizar las imágenes de tu portafolio.
+
+**Link de acceso:**
+https://[tu-proyecto].vercel.app
+
+**Instrucciones:**
+
+1. Accede al link desde cualquier dispositivo
+2. Revisa cada imagen y asigna la categoría correspondiente
+3. Al finalizar, genera el script y envíalo por correo
+
+**Categorías disponibles:**
+• Branding (logos, identidad visual, brandbooks)
+• Publicidad (vallas, rótulos, vinil, señalética)
+• Web & Digital (sitios web, landing pages, e-commerce)
+• Merchandising (artículos promocionales)
+• Redes Sociales (contenido digital)
+
+**Tiempo estimado:** 10-15 minutos
+
+Tu progreso se guarda automáticamente, por lo que puedes completar la categorización en múltiples sesiones si lo prefieres.
+
+Cualquier duda o inconveniente, no dudes en contactarme.
+
+Saludos cordiales,
+[Tu Nombre]
+Studio CreArtes Web Development
+
+---
+
+// DESPUÉS DE RECIBIR EL SCRIPT
+
+---
+
+¡Perfecto! ✅ 
+
+Ya recibí la categorización. Ahora voy a organizar las imágenes y las integro al sitio.
+
+Te aviso cuando esté listo para que lo revises. 
+
+Gracias! 🙌
+
+---

@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Studio CreArtes - Soluciones creativas integrales en Panamá. Diseño gráfico, marketing visual, web y rotulación comercial. Creatividad accesible con profesionalismo garantizado.">
     <title>Studio CreArtes | Soluciones Creativas Integrales en Panamá</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://studiocreartes.com/">
+    <meta property="og:title" content="Studio CreArtes | Soluciones Creativas Integrales en Panamá">
+    <meta property="og:description" content="Transformamos la visión de tu negocio en una identidad visual única. Diseño gráfico, marketing visual, desarrollo web y más. Creatividad accesible para Pymes.">
+    <meta property="og:image" content="https://studiocreartes.com/assets/Logo-Creartes.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://studiocreartes.com/">
+    <meta property="twitter:title" content="Studio CreArtes | Soluciones Creativas Integrales en Panamá">
+    <meta property="twitter:description" content="Transformamos la visión de tu negocio en una identidad visual única. Creatividad accesible para Pymes.">
+    <meta property="twitter:image" content="https://studiocreartes.com/assets/Logo-Creartes.webp">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/Logo-Creartes.webp">
+    <link rel="apple-touch-icon" href="assets/Logo-Creartes.webp">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="assets/logo-creartes-01.webp" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" as="style">
+    
     <link rel="stylesheet" href="css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,25 +41,13 @@
     <header class="header">
         <nav class="nav container">
             <div class="nav-logo"> 
-                <img src="assets/Logo-Creartes.webp" alt="Studio CreArtes Logo" class="logo-img">
+                <img src="assets/logo-creartes-01.webp" alt="Studio CreArtes Logo" class="logo-img">
             </div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
-                <li><a href="#contacto" class="nav-link nav-link-cta">Cotiza tu Proyecto</a></li>
+                <li><a href="#contacto" class="nav-link nav-link-cta">Contacto</a></li>
             </ul>
-            
-            <!-- Theme Toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-                    <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.66 15.66L14.24 14.24M5.76 5.76L4.34 4.34M15.66 4.34L14.24 5.76M5.76 14.24L4.34 15.66" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
-                </svg>
-            </button>
             
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
@@ -45,44 +59,57 @@
 
     <!-- Section 1: Hero --> 
     <section class="hero" id="inicio">
-        <!-- Video Background -->
+        <!-- Hero Background -->
         <div class="hero-video-wrapper">
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="https://cdn.coverr.co/videos/coverr-abstract-colorful-paint-strokes-9265/1080p.mp4" type="video/mp4">
-                Tu navegador no soporta video HTML5.
-            </video>
+            <img src="crearte/hero-entrada-local.jpeg" 
+                 alt="Studio CreArtes - Creatividad en acción" 
+                 class="hero-image-bg">
             <div class="hero-video-overlay"></div>
         </div>
         <div class="hero-bg-parallax"></div>
         <div class="hero-content container">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    Bienvenidos a <span class="highlight">Studio CreArtes</span>
+                    Creatividad que <span class="highlight">Transforma</span> Negocios
                 </h1>
                 <p class="hero-subtitle">
-                    Transformamos la visión de tu negocio en una identidad visual única y profesional. Descubre cómo nuestras soluciones creativas pueden impulsar tu empresa.
+                    Soluciones visuales profesionales para empresas que quieren destacar. Desde la identidad de tu marca hasta experiencias digitales memorables.
                 </p>
                 <div class="hero-cta">
-                    <a href="https://wa.me/+50769347097" class="btn btn-whatsapp btn-large">💬 Cotiza tu Proyecto</a>
-                    <a href="#servicios" class="btn btn-secondary btn-large">Descubre nuestros Servicios</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">✓</span>
-                        <span class="stat-label">Creatividad Accesible</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">✓</span>
-                        <span class="stat-label">Profesionalismo Garantizado</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">✓</span>
-                        <span class="stat-label">Colaboración Real</span>
-                    </div>
+                    <a href="https://wa.me/+50769347097" class="btn btn-whatsapp btn-large">💬 Cotiza Gratis</a>
+                    <a href="#nosotros" class="btn btn-secondary btn-large">Conócenos</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Diseño Creativo Studio CreArtes">
+        </div>
+    </section>
+
+    <!-- Section 2: Misión, Visión, Valores (Movido arriba) -->
+    <section class="valores-section">
+        <div class="container">
+            <div class="valores-grid">
+                <article class="valor-card fade-in">
+                    <div class="valor-icon">🎯</div>
+                    <h3>Misión</h3>
+                    <p>
+                        Ofrecer servicios creativos que combinen profesionalismo con accesibilidad, ayudando a empresas de todos los tamaños a destacar visualmente.
+                    </p>
+                </article>
+
+                <article class="valor-card fade-in">
+                    <div class="valor-icon">🚀</div>
+                    <h3>Visión</h3>
+                    <p>
+                        Ser el estudio referente para marcas emergentes en Panamá, reconocidos por nuestra calidad y capacidad de transformar ideas en realidades visuales.
+                    </p>
+                </article>
+
+                <article class="valor-card fade-in">
+                    <div class="valor-icon">✨</div>
+                    <h3>Valores</h3>
+                    <p>
+                        Creatividad accesible, profesionalismo garantizado y colaboración real. Somos aliados estratégicos de tu negocio.
+                    </p>
+                </article>
             </div>
         </div>
     </section>
@@ -91,87 +118,70 @@
     <section class="servicios" id="servicios">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">Nuestros Servicios de <span class="highlight">Diseño y Creatividad</span></h2>
+                <h2 class="section-title">Nuestras <span class="highlight">Soluciones</span></h2>
                 <p class="section-subtitle">
-                    Explora nuestros servicios: desde diseño gráfico creativo y publicidad visual, hasta desarrollo web, artículos promocionales y gestión de contenidos. Cada solución está pensada para hacer que tu marca brille.
+                    4 grupos estratégicos dise\u00f1ados para hacer crecer tu marca
                 </p>
             </div>
             
             <div class="servicios-grid">
                 <div class="servicio-card fade-in">
-                    <span class="servicio-icon">🎨</span>
-                    <h3 class="servicio-title">Diseño Gráfico Creativo</h3>
+                    <div class="servicio-image">
+                        <img src="crearte/fachada-optica-rosa.jpeg" alt="Soluciones de Marca" loading="lazy">
+                        <div class="servicio-overlay">
+                            <span class="servicio-icon">🎨</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-title">Soluciones de Marca</h3>
                     <p class="servicio-description">
-                        Creamos identidades visuales memorables que reflejan la esencia de tu marca. Identidad visual, logotipos, branding y material publicitario de alto impacto.
+                        Logotipos, papelería, volantes y asesoría. Creamos marcas sólidas desde el concepto.
                     </p>
-                    <ul class="servicio-features">
-                        <li>Creación de logotipos únicos</li>
-                        <li>Branding corporativo completo</li>
-                        <li>Papelería empresarial</li>
-                        <li>Banners y material publicitario</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Solicitar Info</a>
+                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
                 </div>
 
                 <div class="servicio-card fade-in">
-                    <span class="servicio-icon">📢</span>
-                    <h3 class="servicio-title">Publicidad y Marketing Visual</h3>
+                    <div class="servicio-image">
+                        <img src="crearte/neon-logo-corporativo.jpeg" alt="Producción Gráfica" loading="lazy">
+                        <div class="servicio-overlay">
+                            <span class="servicio-icon">🖨️</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-title">Producción Gráfica</h3>
                     <p class="servicio-description">
-                        Soluciones publicitarias impactantes para tu negocio. Desde letreros de neón hasta vinilos y anuncios creativos que hacen destacar tu marca.
+                        Banners, vinilos, acrílicos. Diseñamos, producimos e instalamos material publicitario.
                     </p>
-                    <ul class="servicio-features">
-                        <li>Letreros de neón personalizados</li>
-                        <li>Vinil adhesivo y microperforado</li>
-                        <li>Rotulación de comercios</li>
-                        <li>Diseño de anuncios creativos</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Solicitar Info</a>
+                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
                 </div>
 
                 <div class="servicio-card fade-in">
-                    <span class="servicio-icon">💻</span>
-                    <h3 class="servicio-title">Soluciones Web y Digitales</h3>
+                    <div class="servicio-image">
+                        <img src="crearte/neon-corazon-valentine.jpeg" alt="Comunicación Visual" loading="lazy">
+                        <div class="servicio-overlay">
+                            <span class="servicio-icon">💡</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-title">Comunicación Visual</h3>
                     <p class="servicio-description">
-                        Desarrollo de páginas web, tiendas en línea y servicios digitales adaptados a cada cliente. Experiencias digitales que convierten.
+                        Letreros de neón, letras 3D, señalización. Transformamos espacios en experiencias.
                     </p>
-                    <ul class="servicio-features">
-                        <li>Diseño y desarrollo web profesional</li>
-                        <li>Tiendas online (e-commerce)</li>
-                        <li>Landing pages optimizadas</li>
-                        <li>Optimización para dispositivos móviles</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Solicitar Info</a>
+                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
                 </div>
 
                 <div class="servicio-card fade-in">
-                    <span class="servicio-icon">🎁</span>
-                    <h3 class="servicio-title">Artículos Promocionales y Merchandising</h3>
+                    <div class="servicio-image">
+                        <img src="crearte/neon-sharik.jpeg" alt="Experiencias Digitales" loading="lazy">
+                        <div class="servicio-overlay">
+                            <span class="servicio-icon">🚀</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-title">Experiencias Digitales</h3>
                     <p class="servicio-description">
-                        Productos personalizados como tazas, camisetas y artículos promocionales para empresas. Merchandising que deja huella.
+                        Web, redes, videos, merchandising. Conectamos marcas con personas.
                     </p>
-                    <ul class="servicio-features">
-                        <li>Camisetas y ropa personalizada</li>
-                        <li>Tazas personalizadas</li>
-                        <li>Artículos promocionales únicos</li>
-                        <li>Empaques personalizados premium</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Solicitar Info</a>
+                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
                 </div>
 
-                <div class="servicio-card fade-in">
-                    <span class="servicio-icon">📱</span>
-                    <h3 class="servicio-title">Asesoría y Gestión de Contenidos</h3>
-                    <p class="servicio-description">
-                        Consultoría en marketing, gestión de redes sociales, creación de contenido y community management. Tu estrategia digital completa.
-                    </p>
-                    <ul class="servicio-features">
-                        <li>Consultoría de marca y marketing</li>
-                        <li>Gestión de redes sociales</li>
-                        <li>Creación de contenido visual</li>
-                        <li>Community management profesional</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Solicitar Info</a>
-                </div>
+
             </div>
         </div>
     </section>
@@ -184,11 +194,10 @@
                     <span class="about-eyebrow">Studio CreArtes</span>
                     <h2 class="about-title">Nuestra Historia</h2>
                     <p class="about-lead">
-                        Studio Creartes nació como un proyecto personal impulsado por la pasión por el diseño y las ideas visuales. Con el tiempo, ese sueño fue creciendo y sumando aliados estratégicos que compartieron la misma visión.
-                        De ser un proyecto individual, se transformó en un estudio colaborativo donde la creatividad y la profesionalidad van de la mano.
+                        Studio Creartes comenzó como un sueño individual apasionado por el diseño, que creció atrayendo aliados estratégicos que compartieron la misma visión. De ser un proyecto personal, se transformó en un estudio colaborativo donde la creatividad y el profesionalismo van de la mano.
                     </p>
                     <p class="about-lead">
-                        Hoy, nuestro propósito es ayudar a pequeñas y medianas empresas a construir una identidad visual sólida, profesional y auténtica, sin importar su presupuesto o experiencia previa.
+                        Hoy nos dedicamos a dar a cada cliente una identidad visual única, construida con pasión. Nuestro propósito principal es ayudar a pequeñas y medianas empresas (pymes) a tener una presencia visual clara y profesional, sin importar su presupuesto o experiencia previa.
                     </p>
                     <div class="about-meta">
                         <span class="about-chip">Pasión por el diseño</span>
@@ -270,91 +279,91 @@
             <div class="showcase-header fade-in">
                 <span class="showcase-eyebrow">Portafolio seleccionado</span>
                 <h2>Descubre algunos de nuestros proyectos destacados</h2>
-                <p>Conoce cómo transformamos ideas en realidades visuales impactantes. Del naming al lanzamiento digital, acompañamos proyectos que necesitaban un socio creativo integral.</p>
+                <p>Aquí verás cómo hemos ayudado a otras empresas a transformar sus ideas en realidades visuales impactantes. Del naming al lanzamiento digital, acompañamos proyectos que necesitaban un socio creativo integral.</p>
                 <div class="showcase-actions">
                     <a href="#contacto" class="btn btn-primary">Agendar una demo</a>
-                    <a href="https://wa.me/+507 69347097" class="btn btn-secondary" target="_blank" rel="noopener">Solicitar dossier</a>
+                    <a href="https://wa.me/50769347097" class="btn btn-secondary" target="_blank" rel="noopener">Solicitar dossier</a>
                 </div>
             </div>
 
             <div class="showcase-grid">
                 <article class="showcase-item showcase-item--feature fade-in">
-                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1400&q=80" 
-                         alt="Rebranding Aromas del Casco" 
+                    <img src="crearte/neon-nuvu.jpeg" 
+                         alt="Proyecto Destacado CreArtes" 
                          loading="lazy"
                          class="showcase-image"
-                         data-tag="Rebranding + Web"
-                         data-title="Aromas del Casco"
-                         data-description="Rediseñamos la identidad, empaques y el e-commerce para una marca de aromas artesanales lista para exportar.">
+                         data-tag="Branding + Producción"
+                         data-title="Proyecto Destacado"
+                         data-description="Diseño completo de identidad visual y producción de material gráfico para marca local.">
                     <div class="showcase-content">
-                        <span class="showcase-tag">Rebranding + Web</span>
-                        <h3>Aromas del Casco</h3>
-                        <p>Rediseñamos la identidad, empaques y el e-commerce para una marca de aromas artesanales lista para exportar.</p>
+                        <span class="showcase-tag">Branding + Producción</span>
+                        <h3>Proyecto Destacado</h3>
+                        <p>Identidad visual completa y producción de material gráfico para marca local en Panamá.</p>
                         <ul class="showcase-meta">
-                            <li>Brandbook modular</li>
-                            <li>UX/UI + Shopify</li>
-                            <li>Lanzamiento en motion</li>
+                            <li>Diseño de identidad</li>
+                            <li>Material impreso</li>
+                            <li>Asesoría de marca</li>
                         </ul>
                     </div>
                 </article>
 
                 <article class="showcase-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80" 
-                         alt="Campaña outdoor para MoveFit" 
+                    <img src="crearte/neon-vamospa-arriba.jpeg" 
+                         alt="Comunicación Visual CreArtes" 
                          loading="lazy"
                          class="showcase-image"
-                         data-tag="Campaña 360°"
-                         data-title="MoveFit Studios"
-                         data-description="Concepto visual, rotulación vehicular y pauta digital coordinada para 6 sedes en simultáneo.">
+                         data-tag="Señalización"
+                         data-title="Rotulación Comercial"
+                         data-description="Letreros y señalización para espacios comerciales con impacto visual.">
                     <div class="showcase-content">
-                        <span class="showcase-tag">Campaña 360°</span>
-                        <h3>MoveFit Studios</h3>
-                        <p>Concepto visual, rotulación vehicular y pauta digital coordinada para 6 sedes en simultáneo.</p>
+                        <span class="showcase-tag">Señalización</span>
+                        <h3>Rotulación Comercial</h3>
+                        <p>Letreros y comunicación visual para espacios comerciales con alto impacto.</p>
                     </div>
                 </article>
 
                 <article class="showcase-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" 
-                         alt="Branding educativo Luz Verde" 
+                    <img src="crearte/merchandising-etiquetas.jpeg" 
+                         alt="Diseño Gráfico CreArtes" 
                          loading="lazy"
                          class="showcase-image"
-                         data-tag="Identidad + contenidos"
-                         data-title="Luz Verde Academy"
-                         data-description="Construimos una identidad modular y un sistema de plantillas para cursos híbridos.">
+                         data-tag="Identidad Visual"
+                         data-title="Branding Completo"
+                         data-description="Desarrollo de identidad visual y material corporativo para pyme.">
                     <div class="showcase-content">
-                        <span class="showcase-tag">Identidad + contenidos</span>
-                        <h3>Luz Verde Academy</h3>
-                        <p>Construimos una identidad modular y un sistema de plantillas para cursos híbridos.</p>
+                        <span class="showcase-tag">Identidad Visual</span>
+                        <h3>Branding Completo</h3>
+                        <p>Desarrollo de identidad visual completa y material corporativo para empresa local.</p>
                     </div>
                 </article>
 
                 <article class="showcase-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" 
-                         alt="Editorial y catálogo Terra Selva" 
+                    <img src="crearte/neon-and-co.jpeg" 
+                         alt="Producción Publicitaria CreArtes" 
                          loading="lazy"
                          class="showcase-image"
-                         data-tag="Editorial premium"
-                         data-title="Terra Selva"
-                         data-description="Catálogo de productos, fotografía de estilo de vida y activaciones BTL para lanzamiento regional.">
+                         data-tag="Material Promocional"
+                         data-title="Campaña Publicitaria"
+                         data-description="Diseño y producción de material promocional para lanzamiento de marca.">
                     <div class="showcase-content">
-                        <span class="showcase-tag">Editorial premium</span>
-                        <h3>Terra Selva</h3>
-                        <p>Catálogo de productos, fotografía de estilo de vida y activaciones BTL para lanzamiento regional.</p>
+                        <span class="showcase-tag">Material Promocional</span>
+                        <h3>Campaña Publicitaria</h3>
+                        <p>Diseño y producción de material promocional para lanzamiento de marca local.</p>
                     </div>
                 </article>
 
                 <article class="showcase-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80" 
-                         alt="Sistema de señalética urbana" 
+                    <img src="crearte/fachada-interior-04.jpeg" 
+                         alt="Proyectos diversos CreArtes" 
                          loading="lazy"
                          class="showcase-image"
-                         data-tag="Señalética + Wayfinding"
-                         data-title="Distrito Canal"
-                         data-description="Arquitectura de marca para un complejo empresarial con piezas físicas y digitales sincronizadas.">
+                         data-tag="Diseño + Producción"
+                         data-title="Proyectos Variados"
+                         data-description="Portfolio de trabajos diversos para diferentes clientes en Panamá.">
                     <div class="showcase-content">
-                        <span class="showcase-tag">Señalética + Wayfinding</span>
-                        <h3>Distrito Canal</h3>
-                        <p>Arquitectura de marca para un complejo empresarial con piezas físicas y digitales sincronizadas.</p>
+                        <span class="showcase-tag">Diseño + Producción</span>
+                        <h3>Proyectos Variados</h3>
+                        <p>Portfolio de trabajos diversos para diferentes clientes y sectores en Panamá.</p>
                     </div>
                 </article>
             </div>
@@ -548,7 +557,7 @@
                     </div>
                     <p class="testimonial-text">"Creartes transformó completamente la imagen de mi restaurante. El nuevo logo y la rotulación atrajeron muchos más clientes. ¡Excelente trabajo y precios justos!"</p>
                     <div class="testimonial-author">
-                        <img src="/placeholder.svg?height=60&width=60" alt="María González" class="testimonial-avatar">
+                        <img src="crearte/fachada-optica-rosa.jpeg" alt="María González" class="testimonial-avatar">
                         <div>
                             <h4>María González</h4>
                             <p>Dueña de Restaurante El Sabor</p>
@@ -561,7 +570,7 @@
                     </div>
                     <p class="testimonial-text">”Necesitaba una página web profesional y gestión de redes sociales. El equipo de Creartes entendió perfectamente mi visión y los resultados superaron mis expectativas.”</p>
                     <div class="testimonial-author">
-                        <img src="/placeholder.svg?height=60&width=60" alt="Carlos Mendoza" class="testimonial-avatar">
+                        <img src="crearte/neon-vamospa-arriba.jpeg" alt="Carlos Mendoza" class="testimonial-avatar">
                         <div>
                             <h4>Carlos Mendoza</h4>
                             <p>Fundador de TechSolutions PA</p>
@@ -574,7 +583,7 @@
                     </div>
                     <p class="testimonial-text">”Como emprendedora, necesitaba una identidad de marca completa pero tenía presupuesto limitado. Creartes me ofreció calidad profesional a un precio accesible. ¡Totalmente recomendados!”</p>
                     <div class="testimonial-author">
-                        <img src="/placeholder.svg?height=60&width=60" alt="Ana Rodríguez" class="testimonial-avatar">
+                        <img src="crearte/merchandising-arroz-rico.jpeg" alt="Ana Rodríguez" class="testimonial-avatar">
                         <div>
                             <h4>Ana Rodríguez</h4>
                             <p>Dueña de Boutique Bella</p>
@@ -617,20 +626,27 @@
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                            <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="100" placeholder="Tu nombre" title="Ingresa tu nombre completo (mínimo 3 caracteres)">
                         </div>
                         <div class="form-group">
                             <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                            <input type="email" id="email" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="tu@email.com" title="Ingresa un correo electrónico válido (ej: tu@email.com)">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="+507 1234-5678">
+                            <input type="tel" id="telefono" name="telefono" required pattern="[+]?[0-9\s\-()]+" placeholder="+507 1234-5678" title="Ingresa un número de teléfono válido (ej: +507 1234-5678)">
                         </div>
                         <div class="form-group">
                             <label for="empresa">Nombre de tu Empresa</label>
                             <input type="text" id="empresa" name="empresa" placeholder="Tu empresa">
                         </div>
+                        
+                        <!-- Honeypot Anti-Spam (campo invisible para bots) -->
+                        <div class="form-group honeypot" aria-hidden="true">
+                            <label for="website">Website (no llenar)</label>
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        
                         <div class="form-group">
                             <label for="servicio">Servicio de Interés *</label>
                             <select id="servicio" name="servicio" required>
@@ -643,14 +659,14 @@
                         </div>
                         <div class="form-group">
                             <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
-                            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Describe brevemente lo que necesitas..."></textarea>
+                            <textarea id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="1000" placeholder="Describe brevemente lo que necesitas..." title="Describe tu proyecto (mínimo 10 caracteres)"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-large btn-full">
                             Solicitar Cotización Gratuita
                         </button>
                         <p class="form-note">* Campos obligatorios. Tus datos están protegidos.</p>
                     </form>
-                    <div class="form-success" id="formSuccess" style="display: none;">
+                    <div class="form-success hidden" id="formSuccess">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
@@ -676,7 +692,7 @@
                     </div>
                     <h3>WhatsApp</h3>
                     <p class="contact-card-subtitle">Escríbenos por WhatsApp</p>
-                    <a href="https://wa.me/+50769347097" target="_blank" class="contact-card-link">+50769347097</a>
+                    <a href="https://wa.me/+50769347097" target="_blank" rel="noopener noreferrer" class="contact-card-link">+50769347097</a>
                 </div>
 
                 <!-- Email Card -->
@@ -689,7 +705,7 @@
                     </div>
                     <h3>Email</h3>
                     <p class="contact-card-subtitle">Envíanos un correo electrónico</p>
-                    <a href="mailto:slualocreatres.com" class="contact-card-link">Contacto@<br>slualocreatres.com</a>
+                    <a href="mailto:Contacto@studiocreartes.com" class="contact-card-link">Contacto@<br>studiocreartes.com</a>
                 </div>
 
                 <!-- Ubicación Card -->
@@ -741,7 +757,7 @@
         <div class="container">
             <div class="footer-main">
                 <div class="footer-col-1">
-                    <img src="assets/Logo-Creartes.webp" alt="Studio CreArtes Logo" class="footer-logo">
+                    <img src="assets/logo-creartes-01.webp" alt="Studio CreArtes Logo" class="footer-logo">
                     <p class="footer-tagline">Soluciones creativas que destacan tu marca</p>
                     <div class="footer-social">
                         <a href="https://wa.me/+50769347097" class="social-link" title="WhatsApp" aria-label="WhatsApp">
@@ -795,7 +811,7 @@
         </svg>
     </button>
 
-    <a href="https://wa.me/+50769347097" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/+50769347097" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
