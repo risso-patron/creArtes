@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
- <html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,44 +12,29 @@
     <meta property="og:title" content="Studio CreArtes | Soluciones Creativas Integrales en Panamá">
     <meta property="og:description" content="Transformamos la visión de tu negocio en una identidad visual única. Diseño gráfico, marketing visual, desarrollo web y más. Creatividad accesible para Pymes.">
     <meta property="og:image" content="https://studiocreartes.com/assets/Logo-Creartes.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://studiocreartes.com/">
-    <meta property="twitter:title" content="Studio CreArtes | Soluciones Creativas Integrales en Panamá">
-    <meta property="twitter:description" content="Transformamos la visión de tu negocio en una identidad visual única. Creatividad accesible para Pymes.">
-    <meta property="twitter:image" content="https://studiocreartes.com/assets/Logo-Creartes.webp">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/Logo-Creartes.webp">
-    <link rel="apple-touch-icon" href="assets/Logo-Creartes.webp">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="css/main.css" as="style">
-    <link rel="preload" href="assets/logo-creartes-01.webp" as="image">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" as="style">
-    
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header/Navigation -->
+    <!-- Header -->
     <header class="header">
-        <nav class="nav container">
-            <div class="nav-logo"> 
-                <img src="assets/logo-creartes-01.webp" alt="Studio CreArtes Logo" class="logo-img">
+        <nav class="container nav">
+            <div class="nav-brand">
+                <img src="assets/logo-creartes-01.webp" alt="CreArtes" class="logo">
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#contacto" class="nav-link nav-link-cta">Contacto</a></li>
+                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                <li><a href="#contacto" class="nav-link nav-cta">Contacto</a></li>
             </ul>
-            
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -57,695 +42,660 @@
         </nav>
     </header>
 
-    <!-- Section 1: Hero --> 
+    <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <!-- Hero Background -->
-        <div class="hero-video-wrapper">
-            <img src="crearte/hero-entrada-local.jpeg" 
-                 alt="Studio CreArtes - Creatividad en acción" 
-                 class="hero-image-bg">
-            <div class="hero-video-overlay"></div>
+        <video id="heroVideo" class="hero-infinity" autoplay loop muted playsinline preload="auto">
+            <source src="crearte/simbolo-infinito-motion.mp4" type="video/mp4">
+            <!-- Fallback image if video fails -->
+            <img src="crearte/simbolo-de-infinito.png" alt="Infinito - Creatividad sin límites">
+        </video>
+        <div class="container hero-content">
+            <h1 class="hero-title fade-in">
+                Creatividad que <span class="highlight">Transforma</span> Negocios
+            </h1>
+            <p class="hero-subtitle fade-in">
+                Soluciones visuales profesionales para empresas que quieren destacar. Desde la identidad de tu marca hasta experiencias digitales memorables.
+            </p>
+            <div class="hero-cta fade-in">
+                <a href="https://wa.me/+50769347097" class="btn btn-primary">💬 Cotiza Gratis</a>
+                <a href="#nosotros" class="btn btn-secondary">Conócenos</a>
+            </div>
         </div>
-        <div class="hero-bg-parallax"></div>
-        <div class="hero-content container">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    Creatividad que <span class="highlight">Transforma</span> Negocios
-                </h1>
-                <p class="hero-subtitle">
-                    Soluciones visuales profesionales para empresas que quieren destacar. Desde la identidad de tu marca hasta experiencias digitales memorables.
-                </p>
-                <div class="hero-cta">
-                    <a href="https://wa.me/+50769347097" class="btn btn-whatsapp btn-large">💬 Cotiza Gratis</a>
-                    <a href="#nosotros" class="btn btn-secondary btn-large">Conócenos</a>
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- Valores Section -->
+    <section class="valores-section">
+        <div class="valores-grid">
+            <article class="valor-card fade-in">
+                <div class="valor-icon">
+                    <img src="assets/mision.svg" alt="Misión">
+                </div>
+                <h3>Misión</h3>
+                <p>Ofrecer servicios creativos que combinen profesionalismo con precios justos, ayudando a pequeñas y medianas empresas a destacar visualmente.</p>
+            </article>
+
+            <article class="valor-card fade-in">
+                <div class="valor-icon">
+                    <img src="assets/vision.svg" alt="Visión">
+                </div>
+                <h3>Visión</h3>
+                <p>Ser el estudio referente para marcas emergentes en Panamá, reconocidos por nuestra calidad y capacidad de transformar ideas en realidades visuales.</p>
+            </article>
+
+            <article class="valor-card fade-in">
+                <div class="valor-icon">
+                    <img src="assets/valores.svg" alt="Valores">
+                </div>
+                <h3>Valores</h3>
+                <p>Creatividad accesible, profesionalismo garantizado y colaboración real. Somos aliados estratégicos de tu negocio.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Historia Section -->
+    <section class="historia-section" id="nosotros">
+        <div class="container">
+            <div class="historia-content">
+                <div class="historia-text fade-in">
+                    <h2>Nuestra <span class="highlight">Historia</span></h2>
+                    <p>
+                        Studio CreArtes comenzó como un sueño individual basado en la pasión por el diseño y la creatividad. Con el tiempo, evolucionamos hasta convertirnos en un equipo multidisciplinario dedicado a ayudar a empresas a crecer a través del diseño estratégico y efectivo.
+                    </p>
+                    <p>
+                        Nos especializamos en darle vida visual a ideas de negocio con soluciones creativas que van desde la conceptualización de marca hasta la ejecución técnica. En un mercado donde el diseño de calidad puede ser costoso, creemos en democratizar el acceso a servicios profesionales para que las pequeñas y medianas empresas también puedan competir con una imagen de primer nivel.
+                    </p>
+                    <div class="historia-stats">
+                        <div class="stat">
+                            <h4>Pasión por el diseño</h4>
+                            <p>Desde la creatividad hasta el resultado</p>
+                        </div>
+                        <div class="stat">
+                            <h4>100% Clientes Satisfechos</h4>
+                            <p>Calidad y compromiso en cada proyecto</p>
+                        </div>
+                    </div>
+                    <a href="#portafolio" class="btn btn-outline">Nuestro Portafolio</a>
+                </div>
+                <div class="historia-metodologia fade-in">
+                    <h3>METODOLOGÍA CREARTES</h3>
+                    <p class="metodologia-subtitle">Un Brief es clave en cuatro etapas pensadas para obtener resultados</p>
+                    <div class="metodologia-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Descubrimiento</h4>
+                                <p>Entendemos tu negocio y productos</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Estrategia Visual</h4>
+                                <p>Desarrollamos la identidad visual</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Diseño y Creación</h4>
+                                <p>Ejecutamos con atención al detalle</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Entrega y Lanzamiento</h4>
+                                <p>Implementamos y aseguramos impacto</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Misión, Visión, Valores (Movido arriba) -->
-    <section class="valores-section">
-        <div class="container">
-            <div class="valores-grid">
-                <article class="valor-card fade-in">
-                    <div class="valor-icon">🎯</div>
-                    <h3>Misión</h3>
-                    <p>
-                        Ofrecer servicios creativos que combinen profesionalismo con accesibilidad, ayudando a empresas de todos los tamaños a destacar visualmente.
-                    </p>
-                </article>
-
-                <article class="valor-card fade-in">
-                    <div class="valor-icon">🚀</div>
-                    <h3>Visión</h3>
-                    <p>
-                        Ser el estudio referente para marcas emergentes en Panamá, reconocidos por nuestra calidad y capacidad de transformar ideas en realidades visuales.
-                    </p>
-                </article>
-
-                <article class="valor-card fade-in">
-                    <div class="valor-icon">✨</div>
-                    <h3>Valores</h3>
-                    <p>
-                        Creatividad accesible, profesionalismo garantizado y colaboración real. Somos aliados estratégicos de tu negocio.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: Servicios -->
-    <section class="servicios" id="servicios">
+    <!-- Servicios Section -->
+    <section class="servicios-section" id="servicios">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">Nuestras <span class="highlight">Soluciones</span></h2>
-                <p class="section-subtitle">
-                    4 grupos estratégicos dise\u00f1ados para hacer crecer tu marca
-                </p>
+                <h2>Nuestros <span class="highlight">Servicios</span></h2>
+                <p>Soluciones estratégicas de diseño para potenciar tu marca. Selecciona un servicio para conocer más detalles sobre cómo podemos ayudarte.</p>
             </div>
             
-            <div class="servicios-grid">
-                <div class="servicio-card fade-in">
-                    <div class="servicio-image">
-                        <img src="crearte/fachada-optica-rosa.jpeg" alt="Soluciones de Marca" loading="lazy">
-                        <div class="servicio-overlay">
-                            <span class="servicio-icon">🎨</span>
+            <div class="servicios-tabs-container">
+                <!-- Sidebar with service tabs -->
+                <div class="servicios-sidebar">
+                    <button class="servicio-tab active" data-servicio="marca">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                            <polyline points="17 2 12 7 7 2"></polyline>
+                        </svg>
+                        <span>Soluciones de Marca</span>
+                    </button>
+                    <button class="servicio-tab" data-servicio="produccion">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        <span>Producción Gráfica</span>
+                    </button>
+                    <button class="servicio-tab" data-servicio="comunicacion">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Comunicación Visual</span>
+                    </button>
+                    <button class="servicio-tab" data-servicio="digital">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <span>Experiencias Digitales</span>
+                    </button>
+                    <button class="servicio-tab" data-servicio="serigrafia">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <span>Serigrafía</span>
+                    </button>
+                </div>
+                
+                <!-- Content panel -->
+                <div class="servicios-content">
+                    <!-- Soluciones de Marca -->
+                    <div class="servicio-panel active" id="marca">
+                        <h3>Soluciones de Marca</h3>
+                        <p>Identidad visual completa para empresas que quieren destacar. Creamos marcas memorables que conectan con tu audiencia y se mantienen en el tiempo.</p>
+                        <div class="servicio-details">
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE:</h4>
+                                <ul class="servicio-includes">
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Diseño de logotipos</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Manual de marca</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Papelería corporativa</li>
+                                </ul>
+                                <a href="#contacto" class="btn btn-primary">Cotizar</a>
+                            </div>
+                            <div class="servicio-visual">
+                                <img src="crearte/fachada-optica-rosa.jpeg" alt="Soluciones de Marca" loading="lazy">
+                                <div class="servicio-visual-caption">Identidad Visual Completa</div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="servicio-title">Soluciones de Marca</h3>
-                    <p class="servicio-description">
-                        Logotipos, papelería, volantes y asesoría. Creamos marcas sólidas desde el concepto.
-                    </p>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
-                </div>
-
-                <div class="servicio-card fade-in">
-                    <div class="servicio-image">
-                        <img src="crearte/neon-logo-corporativo.jpeg" alt="Producción Gráfica" loading="lazy">
-                        <div class="servicio-overlay">
-                            <span class="servicio-icon">🖨️</span>
+                    
+                    <!-- Producción Gráfica & Publicitaria -->
+                    <div class="servicio-panel" id="produccion">
+                        <h3>Producción Gráfica & Publicitaria</h3>
+                        <p>Material impreso y digital de alto impacto. Desde brochures hasta material POP, diseñamos piezas que comunican tu mensaje de forma efectiva.</p>
+                        <div class="servicio-details">
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE:</h4>
+                                <ul class="servicio-includes">
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Brochures y catálogos</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Roll-ups y banners</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Material POP</li>
+                                </ul>
+                                <a href="#contacto" class="btn btn-primary">Cotizar</a>
+                            </div>
+                            <div class="servicio-visual">
+                                <img src="crearte/neon-logo-corporativo.jpeg" alt="Producción Gráfica" loading="lazy">
+                                <div class="servicio-visual-caption">Material Publicitario Impactante</div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="servicio-title">Producción Gráfica</h3>
-                    <p class="servicio-description">
-                        Banners, vinilos, acrílicos. Diseñamos, producimos e instalamos material publicitario.
-                    </p>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
-                </div>
-
-                <div class="servicio-card fade-in">
-                    <div class="servicio-image">
-                        <img src="crearte/neon-corazon-valentine.jpeg" alt="Comunicación Visual" loading="lazy">
-                        <div class="servicio-overlay">
-                            <span class="servicio-icon">💡</span>
+                    
+                    <!-- Comunicación Visual & Señalización -->
+                    <div class="servicio-panel" id="comunicacion">
+                        <h3>Comunicación Visual</h3>
+                        <p>Diseñamos sistemas de comunicación que transforman espacios y mensajes en experiencias claras. Desde la señalización que guía a tus clientes hasta infografías que simplifican lo complejo, nos aseguramos de que tu mensaje no solo se vea, sino que se entienda y perdure.</p>
+                        <div class="servicio-details">
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE:</h4>
+                                <ul class="servicio-includes">
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Diseño de señalización y Wayfinding</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Infografías y Visualización de Datos</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Presentaciones visuales corporativas</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Gráfica ambiental para oficinas</li>
+                                </ul>
+                                <a href="#contacto" class="btn btn-primary">Cotizar</a>
+                            </div>
+                            <div class="servicio-visual">
+                                <img src="crearte/neon-corazon-valentine.jpeg" alt="Comunicación Visual" loading="lazy">
+                                <div class="servicio-visual-caption">Señalización Interactiva</div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="servicio-title">Comunicación Visual</h3>
-                    <p class="servicio-description">
-                        Letreros de neón, letras 3D, señalización. Transformamos espacios en experiencias.
-                    </p>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
-                </div>
-
-                <div class="servicio-card fade-in">
-                    <div class="servicio-image">
-                        <img src="crearte/neon-sharik.jpeg" alt="Experiencias Digitales" loading="lazy">
-                        <div class="servicio-overlay">
-                            <span class="servicio-icon">🚀</span>
+                    
+                    <!-- Experiencias Digitales & Activaciones -->
+                    <div class="servicio-panel" id="digital">
+                        <h3>Desarrollo Web Profesional</h3>
+                        <p>Sitios web modernos que convierten visitas en clientes. Especializado en JavaScript moderno, creo aplicaciones funcionales con código limpio, diseño responsive y experiencias de usuario fluidas. Desde landing pages hasta e-commerce completos.</p>
+                        <div class="servicio-details">
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE:</h4>
+                                <ul class="servicio-includes">
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Landing pages optimizadas para conversión</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> E-commerce con WhatsApp Business integration</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Sitios corporativos responsive (mobile-first)</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Aplicaciones web con React y Next.js</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> SEO técnico y optimización de velocidad</li>
+                                </ul>
+                                <a href="https://risso-patron.github.io/portfolio/" target="_blank" class="btn btn-primary">Ver Portfolio →</a>
+                            </div>
+                            <div class="servicio-visual">
+                                <img src="crearte/neon-sharik.jpeg" alt="Desarrollo Web" loading="lazy">
+                                <div class="servicio-visual-caption">Sitios Web Modernos</div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="servicio-title">Experiencias Digitales</h3>
-                    <p class="servicio-description">
-                        Web, redes, videos, merchandising. Conectamos marcas con personas.
-                    </p>
-                    <a href="#contacto" class="btn btn-primary servicio-cta">Cotizar</a>
+                    
+                    <!-- Serigrafía -->
+                    <div class="servicio-panel" id="serigrafia">
+                        <h3>Serigrafía</h3>
+                        <p>Estampados de alta calidad en textiles y artículos promocionales. Perfectos para uniformes corporativos, merchandising y regalos empresariales que dejan huella.</p>
+                        <div class="servicio-details">
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE:</h4>
+                                <ul class="servicio-includes">
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Camisetas y uniformes corporativos</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Artículos promocionales (gorras, bolsos, tazas)</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Estampados en una o varias tintas</li>
+                                    <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Asesoría en selección de materiales</li>
+                                </ul>
+                                <a href="#contacto" class="btn btn-primary">Cotizar</a>
+                            </div>
+                            <div class="servicio-visual">
+                                <img src="crearte/fachada-optica-rosa.jpeg" alt="Serigrafía" loading="lazy">
+                                <div class="servicio-visual-caption">Estampados Profesionales</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </section>
 
-        <!-- Section 3: Nosotros - ADN del estudio -->
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="about-wrapper">
-                <div class="about-intro fade-in">
-                    <span class="about-eyebrow">Studio CreArtes</span>
-                    <h2 class="about-title">Nuestra Historia</h2>
-                    <p class="about-lead">
-                        Studio Creartes comenzó como un sueño individual apasionado por el diseño, que creció atrayendo aliados estratégicos que compartieron la misma visión. De ser un proyecto personal, se transformó en un estudio colaborativo donde la creatividad y el profesionalismo van de la mano.
-                    </p>
-                    <p class="about-lead">
-                        Hoy nos dedicamos a dar a cada cliente una identidad visual única, construida con pasión. Nuestro propósito principal es ayudar a pequeñas y medianas empresas (pymes) a tener una presencia visual clara y profesional, sin importar su presupuesto o experiencia previa.
-                    </p>
-                    <div class="about-meta">
-                        <span class="about-chip">Pasión por el diseño</span>
-                        <span class="about-chip">Operamos 100% desde Panamá</span>
-                        <span class="about-chip">Aliados estratégicos en cada proyecto</span>
-                    </div>
-                </div>
-
-                <div class="about-cards">
-                    <article class="about-card fade-in">
-                        <span class="about-card-label">Misión</span>
-                        <h3>Creatividad accesible, impacto profesional.</h3>
-                        <p>
-                            Ofrecer servicios de diseño gráfico, publicidad y marketing que combinen profesionalismo con creatividad, ayudando a empresas de todos los tamaños a destacar visualmente y comunicar su esencia de manera auténtica.
-                        </p>
-                    </article>
-
-                    <article class="about-card fade-in">
-                        <span class="about-card-label">Visión</span>
-                        <h3>Ser el estudio referente para las marcas emergentes de Panamá.</h3>
-                        <p>
-                            Convertirnos en un estudio referente en soluciones visuales y creativas, siendo reconocidos por nuestra cercanía, calidad y la capacidad de transformar ideas en realidades visuales que inspiren.
-                        </p>
-                    </article>
-
-                    <article class="about-card fade-in">
-                        <span class="about-card-label">Valores</span>
-                        <ul class="about-values">
-                            <li><strong>Creatividad accesible:</strong> Hacemos que el diseño de calidad esté al alcance de cualquier negocio.</li>
-                            <li><strong>Profesionalismo y confianza:</strong> Trabajamos con excelencia técnica y un trato cercano.</li>
-                            <li><strong>Colaboración e inspiración:</strong> Nos comprometemos a ser aliados estratégicos, inspirando a nuestros clientes a crecer visualmente.</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-
-            <div class="about-process">
-                <div class="about-process-title fade-in">
-                    <span>Metodología CreArtes</span>
-                    <h3>Del brief a la vitrina en cuatro etapas pensadas para acelerar resultados.</h3>
-                </div>
-                <div class="about-steps">
-                    <div class="about-step fade-in">
-                        <span class="step-index">01</span>
-                        <div>
-                            <h4>Descubrimiento inmersivo</h4>
-                            <p>Entrevistas, auditoría visual y mapa de oportunidades para comprender la esencia de tu negocio.</p>
-                        </div>
-                    </div>
-                    <div class="about-step fade-in">
-                        <span class="step-index">02</span>
-                        <div>
-                            <h4>Dirección creativa</h4>
-                            <p>Definimos territorios visuales, tono narrativo y prototipos que alinean expectativas desde el inicio.</p>
-                        </div>
-                    </div>
-                    <div class="about-step fade-in">
-                        <span class="step-index">03</span>
-                        <div>
-                            <h4>Producción experta</h4>
-                            <p>Diseño, ilustración, motion y desarrollo convierten la propuesta en piezas listas para lanzar.</p>
-                        </div>
-                    </div>
-                    <div class="about-step fade-in">
-                        <span class="step-index">04</span>
-                        <div>
-                            <h4>Implementación y soporte</h4>
-                            <p>Kits de marca, capacitaciones y seguimiento para que cada entrega se utilice al máximo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Section 4: Portafolio -->
-    <section class="showcase" id="portafolio">
-        <div class="container">
-            <div class="showcase-header fade-in">
-                <span class="showcase-eyebrow">Portafolio seleccionado</span>
-                <h2>Descubre algunos de nuestros proyectos destacados</h2>
-                <p>Aquí verás cómo hemos ayudado a otras empresas a transformar sus ideas en realidades visuales impactantes. Del naming al lanzamiento digital, acompañamos proyectos que necesitaban un socio creativo integral.</p>
-                <div class="showcase-actions">
-                    <a href="#contacto" class="btn btn-primary">Agendar una demo</a>
-                    <a href="https://wa.me/50769347097" class="btn btn-secondary" target="_blank" rel="noopener">Solicitar dossier</a>
-                </div>
-            </div>
-
-            <div class="showcase-grid">
-                <article class="showcase-item showcase-item--feature fade-in">
-                    <img src="crearte/neon-nuvu.jpeg" 
-                         alt="Proyecto Destacado CreArtes" 
-                         loading="lazy"
-                         class="showcase-image"
-                         data-tag="Branding + Producción"
-                         data-title="Proyecto Destacado"
-                         data-description="Diseño completo de identidad visual y producción de material gráfico para marca local.">
-                    <div class="showcase-content">
-                        <span class="showcase-tag">Branding + Producción</span>
-                        <h3>Proyecto Destacado</h3>
-                        <p>Identidad visual completa y producción de material gráfico para marca local en Panamá.</p>
-                        <ul class="showcase-meta">
-                            <li>Diseño de identidad</li>
-                            <li>Material impreso</li>
-                            <li>Asesoría de marca</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="showcase-item fade-in">
-                    <img src="crearte/neon-vamospa-arriba.jpeg" 
-                         alt="Comunicación Visual CreArtes" 
-                         loading="lazy"
-                         class="showcase-image"
-                         data-tag="Señalización"
-                         data-title="Rotulación Comercial"
-                         data-description="Letreros y señalización para espacios comerciales con impacto visual.">
-                    <div class="showcase-content">
-                        <span class="showcase-tag">Señalización</span>
-                        <h3>Rotulación Comercial</h3>
-                        <p>Letreros y comunicación visual para espacios comerciales con alto impacto.</p>
-                    </div>
-                </article>
-
-                <article class="showcase-item fade-in">
-                    <img src="crearte/merchandising-etiquetas.jpeg" 
-                         alt="Diseño Gráfico CreArtes" 
-                         loading="lazy"
-                         class="showcase-image"
-                         data-tag="Identidad Visual"
-                         data-title="Branding Completo"
-                         data-description="Desarrollo de identidad visual y material corporativo para pyme.">
-                    <div class="showcase-content">
-                        <span class="showcase-tag">Identidad Visual</span>
-                        <h3>Branding Completo</h3>
-                        <p>Desarrollo de identidad visual completa y material corporativo para empresa local.</p>
-                    </div>
-                </article>
-
-                <article class="showcase-item fade-in">
-                    <img src="crearte/neon-and-co.jpeg" 
-                         alt="Producción Publicitaria CreArtes" 
-                         loading="lazy"
-                         class="showcase-image"
-                         data-tag="Material Promocional"
-                         data-title="Campaña Publicitaria"
-                         data-description="Diseño y producción de material promocional para lanzamiento de marca.">
-                    <div class="showcase-content">
-                        <span class="showcase-tag">Material Promocional</span>
-                        <h3>Campaña Publicitaria</h3>
-                        <p>Diseño y producción de material promocional para lanzamiento de marca local.</p>
-                    </div>
-                </article>
-
-                <article class="showcase-item fade-in">
-                    <img src="crearte/fachada-interior-04.jpeg" 
-                         alt="Proyectos diversos CreArtes" 
-                         loading="lazy"
-                         class="showcase-image"
-                         data-tag="Diseño + Producción"
-                         data-title="Proyectos Variados"
-                         data-description="Portfolio de trabajos diversos para diferentes clientes en Panamá.">
-                    <div class="showcase-content">
-                        <span class="showcase-tag">Diseño + Producción</span>
-                        <h3>Proyectos Variados</h3>
-                        <p>Portfolio de trabajos diversos para diferentes clientes y sectores en Panamá.</p>
-                    </div>
-                </article>
-            </div>
-
-            <div class="showcase-footer">
-                <p>¿Quieres ver casos específicos para tu industria? Escríbenos y te compartimos un dossier personalizado.</p>
-                <a href="mailto:Contacto@studiocreartes.com" class="link-highlight">Contacto@studiocreartes.com</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar galería">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </button>
-        
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Proyecto anterior">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-        </button>
-        
-        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente proyecto">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-        </button>
-        
-        <div class="lightbox-content">
-            <img src="" alt="" id="lightboxImage" class="lightbox-image">
-            <div class="lightbox-info">
-                <div class="lightbox-counter" id="lightboxCounter"></div>
-                <span class="lightbox-tag" id="lightboxTag"></span>
-                <h3 class="lightbox-title" id="lightboxTitle"></h3>
-                <p class="lightbox-description" id="lightboxDescription"></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section 5: Servicios insignia -->
-    <section class="signature-services" id="experiencias">
-        <div class="container">
-            <div class="signature-header fade-in">
-                <span class="signature-eyebrow">Servicios insignia</span>
-                <h2>Paquetes que cubren todo el recorrido de una marca ambiciosa.</h2>
-                <p>Inspirados en estudios boutique de clase mundial, combinamos estrategia, diseño y producción para entregar experiencias completas.</p>
-            </div>
-            <div class="signature-grid">
-                <article class="signature-card fade-in">
-                    <span class="signature-index">01</span>
-                    <div class="signature-top">
-                        <h3>Branding inmersivo</h3>
-                        <p>Investigación, arquetipo, naming, sistema visual, manual de marca y kit de lanzamiento.</p>
-                    </div>
-                    <ul class="signature-list">
-                        <li>Workshops colaborativos</li>
-                        <li>Identidad adaptable a print y digital</li>
-                        <li>Biblioteca de templates editable</li>
-                    </ul>
-                    <span class="signature-tag">Ideal para nuevas marcas y rebranding total</span>
-                </article>
-
-                <article class="signature-card fade-in">
-                    <span class="signature-index">02</span>
-                    <div class="signature-top">
-                        <h3>Presencia digital integrada</h3>
-                        <p>UX/UI, desarrollo web a medida, automatizaciones y contenido mensual para redes.</p>
-                    </div>
-                    <ul class="signature-list">
-                        <li>Diseño web responsivo</li>
-                        <li>Gestión de blog y newsletters</li>
-                        <li>Dashboards de rendimiento</li>
-                    </ul>
-                    <span class="signature-tag">Para negocios que quieren vender y medir online</span>
-                </article>
-
-                <article class="signature-card fade-in">
-                    <span class="signature-index">03</span>
-                    <div class="signature-top">
-                        <h3>Retail & espacios vivos</h3>
-                        <p>Arquitectura visual de tiendas, señalética, vitrinas, rotulación de flota y activaciones.</p>
-                    </div>
-                    <ul class="signature-list">
-                        <li>Concepto espacial y renders</li>
-                        <li>Producción + instalación</li>
-                        <li>Kit operativo para el equipo</li>
-                    </ul>
-                    <span class="signature-tag">Perfecto para experiencias físicas memorables</span>
-                </article>
-
-                <article class="signature-card fade-in">
-                    <span class="signature-index">04</span>
-                    <div class="signature-top">
-                        <h3>Campañas de lanzamiento</h3>
-                        <p>Idea paraguas, storytelling, piezas multimedia y gestión de pauta para maximizar alcance.</p>
-                    </div>
-                    <ul class="signature-list">
-                        <li>Roadmap de producción</li>
-                        <li>Motion, video y fotografía</li>
-                        <li>Optimización de pauta en tiempo real</li>
-                    </ul>
-                    <span class="signature-tag">El impulso que necesitas para salir con fuerza</span>
-                </article>
-            </div>
-        </div>
-    </section>    <!-- Section 5: Beneficios -->
-    <section class="benefits section" id="beneficios">
+    <!-- Testimonios Section -->
+    <section class="testimonios-section" id="testimonios">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">¿Por qué elegir <span class="highlight">Creartes?</span></h2>
-                <p class="section-subtitle">Somos más que un proveedor, somos tu aliado estratégico</p>
+                <span class="section-eyebrow">✦ TESTIMONIOS</span>
+                <h2>Clientes que ya están <span class="highlight">Creciendo</span></h2>
+                <p>Ayudamos a las empresas a transformar su identidad y alcanzar nuevas alturas.</p>
             </div>
-            <div class="benefits-grid">
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
+
+            <div class="testimonios-grid">
+                <article class="testimonio-card fade-in">
+                    <div class="testimonio-logo">
+                        <div class="logo-circle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Ahorra Tiempo Valioso</h3>
-                    <p>Nos encargamos de todo el proceso creativo mientras tú te enfocas en hacer crecer tu negocio.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
+                    <h3>TechFlow Inc.</h3>
+                    <p class="testimonio-category">SaaS & Technology</p>
+                    <div class="testimonio-rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                     </div>
-                    <h3>Imagen Profesional</h3>
-                    <p>Proyecta la calidad y profesionalismo que tu negocio merece con diseños de alto impacto.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
+                    <p class="testimonio-text">Hicieron un reinvent</p>
+                </article>
+
+                <article class="testimonio-card fade-in">
+                    <div class="testimonio-logo">
+                        <div class="logo-circle green">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a8 8 0 0 1 4.3 0l-3.94 4.95H21.95A10 10 0 0 0 12 2z"/>
+                                <path d="M12 22a10 10 0 0 0 9.95-9H10.31l3.95-4.95a8 8 0 0 1-4.3 0l3.94 4.95H2.05A10 10 0 0 0 12 22z"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Soluciones a tu Medida</h3>
-                    <p>Entendemos las necesidades únicas de las Pymes y adaptamos nuestros servicios a tu presupuesto.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
+                    <h3>GreenLeaf</h3>
+                    <p class="testimonio-category">Organic Market</p>
+                    <div class="testimonio-rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                     </div>
-                    <h3>Precios Justos</h3>
-                    <p>Calidad de agencia grande con precios accesibles para pequeñas y medianas empresas.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
+                    <p class="testimonio-text">Hicieron un reinvent</p>
+                </article>
+
+                <article class="testimonio-card fade-in">
+                    <div class="testimonio-logo">
+                        <div class="logo-circle blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Todo en Un Solo Lugar</h3>
-                    <p>Desde tu logo hasta tu página web y rotulación. Un solo proveedor para todas tus necesidades.</p>
-                </div>
-                <div class="benefit-card fade-in">
-                    <div class="benefit-icon">
-                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        </svg>
+                    <h3>Apex Logistics</h3>
+                    <p class="testimonio-category">Global Transport</p>
+                    <div class="testimonio-rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
                     </div>
-                    <h3>Atención Personalizada</h3>
-                    <p>Trato directo y cercano. Conocemos tu negocio y nos comprometemos con tu crecimiento.</p>
-                </div>
+                    <p class="testimonio-text">Hicieron un reinvent</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Section 6: Testimonios -->
-    <section class="testimonials section">
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portafolio">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">Clientes que ya están <span class="highlight">Creciendo</span></h2>
-                <p class="section-subtitle">La confianza de nuestros clientes es nuestro mejor respaldo</p>
+                <span class="section-eyebrow">📁 PORTFOLIO</span>
+                <h2>Proyectos <span class="highlight">Destacados</span></h2>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        ★★★★★
+
+            <!-- Portfolio Filters -->
+            <div class="portfolio-filters fade-in">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="digital">Digital</button>
+                <button class="filter-btn" data-filter="print">Print</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <article class="project-card fade-in card-tall" data-category="branding">
+                    <div class="project-image">
+                        <img src="crearte/fachada-optica-rosa.jpeg" alt="Apex Rebranding" loading="lazy">
                     </div>
-                    <p class="testimonial-text">"Creartes transformó completamente la imagen de mi restaurante. El nuevo logo y la rotulación atrajeron muchos más clientes. ¡Excelente trabajo y precios justos!"</p>
-                    <div class="testimonial-author">
-                        <img src="crearte/fachada-optica-rosa.jpeg" alt="María González" class="testimonial-avatar">
-                        <div>
-                            <h4>María González</h4>
-                            <p>Dueña de Restaurante El Sabor</p>
-                        </div>
+                    <div class="project-content">
+                        <span class="project-category branding">BRANDING</span>
+                        <h3>Apex Rebranding</h3>
+                        <p>Una renovación completa de identidad visual para una marca de logística global.</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in" data-category="digital">
+                    <div class="project-image">
+                        <img src="crearte/portfolio-risso-digital.png" alt="Zenith Website" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category digital">DIGITAL</span>
+                        <h3>Zenith Website</h3>
+                        <p>Diseño web inmersivo centrado en la experiencia de usuario y la conversión.</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in card-medium" data-category="print">
+                    <div class="project-image">
+                        <img src="crearte/packaging-arroz-rico.jpeg" alt="Eco Packaging" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category print">PRINT</span>
+                        <h3>Eco Packaging</h3>
+                        <p>Soluciones de empaque sostenibles que comunican los valores de la marca.</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in card-tall" data-category="print">
+                    <div class="project-image">
+                        <img src="crearte/rollup-banco-01.jpeg" alt="Urban Poster Series" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category print">PRINT</span>
+                        <h3>Urban Poster Series</h3>
+                        <p>Carteles llamativos y vanguardistas para un festival de música urbana.</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in" data-category="digital">
+                    <div class="project-image">
+                        <img src="crearte/neon-sharik.jpeg" alt="Flux App Design" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category digital">DIGITAL</span>
+                        <h3>Flux App Design</h3>
+                        <p>Interfaz de usuario intuitiva para una aplicación fintech de nueva generación.</p>
+                    </div>
+                </article>
+
+                <article class="project-card fade-in card-medium" data-category="print">
+                    <div class="project-image">
+                        <img src="crearte/fachada-interior-04.jpeg" alt="Summit Report" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category editorial">EDITORIAL</span>
+                        <h3>Summit Report</h3>
+                        <p>Diseño editorial único y profesional para el informe anual de Summit Corp.</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="portfolio-cta fade-in">
+                <a href="#contacto" class="btn btn-primary">Ver todos los proyectos →</a>
+            </div>
+        </div>
+    </section>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us-section">
+        <div class="container">
+            <div class="why-us-layout">
+                <div class="why-us-content fade-in">
+                    <span class="section-eyebrow">BENEFICIOS EXCLUSIVOS</span>
+                    <h2>¿Por qué elegir <span class="highlight">CreArtes</span> para tu negocio?</h2>
+                    <p class="why-us-description">Entendemos los desafíos de las pequeñas y medianas empresas. Ofrecemos soluciones de diseño que no solo se ven bien, sino que impulsan tus resultados tangibles.</p>
+                    
+                    <div class="why-us-cta">
+                        <a href="#portafolio" class="btn btn-primary">Ver Portafolio</a>
+                        <a href="#contacto" class="btn btn-outline">Contáctanos</a>
                     </div>
                 </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        ★★★★★
-                    </div>
-                    <p class="testimonial-text">”Necesitaba una página web profesional y gestión de redes sociales. El equipo de Creartes entendió perfectamente mi visión y los resultados superaron mis expectativas.”</p>
-                    <div class="testimonial-author">
-                        <img src="crearte/neon-vamospa-arriba.jpeg" alt="Carlos Mendoza" class="testimonial-avatar">
-                        <div>
-                            <h4>Carlos Mendoza</h4>
-                            <p>Fundador de TechSolutions PA</p>
+
+                <div class="benefits-cards fade-in">
+                    <article class="benefit-feature-card">
+                        <div class="benefit-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
                         </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        ★★★★★
-                    </div>
-                    <p class="testimonial-text">”Como emprendedora, necesitaba una identidad de marca completa pero tenía presupuesto limitado. Creartes me ofreció calidad profesional a un precio accesible. ¡Totalmente recomendados!”</p>
-                    <div class="testimonial-author">
-                        <img src="crearte/merchandising-arroz-rico.jpeg" alt="Ana Rodríguez" class="testimonial-avatar">
-                        <div>
-                            <h4>Ana Rodríguez</h4>
-                            <p>Dueña de Boutique Bella</p>
+                        <div class="benefit-feature-content">
+                            <h3>Ahorra Tiempo Valioso</h3>
+                            <p>Deja el diseño en manos expertas y enfócate en lo que mejor sabes hacer: crecer tu negocio. Nosotros nos encargamos de los detalles técnicos y creativos.</p>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="benefit-feature-card">
+                        <div class="benefit-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="benefit-feature-content">
+                            <h3>Imagen 100% Profesional</h3>
+                            <p>Proyecta confianza desde el primer vistazo con una identidad visual coherente y moderna. Tu marca se verá sólida y establecida desde el día uno.</p>
+                        </div>
+                    </article>
+
+                    <article class="benefit-feature-card">
+                        <div class="benefit-feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="benefit-feature-content">
+                            <h3>Diseño que Vende</h3>
+                            <p>No solo hacemos cosas bonitas: creamos estrategias visuales pensadas para atraer clientes, aumentar conversiones y destacar sobre tu competencia.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 7: CTA Final y Formulario -->
-    <section class="cta-final section" id="contacto">
+    <!-- Contact Section -->
+    <section class="contact-section" id="contacto">
         <div class="container">
-            <div class="cta-content fade-in">
-                <div class="cta-text">
-                    <h2 class="section-title">¿Listo para dar el <span class="highlight">siguiente paso?</span></h2>
-                    <p class="section-subtitle">Contáctanos y conversemos sobre cómo llevar tu imagen al siguiente nivel.</p>
-                    <div class="cta-benefits">
-                        <div class="cta-benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            <span>Respuesta en menos de 24 horas</span>
-                        </div>
-                        <div class="cta-benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            <span>Asesoría personalizada sin compromiso</span>
-                        </div>
-                        <div class="cta-benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                            <span>Propuesta adaptada a tu presupuesto</span>
-                        </div>
-                    </div>
+            <!-- Contact Features Header -->
+            <div class="contact-features-header fade-in">
+                <div class="feature-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Respuesta en menos de 24 horas</span>
                 </div>
-                <div class="contact-form-wrapper">
+                <div class="feature-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Asesoría personalizada sin compromiso</span>
+                </div>
+                <div class="feature-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Propuesta adaptada a tu presupuesto</span>
+                </div>
+            </div>
+
+            <!-- Contact Layout: Form + Info -->
+            <div class="contact-layout">
+                <!-- Form Column -->
+                <div class="contact-form-wrapper fade-in">
+                    <h2>Hablemos de tu proyecto</h2>
+                    <p class="form-subtitle">Completa el formulario y nos pondremos en contacto contigo lo antes posible.</p>
+                    
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="100" placeholder="Tu nombre" title="Ingresa tu nombre completo (mínimo 3 caracteres)">
+                            <label for="name">Nombre Completo <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
                         </div>
+
                         <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="tu@email.com" title="Ingresa un correo electrónico válido (ej: tu@email.com)">
+                            <label for="email">Correo Electrónico <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
                         </div>
+
                         <div class="form-group">
-                            <label for="telefono">Teléfono / WhatsApp *</label>
-                            <input type="tel" id="telefono" name="telefono" required pattern="[+]?[0-9\s\-()]+" placeholder="+507 1234-5678" title="Ingresa un número de teléfono válido (ej: +507 1234-5678)">
+                            <label for="phone">Teléfono / WhatsApp <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+507 1234-5678">
                         </div>
+
                         <div class="form-group">
-                            <label for="empresa">Nombre de tu Empresa</label>
-                            <input type="text" id="empresa" name="empresa" placeholder="Tu empresa">
+                            <label for="company">Nombre de tu Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Tu empresa">
                         </div>
-                        
-                        <!-- Honeypot Anti-Spam (campo invisible para bots) -->
-                        <div class="form-group honeypot" aria-hidden="true">
-                            <label for="website">Website (no llenar)</label>
-                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-                        </div>
-                        
+
                         <div class="form-group">
-                            <label for="servicio">Servicio de Interés *</label>
-                            <select id="servicio" name="servicio" required>
+                            <label for="service">Servicio de Interés <span class="required">*</span></label>
+                            <select id="service" name="service" required>
                                 <option value="">Selecciona un servicio</option>
-                                <option value="branding">Identidad de Marca y Diseño Gráfico</option>
-                                <option value="marketing">Marketing y Presencia Digital</option>
-                                <option value="rotulacion">Publicidad y Rotulación Comercial</option>
-                                <option value="varios">Varios Servicios</option>
+                                <option value="branding">Soluciones de Marca</option>
+                                <option value="produccion">Producción Gráfica & Publicitaria</option>
+                                <option value="comunicacion">Comunicación Visual & Señalización</option>
+                                <option value="digital">Experiencias Digitales & Desarrollo Web</option>
+                                <option value="serigrafia">Serigrafía & Artículos Promocionales</option>
+                                <option value="otro">Otro servicio</option>
                             </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="mensaje">Cuéntanos sobre tu proyecto *</label>
-                            <textarea id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="1000" placeholder="Describe brevemente lo que necesitas..." title="Describe tu proyecto (mínimo 10 caracteres)"></textarea>
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large btn-full">
-                            Solicitar Cotización Gratuita
+
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            ENVIAR MENSAJE
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
                         </button>
-                        <p class="form-note">* Campos obligatorios. Tus datos están protegidos.</p>
                     </form>
-                    <div class="form-success hidden" id="formSuccess">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
+
+                    <div id="formSuccess" class="form-success" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
-                        <h3>¡Mensaje Enviado!</h3>
+                        <h3>¡Mensaje enviado exitosamente!</h3>
                         <p>Gracias por contactarnos. Te responderemos en menos de 24 horas.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Section 8: Información de Contacto -->
-    <section class="contact-info section">
-        <div class="container">
-            <div class="contact-cards-grid">
-                <!-- WhatsApp Card -->
-                <div class="contact-card">
-                    <div class="contact-card-icon">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                    </div>
-                    <h3>WhatsApp</h3>
-                    <p class="contact-card-subtitle">Escríbenos por WhatsApp</p>
-                    <a href="https://wa.me/+50769347097" target="_blank" rel="noopener noreferrer" class="contact-card-link">+50769347097</a>
-                </div>
+                <!-- Contact Info Column -->
+                <div class="contact-info-wrapper fade-in">
+                    <div class="contact-info-card">
+                        <div class="info-item">
+                            <div class="info-item-icon whatsapp-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                                </svg>
+                            </div>
+                            <div class="info-item-content">
+                                <h3>WhatsApp</h3>
+                                <p>+507 6934 7097</p>
+                            </div>
+                        </div>
 
-                <!-- Email Card -->
-                <div class="contact-card">
-                    <div class="contact-card-icon">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                        </svg>
-                    </div>
-                    <h3>Email</h3>
-                    <p class="contact-card-subtitle">Envíanos un correo electrónico</p>
-                    <a href="mailto:Contacto@studiocreartes.com" class="contact-card-link">Contacto@<br>studiocreartes.com</a>
-                </div>
+                        <div class="info-item">
+                            <div class="info-item-icon email-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="info-item-content">
+                                <h3>Email</h3>
+                                <p>Contacto@studiocreartes.com</p>
+                            </div>
+                        </div>
 
-                <!-- Ubicación Card -->
-                <div class="contact-card">
-                    <div class="contact-card-icon">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                            <circle cx="12" cy="10" r="3"/>
-                        </svg>
-                    </div>
-                    <h3>Ubicación</h3>
-                    <p class="contact-card-subtitle">Estamos en Panamá</p>
-                    <p class="contact-card-link">Ciudad de<br>Panamá, Panamá</p>
-                </div>
+                        <div class="info-item">
+                            <div class="info-item-icon location-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="info-item-content">
+                                <h3>Ubicación</h3>
+                                <p>Ciudad de Panamá, Panamá</p>
+                            </div>
+                        </div>
 
-                <!-- Redes Sociales Card -->
-                <div class="contact-card">
-                    <div class="contact-card-icon">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
-                    </div>
-                    <h3>Síguenos</h3>
-                    <p class="contact-card-subtitle">en Redes Sociales</p>
-                    <div class="contact-card-socials">
-                        <a href="#" target="_blank" aria-label="Facebook">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Instagram">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
+                        <div class="info-item social-item">
+                            <h3>Síguenos</h3>
+                            <div class="contact-social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-link" aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -755,66 +705,20 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-main">
-                <div class="footer-col-1">
-                    <img src="assets/logo-creartes-01.webp" alt="Studio CreArtes Logo" class="footer-logo">
-                    <p class="footer-tagline">Soluciones creativas que destacan tu marca</p>
-                    <div class="footer-social">
-                        <a href="https://wa.me/+50769347097" class="social-link" title="WhatsApp" aria-label="WhatsApp">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:Contacto@studiocreartes.com" class="social-link" title="Email" aria-label="Email">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                            </svg>
-                        </a>
-                    </div>
+            <div class="footer-content">
+                <p class="footer-copyright">&copy; 2024 Studio CreArtes. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#terminos">Términos</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#privacidad">Privacidad</a>
                 </div>
-
-                <div class="footer-col-2">
-                    <h4 class="footer-heading">Enlaces Rápidos</h4>
-                    <ul class="footer-list">
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#portafolio">Portafolio</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col-3">
-                    <h4 class="footer-heading">Contacto</h4>
-                    <p class="footer-contact">
-                        <strong>Email:</strong><br>
-                        <a href="mailto:Contacto@studiocreartes.com">Contacto@studiocreartes.com</a>
-                    </p>
-                    <p class="footer-contact">
-                        <strong>WhatsApp:</strong><br>
-                        <a href="https://wa.me/+50769347097">+50769347097</a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Studio CreArtes. Todos los derechos reservados.</p>
-                <p>Hecho por LuisitoDev con ❤️ en Panamá</p>
             </div>
         </div>
     </footer>
-    <!-- Floating WhatsApp Button -->
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
 
-    <a href="https://wa.me/+50769347097" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/+50769347097" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        💬
     </a>
 
     <script src="js/main.js"></script>
