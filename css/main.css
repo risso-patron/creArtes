@@ -773,9 +773,11 @@ section {
 
 .valores-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--spacing-3xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
 }
 
 .valor-card {
@@ -2687,6 +2689,10 @@ section {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+  
   .back-to-top {
     bottom: 1.5rem;
     right: 1.5rem;
