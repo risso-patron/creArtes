@@ -1,0 +1,11 @@
+[build]
+  # No build command needed for static HTML site
+  command = ""
+  # Publish the root directory (contains index.html)
+  publish = "."
+
+# Disable Next.js plugin - this is a static HTML site
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+    disable = true
