@@ -10,17 +10,18 @@
   --gris-medio: #333333;
   --gris-claro: #e0e0e0;
   
-  /* Modo Dark (predeterminado) - Negro principal */
+  /* Modo Light (único) */
   --primary-color: var(--turquesa);
   --primary-dark: var(--turquesa-dark);
   --primary-light: var(--turquesa-light);
-  --text-primary: var(--blanco);
-  --text-secondary: #e0e0e0;
-  --text-light: #a0a0a0;
-  --background: var(--negro);
-  --background-alt: var(--gris-oscuro);
-  --background-card: #0d0d0d;
-  --border-color: #2a2a2a;
+  --text-primary: var(--gris-oscuro);
+  --text-secondary: #4a4a4a;
+  --text-light: #6a6a6a;
+  --background: #f8f9fa;
+  --background-alt: var(--blanco);
+  --background-card: var(--blanco);
+  --background-light: #ffffff;
+  --border-color: #e0e0e0;
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -37,10 +38,10 @@
   --border-radius-lg: 12px;
   
   /* Sombras */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.15);
   
   /* Transiciones */
   --transition: all 0.3s ease;
@@ -250,8 +251,8 @@ p {
   transform: translateY(-2px);
 }
 
-/* Light theme logo */
-[data-theme="light"] .logo-svg {
+/* Logo styles */
+.logo-svg {
   color: var(--text-primary);
 }
 
@@ -273,15 +274,14 @@ p {
   filter: drop-shadow(0 4px 12px rgba(7, 122, 122, 0.3));
 }
 
-/* Adaptación del logo según tema */
-/* En modo dark: logo blanco con A turquesa se ve perfecto */
-/* En modo light: oscurecer solo las letras blancas, mantener A turquesa */
-[data-theme="light"] .nav-logo .logo-img {
-  filter: brightness(0) saturate(100%) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
+/* Logo styles - modo claro */
+.nav-logo .logo-img {
+  filter: none;
+  transition: all 0.3s ease;
 }
 
-[data-theme="light"] .nav-logo .logo-img:hover {
-  filter: brightness(0) saturate(100%) drop-shadow(0 4px 12px rgba(7, 122, 122, 0.2));
+.nav-logo .logo-img:hover {
+  filter: drop-shadow(0 4px 12px rgba(7, 122, 122, 0.3));
 }
 
 .logo-text {
@@ -416,8 +416,9 @@ p {
   filter: brightness(1.0);
 }
 
-[data-theme="light"] .hero-video,
-[data-theme="light"] .hero-image-bg {
+/* Hero video opacity - modo claro */
+.hero-video,
+.hero-image-bg {
   opacity: 0.15;
   filter: brightness(1.1);
 }
@@ -430,20 +431,11 @@ p {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(7, 122, 122, 0.2) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  z-index: 1;
-}
-
-[data-theme="light"] .hero-video-overlay {
-  background: linear-gradient(
-    135deg,
     rgba(255, 255, 255, 0.85) 0%,
     rgba(7, 122, 122, 0.2) 50%,
     rgba(255, 255, 255, 0.9) 100%
   );
+  z-index: 1;
 }
 
 .hero-bg-parallax {
@@ -781,15 +773,15 @@ section {
 }
 
 .valor-card {
-  background: #ffffff;
+  background: #ffffff !important;
   padding: 2.5rem 2rem;
   border-radius: var(--border-radius);
   text-align: center;
-  border: 2px solid rgba(7, 122, 122, 0.2);
+  border: 2px solid rgba(7, 122, 122, 0.3);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .valor-card::before {
@@ -807,21 +799,7 @@ section {
 .valor-card:hover {
   transform: translateY(-5px);
   border-color: var(--turquesa);
-  box-shadow: 0 10px 30px rgba(7, 122, 122, 0.2);
-}
-
-.valor-card:hover::before {
-  transform: scaleX(1);
-}
-
-[data-theme="light"] .valor-card {
-  background: #ffffff;
-  border-color: rgba(7, 122, 122, 0.3);
-}
-
-[data-theme="dark"] .valor-card {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(7, 122, 122, 0.3);
+  box-shadow: 0 12px 35px rgba(7, 122, 122, 0.25);
 }
 
 .valor-card:hover::before {
@@ -834,27 +812,15 @@ section {
 }
 
 .valor-card h3 {
-  color: var(--turquesa);
+  color: #077a7a !important;
   font-size: 1.3rem;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .valor-card p {
-  color: #333333;
+  color: #2d2d2d !important;
   line-height: 1.6;
-}
-
-[data-theme="light"] .valor-card p {
-  color: #333333;
-}
-
-[data-theme="dark"] .valor-card p {
-  color: #1a1a1a;
-}
-
-.valor-card p {
-  color: var(--text-secondary);
-  line-height: 1.7;
   font-size: 0.95rem;
 }
 

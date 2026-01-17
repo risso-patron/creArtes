@@ -304,11 +304,11 @@ p {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: var(--spacing-2xl) 0;
+  padding: 0;
   margin-top: 0;
 }
 
@@ -339,7 +339,7 @@ p {
   z-index: 10;
   text-align: center;
   max-width: 900px;
-  margin-top: -40px;
+  margin-top: 180px;
 }
 
 .hero-title {
@@ -401,7 +401,19 @@ p {
    ======================================== */
 .valores-section {
   padding: var(--spacing-3xl) 0;
-  background: rgba(7, 122, 122, 0.05);
+  background: #000000;
+  position: relative;
+  z-index: 10;
+}
+
+.valores-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(7, 122, 122, 0.2), transparent);
 }
 
 .valores-grid {
@@ -414,18 +426,22 @@ p {
 }
 
 .valor-card {
-  background: transparent;
+  background: #ffffff !important;
   padding: var(--spacing-xl);
-  border: none;
+  border: 2px solid rgba(7, 122, 122, 0.3);
+  border-radius: var(--radius-md);
   transition: all 0.3s ease;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .valor-card:hover {
   transform: translateY(-8px);
+  border-color: var(--turquesa);
+  box-shadow: 0 12px 35px rgba(7, 122, 122, 0.25);
 }
 
 .valor-icon {
@@ -455,7 +471,7 @@ p {
 }
 
 .valor-card h3 {
-  color: var(--turquesa); 
+  color: #077a7a !important; 
   margin-bottom: var(--spacing-sm);
   font-size: 1.2rem;
   font-weight: 700;
@@ -466,7 +482,7 @@ p {
 .valor-card p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.75);
+  color: #2d2d2d !important;
   max-width: 320px;
   margin: 0 auto;
 }
@@ -1930,13 +1946,13 @@ p {
   
   /* Sections */
   .valores-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-xl);
     padding: 0 var(--spacing-md);
   }
   
   .valor-card {
-    max-width: 400px;
+    max-width: 100%;
     margin: 0 auto;
   }
   
@@ -2164,6 +2180,14 @@ p {
   
   .section-header p {
     font-size: 1rem;
+  }
+}
+
+/* Small mobile devices - solo aquí va 1 columna para valores */
+@media (max-width: 480px) {
+  .valores-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
   }
 }
 
