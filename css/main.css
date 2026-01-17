@@ -256,7 +256,7 @@ p {
 }
 
 .logo {
-  height: 45px;
+  height: 65px;
   width: auto;
   transition: var(--transition);
 }
@@ -781,14 +781,15 @@ section {
 }
 
 .valor-card {
-  background: var(--background-card);
+  background: #ffffff;
   padding: 2.5rem 2rem;
   border-radius: var(--border-radius);
   text-align: center;
-  border: 2px solid var(--border-color);
+  border: 2px solid rgba(7, 122, 122, 0.2);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .valor-card::before {
@@ -805,8 +806,22 @@ section {
 
 .valor-card:hover {
   transform: translateY(-5px);
-  border-color: var(--primary-color);
+  border-color: var(--turquesa);
   box-shadow: 0 10px 30px rgba(7, 122, 122, 0.2);
+}
+
+.valor-card:hover::before {
+  transform: scaleX(1);
+}
+
+[data-theme="light"] .valor-card {
+  background: #ffffff;
+  border-color: rgba(7, 122, 122, 0.3);
+}
+
+[data-theme="dark"] .valor-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(7, 122, 122, 0.3);
 }
 
 .valor-card:hover::before {
@@ -819,9 +834,22 @@ section {
 }
 
 .valor-card h3 {
-  color: var(--primary-color);
+  color: var(--turquesa);
   font-size: 1.3rem;
   margin-bottom: 1rem;
+}
+
+.valor-card p {
+  color: #333333;
+  line-height: 1.6;
+}
+
+[data-theme="light"] .valor-card p {
+  color: #333333;
+}
+
+[data-theme="dark"] .valor-card p {
+  color: #1a1a1a;
 }
 
 .valor-card p {
@@ -2702,6 +2730,10 @@ section {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  .logo {
+    height: 50px;
+  }
+  
   .hero {
     padding: 8rem 0 4rem;
   }

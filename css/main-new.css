@@ -455,7 +455,7 @@ p {
 }
 
 .valor-card h3 {
-  color: var(--turquesa);
+  color: var(--turquesa); 
   margin-bottom: var(--spacing-sm);
   font-size: 1.2rem;
   font-weight: 700;
