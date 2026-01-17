@@ -1,3 +1,7 @@
 image-categorizer*.html  
-package.json  
 package-lock.json  
+node_modules
+
+# Scripts de utilidad para conversión de imágenes
+# convert-to-webp.js
+# update-html-refs.js
