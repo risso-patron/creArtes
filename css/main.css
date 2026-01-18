@@ -1554,15 +1554,22 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   z-index: 1000;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
   background: #128c7e;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== SECCI+�N NOSOTROS - MISI+�N, VISI+�N, VALORES ===== */
