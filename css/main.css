@@ -1546,30 +1546,32 @@ section {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #25d366;
-  color: white;
+  background: #000000;
+  color: var(--turquesa);
   width: 60px;
   height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 3px rgba(7, 122, 122, 0.3), 0 0 20px rgba(7, 122, 122, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
   z-index: 1000;
   text-decoration: none;
   cursor: pointer;
+  border: 2px solid var(--turquesa);
 }
 
 .whatsapp-float svg {
   width: 32px;
   height: 32px;
+  fill: var(--turquesa);
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
-  background: #128c7e;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 3px 6px rgba(0, 0, 0, 0.3);
+  background: #000000;
+  box-shadow: 0 0 0 3px rgba(7, 122, 122, 0.5), 0 0 30px rgba(7, 122, 122, 0.8), 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== SECCI+�N NOSOTROS - MISI+�N, VISI+�N, VALORES ===== */
