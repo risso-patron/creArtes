@@ -773,6 +773,14 @@ p {
   gap: var(--spacing-lg);
 }
 
+/* Grid imagen + lista lado a lado */
+.servicio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -796,16 +804,12 @@ p {
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;
-  max-width: 90%;
 }
 
-/* Imagen principal centrada */
+/* Imagen ahora dentro del grid */
 .servicio-visual {
   position: relative;
   width: 100%;
-  max-width: 580px;
-  max-height: 400px;
-  margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
@@ -814,7 +818,8 @@ p {
 .servicio-visual img {
   width: 100%;
   height: 100%;
-  max-height: 400px;
+  min-height: 300px;
+  max-height: 450px;
   display: block;
   object-fit: cover;
   transition: transform 0.4s ease;
@@ -2015,12 +2020,14 @@ p {
     font-size: 1.8rem;
   }
 
-  .servicio-panel > p {
-    max-width: 100%;
+  .servicio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
 
-  .servicio-visual {
-    max-width: 100%;
+  .servicio-visual img {
+    min-height: 250px;
+    max-height: 350px;
   }
   
   /* Benefits section mobile */
