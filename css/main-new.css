@@ -770,7 +770,7 @@ p {
 .servicio-panel.active {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
 }
 
 @keyframes fadeInUp {
@@ -803,7 +803,8 @@ p {
 .servicio-visual {
   position: relative;
   width: 100%;
-  max-width: 680px;
+  max-width: 580px;
+  max-height: 400px;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -812,7 +813,8 @@ p {
 
 .servicio-visual img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 400px;
   display: block;
   object-fit: cover;
   transition: transform 0.4s ease;
