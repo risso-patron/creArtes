@@ -580,25 +580,53 @@ if (heroSection && heroBgParallax) {
 }
 
 // ===== FADE-IN SCROLL ANIMATIONS =====
+// Scroll reveal con fade-in + translateX desde -50px
+// Delay escalonado de 100ms entre elementos
 const fadeElements = document.querySelectorAll('.fade-in');
 
 if (fadeElements.length > 0) {
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Opcional: dejar de observar una vez animado
-        fadeObserver.unobserve(entry.target);
-      }
+  // Fallback para navegadores sin IntersectionObserver
+  if (!('IntersectionObserver' in window)) {
+    fadeElements.forEach(element => {
+      element.classList.add('visible');
     });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  } else {
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Aplicar delay escalonado basado en el índice del elemento
+          const delay = parseInt(entry.target.dataset.index || 0) * 100;
+          
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          
+          // Dejar de observar una vez animado
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
 
-  fadeElements.forEach(element => {
-    fadeObserver.observe(element);
-  });
+    // Asignar índices y observar elementos
+    fadeElements.forEach((element, index) => {
+      // Buscar si el elemento está dentro de un contenedor con hermanos
+      const parent = element.parentElement;
+      const siblings = parent ? Array.from(parent.children).filter(el => el.classList.contains('fade-in')) : [];
+      
+      // Si hay hermanos, usar índice relativo al grupo
+      if (siblings.length > 1) {
+        const indexInGroup = siblings.indexOf(element);
+        element.dataset.index = indexInGroup;
+      } else {
+        element.dataset.index = 0;
+      }
+      
+      fadeObserver.observe(element);
+    });
+  }
 }
 
 // ==========================================
