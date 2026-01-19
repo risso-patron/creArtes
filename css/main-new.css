@@ -1382,7 +1382,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
-  align-items: center;
+  align-items: start;
 }
 
 .why-us-content {
@@ -1429,17 +1429,32 @@ p {
 .benefits-cards {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 0.75rem;
 }
 
 .benefit-feature-card {
-  display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) var(--spacing-lg);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.875rem;
+  align-items: start;
+  padding: 0.875rem 1rem;
   background: rgba(255, 255, 255, 0.02);
   border: none;
   border-radius: var(--radius-md);
   transition: all 0.3s ease;
+}
+
+.benefit-feature-card.benefit-reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  transition: opacity 700ms cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: opacity, transform;
+}
+
+.benefit-feature-card.benefit-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .benefit-feature-card:hover {
@@ -1447,34 +1462,38 @@ p {
   transform: translateX(5px);
 }
 
+.benefit-feature-card.benefit-reveal.revealed:hover {
+  transform: translateX(5px) translateY(0) scale(1.02);
+}
+
 .benefit-feature-icon {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(7, 122, 122, 0.15);
-  border-radius: var(--radius-sm);
-  color: var(--turquesa);
 }
 
-.benefit-feature-icon svg {
-  stroke: var(--turquesa);
-  width: 18px;
-  height: 18px;
+.benefit-feature-icon svg,
+.benefit-feature-icon img {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) saturate(100%) invert(48%) sepia(82%) saturate(482%) hue-rotate(131deg) brightness(93%) contrast(93%);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .benefit-feature-content h3 {
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .benefit-feature-content p {
   color: rgba(255, 255, 255, 0.65);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.4;
 }
 
@@ -1513,6 +1532,206 @@ p {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.7;
   font-size: 0.95rem;
+}
+
+/* ========================================
+   TESTIMONIOS SECTION
+   ======================================== */
+.testimonios-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #000000 0%, #0a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonios-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--turquesa) 50%, transparent 100%);
+  z-index: 1;
+}
+
+/* Parallax Circles */
+.parallax-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-circle-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(7, 122, 122, 0.15) 0%, rgba(7, 122, 122, 0.05) 50%, transparent 70%);
+  top: -10%;
+  left: -15%;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+.parallax-circle-2 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(7, 122, 122, 0.12) 0%, rgba(7, 122, 122, 0.04) 50%, transparent 70%);
+  top: 40%;
+  right: -10%;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+.parallax-circle-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
+  bottom: -5%;
+  left: 25%;
+  z-index: 0;
+  filter: blur(70px);
+}
+
+.testimonios-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonio-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease,
+              background 0.4s ease;
+  opacity: 0;
+  transform: translateY(60px);
+  position: relative;
+  overflow: hidden;
+  will-change: opacity, transform;
+}
+
+.testimonio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--turquesa), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.testimonio-card:hover::before {
+  opacity: 1;
+}
+
+.testimonio-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(7, 122, 122, 0.3);
+  box-shadow: 0 12px 40px rgba(7, 122, 122, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.testimonio-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonio-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.testimonio-company {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-secondary);
+}
+
+.testimonio-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--turquesa);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.testimonio-stars {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--turquesa);
+}
+
+.testimonio-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* Responsive Testimonios */
+@media (max-width: 1024px) {
+  .testimonios-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonios-section {
+    padding: 4rem 0;
+  }
+
+  .testimonios-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .testimonio-card {
+    padding: 2rem;
+  }
+
+  .testimonio-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .testimonio-company {
+    font-size: 1.25rem;
+  }
 }
 
 /* ========================================

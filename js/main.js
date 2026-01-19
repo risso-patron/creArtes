@@ -656,7 +656,156 @@ function initBackToTop() {
 }
 
 // ==========================================
+// TESTIMONIOS SCROLL REVEAL
+// ==========================================
+function initTestimonios() {
+  const testimonioCards = document.querySelectorAll('.testimonio-card');
+  
+  if (testimonioCards.length === 0) return;
+
+  // Fallback para navegadores sin IntersectionObserver
+  if (!('IntersectionObserver' in window)) {
+    testimonioCards.forEach(card => {
+      card.classList.add('animate');
+    });
+    return;
+  }
+
+  const testimoniosObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const card = entry.target;
+        const delay = parseInt(card.dataset.delay || 0);
+        
+        setTimeout(() => {
+          card.classList.add('animate');
+        }, delay);
+        
+        // Dejar de observar una vez animado
+        testimoniosObserver.unobserve(card);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+  });
+
+  // Observar cada tarjeta
+  testimonioCards.forEach(card => {
+    testimoniosObserver.observe(card);
+  });
+}
+
+// ==========================================
+// PARALLAX EFFECT
+// ==========================================
+function initParallax() {
+  const parallaxCircles = document.querySelectorAll('.parallax-circle');
+  const testimoniosSection = document.querySelector('.testimonios-section');
+  
+  if (!parallaxCircles.length || !testimoniosSection) return;
+
+  let ticking = false;
+  let sectionTop = 0;
+  let sectionHeight = 0;
+
+  // Calcular posición de la sección
+  function updateSectionBounds() {
+    const rect = testimoniosSection.getBoundingClientRect();
+    sectionTop = window.pageYOffset + rect.top;
+    sectionHeight = rect.height;
+  }
+
+  // Efecto parallax
+  function handleParallax() {
+    const scrollY = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    
+    // Verificar si la sección está en el viewport
+    if (scrollY + windowHeight > sectionTop && scrollY < sectionTop + sectionHeight) {
+      const relativeScroll = scrollY - sectionTop + windowHeight;
+      const parallaxOffset = relativeScroll * 0.5; // Velocidad 0.5x
+      
+      parallaxCircles.forEach((circle, index) => {
+        // Diferentes velocidades para cada círculo (más rápido y evidente)
+        const speed = 0.5 + (index * 0.15); // 0.5, 0.65, 0.8
+        const offset = relativeScroll * speed;
+        circle.style.transform = `translateY(${offset}px)`;
+      });
+    }
+    
+    ticking = false;
+  }
+
+  // Request animation frame para optimizar performance
+  function requestTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleParallax);
+      ticking = true;
+    }
+  }
+
+  // Event listeners
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', updateSectionBounds);
+  
+  // Inicializar
+  updateSectionBounds();
+}
+
+// ==========================================
+// BENEFITS SCROLL REVEAL
+// ==========================================
+function initBenefitsReveal() {
+  const benefitCards = document.querySelectorAll('.benefit-reveal');
+  
+  if (benefitCards.length === 0) return;
+
+  // Fallback para navegadores sin IntersectionObserver
+  if (!('IntersectionObserver' in window)) {
+    benefitCards.forEach(card => {
+      card.classList.add('revealed');
+    });
+    return;
+  }
+
+  const benefitsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const card = entry.target;
+      const delay = parseInt(card.dataset.revealDelay || 0);
+      
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          card.classList.add('revealed');
+        }, delay);
+      } else {
+        // Remover clase cuando sale del viewport para repetir animación
+        card.classList.remove('revealed');
+      }
+    });
+  }, {
+    threshold: 0.6,
+    rootMargin: '0px'
+  });
+
+  // Observar cada tarjeta
+  benefitCards.forEach(card => {
+    benefitsObserver.observe(card);
+  });
+}
+
+// ==========================================
 // INITIALIZE ALL FUNCTIONS
 // ==========================================
 // Call back to top function
 initBackToTop();
+
+// Initialize testimonios scroll reveal
+initTestimonios();
+
+// Initialize parallax effect
+initParallax();
+
+// Initialize benefits scroll reveal
+initBenefitsReveal();
+initParallax();
