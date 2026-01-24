@@ -172,20 +172,25 @@
                     </div>
                     
                     <nav class="sidebar-nav">
-                        <button class="servicio-tab active" data-servicio="marca">
+                        <button class="servicio-tab active" data-servicio="publicidad">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <path d="M9 11h6M9 15h3"></path>
+                            </svg>
+                            <span>📢 Publicidad e Impresión</span>
+                        </button>
+                        <button class="servicio-tab" data-servicio="branding">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                            <span>👕 Branding Físico</span>
+                        </button>
+                        <button class="servicio-tab" data-servicio="marketing">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
                                 <polyline points="17 2 12 7 7 2"></polyline>
                             </svg>
-                            <span>Soluciones de Marca</span>
-                        </button>
-                        <button class="servicio-tab" data-servicio="produccion">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                                <rect x="6" y="14" width="12" height="8"></rect>
-                            </svg>
-                            <span>Producción Gráfica</span>
+                            <span>🎨 Diseño & Marketing Digital</span>
                         </button>
                         <button class="servicio-tab" data-servicio="digital">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -193,15 +198,16 @@
                                 <line x1="8" y1="21" x2="16" y2="21"></line>
                                 <line x1="12" y1="17" x2="12" y2="21"></line>
                             </svg>
-                            <span>Experiencias Digitales</span>
+                            <span>🌐 Servicios Digitales</span>
                         </button>
-                        <button class="servicio-tab" data-servicio="serigrafia">
+                        <button class="servicio-tab" data-servicio="eventos">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                             </svg>
-                            <span>Serigrafía</span>
+                            <span>🎤 Eventos</span>
                         </button>
                     </nav>
                     
@@ -210,15 +216,15 @@
                 
                 <!-- Panel de contenido -->
                 <div class="servicios-content">
-                    <!-- Soluciones de Marca -->
-                    <div class="servicio-panel active" id="marca">
-                        <h3>Soluciones de Marca</h3>
-                        <p>Construimos identidades visuales memorables que capturan la esencia de tu negocio. Desde logotipos hasta manuales de marca completos.</p>
+                    <!-- Publicidad e Impresión -->
+                    <div class="servicio-panel active" id="publicidad">
+                        <h3>📢 Publicidad e Impresión</h3>
+                        <p>Señalización profesional y material publicitario de alto impacto para destacar tu negocio físico.</p>
                         
                         <div class="servicio-grid">
                             <div class="servicio-visual">
-                                <img src="crearte/fachada-optica-rosa-01.webp" alt="Soluciones de Marca" loading="lazy">
-                                <div class="servicio-visual-caption">Identidad Corporativa Premium</div>
+                                <img src="crearte/neon-logo-corporativo-06.webp" alt="Publicidad e Impresión" loading="lazy">
+                                <div class="servicio-visual-caption">Señalización Profesional</div>
                             </div>
                             
                             <div class="servicio-info">
@@ -227,22 +233,22 @@
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Diseño de Logotipo</strong>
-                                            <span>Versiones vectoriales y escalables.</span>
+                                            <strong>Banners</strong>
+                                            <span>Gran formato para eventos y locales.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Paleta de Colores</strong>
-                                            <span>Psicología aplicada a tu retorno.</span>
+                                            <strong>Vinil Adhesivo</strong>
+                                            <span>Rotulación para vehículos y vidrieras.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Tipografía</strong>
-                                            <span>Jerarquías visuales claras.</span>
+                                            <strong>Letreros Acrílico</strong>
+                                            <span>Señalización corporativa premium.</span>
                                         </div>
                                     </li>
                                 </ul>
@@ -250,15 +256,15 @@
                         </div>
                     </div>
                     
-                    <!-- Producción Gráfica -->
-                    <div class="servicio-panel" id="produccion">
-                        <h3>Producción Gráfica</h3>
-                        <p>Material impreso y digital de alto impacto. Desde brochures hasta material POP, diseñamos piezas que comunican tu mensaje de forma efectiva.</p>
+                    <!-- Branding Físico -->
+                    <div class="servicio-panel" id="branding">
+                        <h3>👕 Branding Físico</h3>
+                        <p>Merchandising y artículos promocionales personalizados que refuerzan tu identidad de marca.</p>
                         
                         <div class="servicio-grid">
                             <div class="servicio-visual">
-                                <img src="crearte/neon-logo-corporativo-06.webp" alt="Producción Gráfica" loading="lazy">
-                                <div class="servicio-visual-caption">Material Publicitario Impactante</div>
+                                <img src="crearte/merchandising-arroz-rico-01.webp" alt="Branding Físico" loading="lazy">
+                                <div class="servicio-visual-caption">Merchandising Corporativo</div>
                             </div>
                             
                             <div class="servicio-info">
@@ -267,22 +273,29 @@
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Brochures y Catálogos</strong>
-                                            <span>Diseño editorial para impresión.</span>
+                                            <strong>T-shirts DTF</strong>
+                                            <span>Estampados de alta calidad y durabilidad.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Roll-ups y Banners</strong>
-                                            <span>Material promocional de gran formato.</span>
+                                            <strong>Tazas, Vasos y Termos</strong>
+                                            <span>Artículos promocionales personalizados.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Material POP</strong>
-                                            <span>Displays y señalización en punto de venta.</span>
+                                            <strong>Llaveros, Stickers, Tarjetas</strong>
+                                            <span>Material corporativo y promocional.</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <div>
+                                            <strong>Volantes</strong>
+                                            <span>Diseño e impresión publicitaria.</span>
                                         </div>
                                     </li>
                                 </ul>
@@ -290,14 +303,54 @@
                         </div>
                     </div>
                     
-                    <!-- Experiencias Digitales -->
+                    <!-- Diseño & Marketing Digital -->
+                    <div class="servicio-panel" id="marketing">
+                        <h3>🎨 Diseño & Marketing Digital</h3>
+                        <p>Estrategia visual y contenido que genera visibilidad, leads y ventas en el mundo digital.</p>
+                        
+                        <div class="servicio-grid">
+                            <div class="servicio-visual">
+                                <img src="crearte/fachada-optica-rosa-01.webp" alt="Marketing Digital" loading="lazy">
+                                <div class="servicio-visual-caption">Contenido Digital Estratégico</div>
+                            </div>
+                            
+                            <div class="servicio-info">
+                                <h4>QUÉ INCLUYE</h4>
+                                <ul class="servicio-includes">
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <div>
+                                            <strong>Diseño Gráfico</strong>
+                                            <span>Identidad visual y piezas creativas.</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <div>
+                                            <strong>Manejo de Redes</strong>
+                                            <span>Gestión profesional de redes sociales.</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        <div>
+                                            <strong>Creación y Edición de Videos</strong>
+                                            <span>Reels, TikTok y contenido para ads.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Servicios Digitales -->
                     <div class="servicio-panel" id="digital">
-                        <h3>Experiencias Digitales</h3>
-                        <p>Sitios web modernos que convierten visitas en clientes. Diseñamos experiencias digitales fluidas con enfoque en conversión y usabilidad.</p>
+                        <h3>🌐 Servicios Digitales</h3>
+                        <p>Desarrollo web profesional con tecnologías modernas y enfoque en conversión.</p>
                         
                         <div class="servicio-grid">
                             <div class="servicio-visual">
-                                <img src="crearte/neon-sharik-15.webp" alt="Experiencias Digitales" loading="lazy">
+                                <img src="crearte/neon-sharik-15.webp" alt="Servicios Digitales" loading="lazy">
                                 <div class="servicio-visual-caption">Desarrollo Web Profesional</div>
                             </div>
                             
@@ -307,22 +360,22 @@
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Landing Pages</strong>
-                                            <span>Optimizadas para conversión y SEO.</span>
+                                            <strong>Páginas Web</strong>
+                                            <span>Landing pages y sitios corporativos.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>E-commerce</strong>
-                                            <span>Tiendas online con integración WhatsApp.</span>
+                                            <strong>Web + Mantenimiento</strong>
+                                            <span>Soporte técnico y actualizaciones.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Aplicaciones Web</strong>
-                                            <span>React, Next.js y tecnologías modernas.</span>
+                                            <strong>Diseño Responsive</strong>
+                                            <span>Optimizado para móviles y SEO.</span>
                                         </div>
                                     </li>
                                 </ul>
@@ -330,15 +383,15 @@
                         </div>
                     </div>
                     
-                    <!-- Serigrafía -->
-                    <div class="servicio-panel" id="serigrafia">
-                        <h3>Serigrafía</h3>
-                        <p>Estampados de alta calidad en textiles y artículos promocionales. Perfectos para uniformes corporativos, merchandising y regalos empresariales.</p>
+                    <!-- Eventos -->
+                    <div class="servicio-panel" id="eventos">
+                        <h3>🎤 Eventos</h3>
+                        <p>Presencia física y experiencia de marca para activaciones, ferias y lanzamientos.</p>
                         
                         <div class="servicio-grid">
                             <div class="servicio-visual">
-                                <img src="crearte/merchandising-arroz-rico-01.webp" alt="Serigrafía" loading="lazy">
-                                <div class="servicio-visual-caption">Estampados Profesionales</div>
+                                <img src="crearte/rollup-banco-01.webp" alt="Eventos" loading="lazy">
+                                <div class="servicio-visual-caption">Activaciones de Marca</div>
                             </div>
                             
                             <div class="servicio-info">
@@ -347,22 +400,22 @@
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Uniformes Corporativos</strong>
-                                            <span>Camisetas y textiles con tu marca.</span>
+                                            <strong>Staff para Eventos</strong>
+                                            <span>Personal capacitado para activaciones.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Artículos Promocionales</strong>
-                                            <span>Gorras, bolsos, tazas personalizadas.</span>
+                                            <strong>Modelos</strong>
+                                            <span>Imagen profesional para tu marca.</span>
                                         </div>
                                     </li>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         <div>
-                                            <strong>Estampados Premium</strong>
-                                            <span>Una o varias tintas con alta durabilidad.</span>
+                                            <strong>Activaciones BTL</strong>
+                                            <span>Ferias, lanzamientos y eventos.</span>
                                         </div>
                                     </li>
                                 </ul>
