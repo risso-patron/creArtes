@@ -2,14 +2,3 @@
   # Static HTML site - no build process needed
   command = ""
   publish = "."
-  
-# Force static site deployment - disable all framework detection
-[build.environment]
-  NODE_VERSION = "18"
-  NPM_FLAGS = "--no-install"
-
-# Disable automatic framework detection
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    disable = true
