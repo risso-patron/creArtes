@@ -2587,9 +2587,8 @@ p {
   .benefit-feature-icon {
     margin: 0 auto;
   }
-  }
 
-  
+  /* Mobile navigation toggle */
   .nav-toggle {
     display: flex;
   }
@@ -2605,6 +2604,7 @@ p {
     width: 100%;
     text-align: center;
   }
+}
   
   /* Hero */
   .hero {
