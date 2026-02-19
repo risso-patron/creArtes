@@ -118,6 +118,10 @@ p {
   position: relative;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* Buttons */
 .btn {
   display: inline-block;
@@ -902,6 +906,64 @@ p {
   display: block;
 }
 
+/* CTA Portafolio Personal */
+.servicio-cta-personal {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.cta-personal-content {
+  background: linear-gradient(135deg, rgba(7, 122, 122, 0.1), rgba(7, 122, 122, 0.05));
+  border: 2px solid rgba(7, 122, 122, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-lg);
+  transition: all 0.3s ease;
+}
+
+.cta-personal-content:hover {
+  border-color: var(--turquesa);
+  background: linear-gradient(135deg, rgba(7, 122, 122, 0.15), rgba(7, 122, 122, 0.08));
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(7, 122, 122, 0.2);
+}
+
+.cta-personal-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(7, 122, 122, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-personal-icon svg {
+  stroke: var(--turquesa);
+}
+
+.cta-personal-text h4 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 700;
+}
+
+.cta-personal-text p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cta-personal-content .btn {
+  margin-top: var(--spacing-sm);
+}
+
 /* ========================================
    TESTIMONIOS SECTION
    ======================================== */
@@ -1151,6 +1213,52 @@ p {
   line-height: 1.5;
   margin-bottom: var(--spacing-sm);
   font-size: 0.9rem;
+}
+
+/* Project Tech Badges */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(7, 122, 122, 0.1);
+  color: var(--turquesa);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid rgba(7, 122, 122, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(7, 122, 122, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Project Credits */
+.project-credits {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.project-credits a {
+  color: var(--turquesa);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.project-credits a:hover {
+  color: var(--turquesa-light);
+  text-decoration: underline;
 }
 
 .portfolio-cta {
@@ -1670,6 +1778,19 @@ p {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* Testimonio gradients específicos */
+.testimonio-card-techflow .testimonio-icon {
+  background: linear-gradient(135deg, #00a8a8, #077a7a);
+}
+
+.testimonio-card-greenleaf .testimonio-icon {
+  background: linear-gradient(135deg, #7cb342, #558b2f);
+}
+
+.testimonio-card-apex .testimonio-icon {
+  background: linear-gradient(135deg, #42a5f5, #1976d2);
+}
+
 .testimonio-company {
   font-size: 1.5rem;
   font-weight: 700;
@@ -1921,6 +2042,15 @@ p {
 
 .email-icon svg {
   stroke: var(--turquesa);
+}
+
+.instagram-icon {
+  background: rgba(228, 64, 95, 0.15);
+  color: #e4405f;
+}
+
+.instagram-icon svg {
+  stroke: #e4405f;
 }
 
 .location-icon {
@@ -2416,6 +2546,38 @@ p {
 
   .sidebar-header p {
     display: none;
+  }
+  
+  /* CTA Personal Responsive */
+  .cta-personal-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .cta-personal-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .cta-personal-text h4 {
+    font-size: 1.1rem;
+  }
+  
+  .cta-personal-text p {
+    font-size: 0.9rem;
+  }
+  
+  /* Project tech badges */
+  .project-tech {
+    gap: 0.4rem;
+  }
+  
+  .tech-badge {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+  
+  .project-credits {
+    font-size: 0.75rem;
   }
   
   .sidebar-nav {

@@ -192,12 +192,12 @@ if (contactForm) {
 
     // Get form data
     const formData = {
-      nombre: document.getElementById("nombre").value,
+      nombre: document.getElementById("name").value,
       email: document.getElementById("email").value,
-      telefono: document.getElementById("telefono").value,
-      empresa: document.getElementById("empresa").value,
-      servicio: document.getElementById("servicio").value,
-      mensaje: document.getElementById("mensaje").value,
+      telefono: document.getElementById("phone").value,
+      empresa: document.getElementById("company").value,
+      servicio: document.getElementById("service").value,
+      mensaje: document.getElementById("message").value,
     }
 
     // Basic validation
@@ -217,8 +217,8 @@ if (contactForm) {
     console.log("Form submitted with data:", formData)
 
     // Show success message
-    contactForm.style.display = "none"
-    formSuccess.style.display = "block"
+    contactForm.classList.add("hidden")
+    formSuccess.classList.remove("hidden")
 
     // Create WhatsApp message
     const whatsappMessage = `Hola! Me gustaría solicitar información sobre ${formData.servicio}.
