@@ -1,17 +1,22 @@
-// ===== PARTICLE ANTIGRAVITY — HERO BACKGROUND =====
+// ===== PARTICLE WAVE — HERO BACKGROUND =====
 ;(function () {
   const canvas = document.getElementById('particleCanvas')
   if (!canvas) return
 
-  const ctx       = canvas.getContext('2d')
-  const COUNT     = 160
-  const REPEL_R   = 150    // radio de repulsión del cursor
-  const REPEL_F   = 6      // fuerza del empuje
-  const FRICTION  = 0.90   // amortiguación — frena después del empuje
-  const DRIFT     = 0.22   // velocidad de deriva natural (Browniana lenta)
-  const COLOR     = 'rgba(7,153,140,'  // turquesa visible en fondo negro
+  const ctx = canvas.getContext('2d')
 
-  let W, H, particles
+  // Configuración
+  const COUNT      = 480    // partículas totales
+  const REPEL_R    = 160    // radio de repulsión del cursor
+  const REPEL_F    = 8      // fuerza del empuje
+  const FRICTION   = 0.86   // amortiguación
+  const SPRING     = 0.022  // fuerza de retorno a posición base (ola)
+  const WAVE_AMP   = 16     // amplitud de la ola en px
+  const WAVE_FREQ  = 0.0038 // frecuencia espacial de la ola
+  const WAVE_SPEED = 0.55   // velocidad de avance de la ola
+  const COLOR      = 'rgba(7,153,140,'
+
+  let W, H, particles, time = 0
   let mouse = { x: -9999, y: -9999 }
 
   function resize() {
@@ -21,52 +26,53 @@
   }
 
   function Particle() {
-    this.reset(true)
-  }
-
-  Particle.prototype.reset = function (initial) {
-    this.x  = Math.random() * W
-    this.y  = Math.random() * H
-    // Deriva inicial: dirección aleatoria, velocidad muy baja
-    const a = Math.random() * Math.PI * 2
-    this.vx = Math.cos(a) * DRIFT * (Math.random() * 0.6 + 0.2)
-    this.vy = Math.sin(a) * DRIFT * (Math.random() * 0.6 + 0.2)
-    this.w  = Math.random() * 8 + 3    // largo del dash
-    this.h  = Math.random() * 1.8 + 1  // grosor
-    this.a  = Math.random() * 0.3 + 0.25  // opacidad
+    // Distribución inicial uniforme
+    this.baseX = Math.random() * W
+    this.baseY = Math.random() * H
+    this.x  = this.baseX
+    this.y  = this.baseY
+    this.vx = 0
+    this.vy = 0
+    // Fase individual — cada partícula está en punto distinto de la ola
+    this.phase = Math.random() * Math.PI * 2
+    // Amplitud personal: variación natural en la intensidad de la ola
+    this.amp  = WAVE_AMP * (Math.random() * 0.6 + 0.7)
+    // Visual
+    this.w = Math.random() * 5 + 2
+    this.h = Math.random() * 1.4 + 0.7
+    this.a = Math.random() * 0.28 + 0.18
   }
 
   Particle.prototype.update = function () {
-    // Repulsión del cursor — empuja en dirección opuesta
+    // Posición objetivo según ola senoidal bidireccional
+    // Ola horizontal (ondula en Y según posición X del base)
+    const waveY = Math.sin(this.baseX * WAVE_FREQ + time * WAVE_SPEED + this.phase) * this.amp
+    // Ola vertical secundaria más suave (profundidad)
+    const waveX = Math.cos(this.baseY * WAVE_FREQ * 0.8 + time * WAVE_SPEED * 0.65 + this.phase) * this.amp * 0.4
+
+    const targetX = this.baseX + waveX
+    const targetY = this.baseY + waveY
+
+    // Spring — atrae suavemente hacia la posición ondulatoria
+    this.vx += (targetX - this.x) * SPRING
+    this.vy += (targetY - this.y) * SPRING
+
+    // Repulsión del cursor
     const dx   = this.x - mouse.x
     const dy   = this.y - mouse.y
     const dist = Math.sqrt(dx * dx + dy * dy)
     if (dist < REPEL_R && dist > 0.5) {
-      const strength = (REPEL_R - dist) / REPEL_R
-      this.vx += (dx / dist) * strength * REPEL_F
-      this.vy += (dy / dist) * strength * REPEL_F
+      const str = (REPEL_R - dist) / REPEL_R
+      this.vx += (dx / dist) * str * REPEL_F
+      this.vy += (dy / dist) * str * REPEL_F
     }
 
-    // Fricción — desacelera naturalmente
+    // Fricción
     this.vx *= FRICTION
     this.vy *= FRICTION
 
-    // Micro-deriva: si casi quiet, añade un pequeño impulso aleatorio
-    const spd = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
-    if (spd < 0.06) {
-      const a = Math.random() * Math.PI * 2
-      this.vx += Math.cos(a) * 0.05
-      this.vy += Math.sin(a) * 0.05
-    }
-
     this.x += this.vx
     this.y += this.vy
-
-    // Wrap en los 4 bordes — reaparece al lado contrario
-    if (this.x < -15) this.x = W + 15
-    if (this.x > W + 15) this.x = -15
-    if (this.y < -15) this.y = H + 15
-    if (this.y > H + 15) this.y = -15
   }
 
   Particle.prototype.draw = function () {
@@ -87,6 +93,7 @@
   }
 
   function drawFrame() {
+    time += 0.014   // velocidad de avance de la ola
     ctx.clearRect(0, 0, W, H)
     for (let i = 0; i < particles.length; i++) {
       particles[i].update()
@@ -97,9 +104,13 @@
 
   window.addEventListener('resize', () => {
     resize()
+    // Recalcular bases proporcionales al nuevo tamaño
     particles.forEach(p => {
-      if (p.x > W) p.x = Math.random() * W
-      if (p.y > H) p.y = Math.random() * H
+      p.baseX = Math.random() * W
+      p.baseY = Math.random() * H
+      p.x = p.baseX
+      p.y = p.baseY
+      p.vx = 0; p.vy = 0
     })
   })
 
