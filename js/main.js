@@ -148,27 +148,24 @@
 
   const ctx = canvas.getContext('2d')
 
-  // Configuración general
-  const REPEL_R   = 120
-  const REPEL_F   = 7
-  const FRICTION  = 0.88
-  const SPRING    = 0.045   // rigidez del resorte hacia posición en círculo
-  const COLOR     = 'rgba(7,153,140,'
+  // ---- Física ----
+  const ATTRACT_SPD = 0.055   // lerp hacia forma en hover
+  const RELEASE_SPD = 0.016   // lerp de vuelta al home al soltar
+  const DRIFT_SPD   = 0.13    // velocidad de deriva en reposo
+  const COLOR       = 'rgba(7,153,140,'
 
-  // Definición de los 5 círculos (posiciones relativas 0–1 del canvas)
-  // Se calculan en píxeles en resize()
-  const CIRCLE_DEFS = [
-    { rx: 0.72, ry: 0.28, r: 0.18, count: 90,  speed:  0.0004, amp: 10 },
-    { rx: 0.88, ry: 0.52, r: 0.15, count: 75,  speed: -0.0003, amp: 8  },
-    { rx: 0.58, ry: 0.60, r: 0.14, count: 70,  speed:  0.0005, amp: 9  },
-    { rx: 0.80, ry: 0.78, r: 0.16, count: 80,  speed: -0.0004, amp: 11 },
-    { rx: 0.95, ry: 0.30, r: 0.12, count: 60,  speed:  0.0006, amp: 7  },
+  // ---- Definición de los 5 círculos (posiciones relativas 0-1) ----
+  const CIRCLES = [
+    { rx: 0.68, ry: 0.28, r: 0.17, count: 85 },
+    { rx: 0.84, ry: 0.50, r: 0.14, count: 72 },
+    { rx: 0.57, ry: 0.64, r: 0.13, count: 66 },
+    { rx: 0.78, ry: 0.76, r: 0.15, count: 76 },
+    { rx: 0.94, ry: 0.30, r: 0.11, count: 56 },
   ]
-  // Partículas libres de fondo (relleno disperso)
-  const FREE_COUNT = 120
+  const FREE_COUNT = 140   // partículas libres de fondo
 
-  let W, H, circles, freeParticles, time = 0
-  let mouse = { x: -9999, y: -9999 }
+  let W, H, particles, time = 0
+  let isHovered = false
 
   function resize() {
     const s = canvas.closest('section')
@@ -176,159 +173,119 @@
     H = canvas.height = s ? s.offsetHeight : window.innerHeight
   }
 
-  // Partícula asignada a un círculo —
-  // base = punto en la circunferencia, resorte la jala de vuelta
-  function CircleParticle(circleDef) {
-    this.cd    = circleDef
-    this.angle = Math.random() * Math.PI * 2   // ángulo en la circunferencia
-    this.phase = Math.random() * Math.PI * 2   // fase para el pulso del radio
-    this.x     = 0; this.y = 0
-    this.vx    = 0; this.vy = 0
-    this.size  = Math.random() * 2.5 + 1
-    this.alpha = Math.random() * 0.35 + 0.3
-    this._updateBase()
+  // Genera posiciones objetivo sobre las circunferencias
+  function buildTargets() {
+    const pts = []
+    CIRCLES.forEach(c => {
+      for (let i = 0; i < c.count; i++) {
+        // Distribuir con ligero jitter para aspecto más orgánico
+        const a = (i / c.count) * Math.PI * 2 + (Math.random() - 0.5) * 0.18
+        pts.push({
+          x: c.rx * W + Math.cos(a) * c.r * Math.min(W, H),
+          y: c.ry * H + Math.sin(a) * c.r * Math.min(W, H)
+        })
+      }
+    })
+    return pts
   }
 
-  CircleParticle.prototype._updateBase = function () {
-    const cd = this.cd
-    // Centro en píxeles
-    const cx = cd.rx * W
-    const cy = cd.ry * H
-    // Radio base + rotación lenta + pulso senoidal
-    const r  = cd.r * Math.min(W, H) + Math.sin(time * 1.8 + this.phase) * cd.amp
-    // El ángulo también rota lentamente (velocidad individual de cada círculo)
-    const a  = this.angle + time * cd.speed * 1000
-    this.baseX = cx + Math.cos(a) * r
-    this.baseY = cy + Math.sin(a) * r
-  }
-
-  CircleParticle.prototype.update = function () {
-    this._updateBase()
-
-    // Resorte hacia posición base
-    this.vx += (this.baseX - this.x) * SPRING
-    this.vy += (this.baseY - this.y) * SPRING
-
-    // Repulsión cursor
-    const dx = this.x - mouse.x
-    const dy = this.y - mouse.y
-    const d  = Math.sqrt(dx * dx + dy * dy)
-    if (d < REPEL_R && d > 0.5) {
-      const str = (REPEL_R - d) / REPEL_R
-      this.vx += (dx / d) * str * REPEL_F
-      this.vy += (dy / d) * str * REPEL_F
-    }
-
-    this.vx *= FRICTION
-    this.vy *= FRICTION
-    this.x  += this.vx
-    this.y  += this.vy
-  }
-
-  CircleParticle.prototype.draw = function () {
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-    ctx.fillStyle = COLOR + this.alpha + ')'
-    ctx.fill()
-  }
-
-  // Partícula libre — deriva suavemente por toda la sección
-  function FreeParticle() {
+  // ---- Partícula con dos modos ----
+  function Particle(tx, ty) {
     this.x  = Math.random() * W
     this.y  = Math.random() * H
+    // Home — posición de deriva en reposo
+    this.homeX = this.x
+    this.homeY = this.y
+    // Velocidad de deriva del home (dirección aleatoria muy lenta)
     const a = Math.random() * Math.PI * 2
-    this.vx = Math.cos(a) * 0.15
-    this.vy = Math.sin(a) * 0.15
-    this.size  = Math.random() * 1.8 + 0.6
-    this.alpha = Math.random() * 0.18 + 0.08
+    this.hdx = Math.cos(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
+    this.hdy = Math.sin(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
+    // Target de forma (undefined para partículas libres)
+    this.tx = tx
+    this.ty = ty
+    this.hasTarget = (tx !== undefined)
+    // Fase para micro-pulso visual en hover
+    this.phase = Math.random() * Math.PI * 2
+    // Visual
+    this.size  = Math.random() * 2.2 + 0.9
+    this.alpha = Math.random() * 0.32 + 0.20
   }
 
-  FreeParticle.prototype.update = function () {
-    const dx = this.x - mouse.x
-    const dy = this.y - mouse.y
-    const d  = Math.sqrt(dx * dx + dy * dy)
-    if (d < REPEL_R && d > 0.5) {
-      const str = (REPEL_R - d) / REPEL_R
-      this.vx += (dx / d) * str * REPEL_F * 0.5
-      this.vy += (dy / d) * str * REPEL_F * 0.5
+  Particle.prototype.update = function () {
+    if (isHovered && this.hasTarget) {
+      // --- MODO HOVER: atracción hacia posición en forma ---
+      this.x += (this.tx - this.x) * ATTRACT_SPD
+      this.y += (this.ty - this.y) * ATTRACT_SPD
+      // El home sigue a x/y para que la liberación sea suave desde aquí
+      this.homeX = this.x
+      this.homeY = this.y
+    } else {
+      // --- MODO REPOSO: deriva libre + lerp hacia home ---
+      this.homeX += this.hdx
+      this.homeY += this.hdy
+      // Wrap del home en los 4 bordes
+      if (this.homeX < -20) this.homeX = W + 20
+      if (this.homeX > W + 20) this.homeX = -20
+      if (this.homeY < -20) this.homeY = H + 20
+      if (this.homeY > H + 20) this.homeY = -20
+      // Cambio de dirección ocasional — movimiento orgánico
+      if (Math.random() < 0.003) {
+        const a = Math.random() * Math.PI * 2
+        this.hdx = Math.cos(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
+        this.hdy = Math.sin(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
+      }
+      // Partícula sigue al home suavemente
+      this.x += (this.homeX - this.x) * RELEASE_SPD
+      this.y += (this.homeY - this.y) * RELEASE_SPD
     }
-    this.vx *= 0.96
-    this.vy *= 0.96
-    const spd = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
-    if (spd < 0.05) {
-      const a = Math.random() * Math.PI * 2
-      this.vx += Math.cos(a) * 0.04
-      this.vy += Math.sin(a) * 0.04
-    }
-    this.x += this.vx
-    this.y += this.vy
-    if (this.x < -10) this.x = W + 10
-    if (this.x > W + 10) this.x = -10
-    if (this.y < -10) this.y = H + 10
-    if (this.y > H + 10) this.y = -10
   }
 
-  FreeParticle.prototype.draw = function () {
+  Particle.prototype.draw = function () {
+    // Micro-pulso de tamaño cuando está en forma
+    const pulse = (isHovered && this.hasTarget)
+      ? this.size * (1 + Math.sin(time * 3 + this.phase) * 0.12)
+      : this.size
     ctx.beginPath()
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+    ctx.arc(this.x, this.y, pulse, 0, Math.PI * 2)
     ctx.fillStyle = COLOR + this.alpha + ')'
     ctx.fill()
   }
 
   function init() {
     resize()
-    // Inicializar partículas de círculos
-    circles = []
-    CIRCLE_DEFS.forEach(cd => {
-      for (let i = 0; i < cd.count; i++) {
-        const p = new CircleParticle(cd)
-        // Posición inicial = posición base
-        p.x = p.baseX; p.y = p.baseY
-        circles.push(p)
-      }
+    const targets = buildTargets()
+    particles = targets.map(t => new Particle(t.x, t.y))
+    // Partículas libres de fondo (sin target)
+    for (let i = 0; i < FREE_COUNT; i++) {
+      particles.push(new Particle())
+    }
+    // Empezar dispersas (modo libre desde el principio)
+    particles.forEach(p => {
+      p.x = Math.random() * W
+      p.y = Math.random() * H
+      p.homeX = p.x
+      p.homeY = p.y
     })
-    // Inicializar partículas libres
-    freeParticles = Array.from({ length: FREE_COUNT }, () => new FreeParticle())
   }
 
   function drawFrame() {
     time += 0.016
     ctx.clearRect(0, 0, W, H)
-    for (let i = 0; i < freeParticles.length; i++) {
-      freeParticles[i].update()
-      freeParticles[i].draw()
-    }
-    for (let i = 0; i < circles.length; i++) {
-      circles[i].update()
-      circles[i].draw()
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update()
+      particles[i].draw()
     }
     requestAnimationFrame(drawFrame)
   }
 
-  window.addEventListener('resize', () => {
-    resize()
-    // Reinicializar para recalcular posiciones proporcionales
-    init()
-  })
+  window.addEventListener('resize', () => { resize(); init() })
 
   const section = canvas.closest('section')
   if (section) {
-    section.addEventListener('mousemove', e => {
-      const rect = section.getBoundingClientRect()
-      mouse.x = e.clientX - rect.left
-      mouse.y = e.clientY - rect.top
-    })
-    section.addEventListener('mouseleave', () => {
-      mouse.x = -9999; mouse.y = -9999
-    })
-    section.addEventListener('touchmove', e => {
-      const rect = section.getBoundingClientRect()
-      mouse.x = e.touches[0].clientX - rect.left
-      mouse.y = e.touches[0].clientY - rect.top
-    }, { passive: true })
-    section.addEventListener('touchend', () => {
-      mouse.x = -9999; mouse.y = -9999
-    })
+    section.addEventListener('mouseenter', () => { isHovered = true  })
+    section.addEventListener('mouseleave', () => { isHovered = false })
+    section.addEventListener('touchstart', () => { isHovered = true  }, { passive: true })
+    section.addEventListener('touchend',   () => { isHovered = false })
   }
 
   if (document.readyState === 'complete') {
