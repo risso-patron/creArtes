@@ -383,13 +383,27 @@ p {
   margin-top: 0;
 }
 
-#particleCanvas {
+.float-item {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+  left: -9999px; /* oculto hasta que JS inicialice la posición */
+  top: -9999px;
+  user-select: none;
   pointer-events: none;
+  z-index: 2;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  background: rgba(7, 122, 122, 0.12);
+  border: 1px solid rgba(7, 122, 122, 0.28);
+  color: rgba(9, 153, 153, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 16px rgba(7, 122, 122, 0.08);
+  will-change: left, top;
 }
 
 .hero-infinity {
