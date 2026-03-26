@@ -13,8 +13,10 @@
   let W, H, particles, mouse = { x: -9999, y: -9999 }
 
   function resize() {
-    W = canvas.width  = canvas.offsetWidth
-    H = canvas.height = canvas.offsetHeight
+    // Usar la sección padre o el viewport — el canvas es 100vw × 100vh del hero
+    const section = canvas.closest('section')
+    W = canvas.width  = section ? section.offsetWidth  : window.innerWidth
+    H = canvas.height = section ? section.offsetHeight : window.innerHeight
   }
 
   function Particle() {
@@ -26,7 +28,6 @@
   }
 
   Particle.prototype.update = function () {
-    // Atracción suave al cursor
     const dx = mouse.x - this.x
     const dy = mouse.y - this.y
     const dist = Math.sqrt(dx * dx + dy * dy)
@@ -34,12 +35,10 @@
       this.vx += (dx / dist) * MOUSE_FORCE
       this.vy += (dy / dist) * MOUSE_FORCE
     }
-    // Fricción para que no se disparen
     this.vx *= 0.97
     this.vy *= 0.97
     this.x += this.vx
     this.y += this.vy
-    // Rebote en bordes
     if (this.x < 0 || this.x > W) this.vx *= -1
     if (this.y < 0 || this.y > H) this.vy *= -1
     this.x = Math.max(0, Math.min(W, this.x))
@@ -58,13 +57,11 @@
       particles[i].update()
       const p = particles[i]
 
-      // Dibujar partícula
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
       ctx.fillStyle = `rgba(${COLOR}, 0.7)`
       ctx.fill()
 
-      // Conexiones entre partículas
       for (let j = i + 1; j < particles.length; j++) {
         const q = particles[j]
         const dx = p.x - q.x
@@ -81,7 +78,6 @@
         }
       }
 
-      // Conexión al cursor
       const mx = mouse.x - p.x
       const my = mouse.y - p.y
       const md = Math.sqrt(mx * mx + my * my)
@@ -99,29 +95,35 @@
     requestAnimationFrame(draw)
   }
 
-  // Reducir partículas en mobile para perf
   window.addEventListener('resize', () => {
     resize()
-    // Reposicionar partículas fuera de rango
     particles.forEach(p => {
       p.x = Math.min(p.x, W)
       p.y = Math.min(p.y, H)
     })
   })
 
-  canvas.closest('section').addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect()
-    mouse.x = e.clientX - rect.left
-    mouse.y = e.clientY - rect.top
-  })
+  // mousemove sobre la sección — coords relativas al canvas vía getBoundingClientRect
+  const section = canvas.closest('section')
+  if (section) {
+    section.addEventListener('mousemove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
+    })
+    section.addEventListener('mouseleave', () => {
+      mouse.x = -9999
+      mouse.y = -9999
+    })
+  }
 
-  canvas.closest('section').addEventListener('mouseleave', () => {
-    mouse.x = -9999
-    mouse.y = -9999
-  })
-
-  init()
-  draw()
+  // Esperar a que el layout esté listo antes de init
+  if (document.readyState === 'complete') {
+    init()
+    draw()
+  } else {
+    window.addEventListener('load', () => { init(); draw() })
+  }
 })()
 
 // ===== HERO VIDEO CONTROL =====
