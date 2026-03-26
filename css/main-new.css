@@ -831,6 +831,14 @@ p {
   transition: transform 0.4s ease;
 }
 
+/* Video 1:1 en panel Marketing Digital — sin recorte */
+.servicio-panel#marketing .servicio-visual video {
+  min-height: unset;
+  max-height: unset;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
 .servicio-visual:hover img,
 .servicio-visual:hover video {
   transform: scale(1.03);
