@@ -1,22 +1,22 @@
-// ===== PARTICLE NETWORK — HERO BACKGROUND (antigravity style) =====
+// ===== PARTICLE ANTIGRAVITY — HERO BACKGROUND =====
 ;(function () {
   const canvas = document.getElementById('particleCanvas')
   if (!canvas) return
 
   const ctx = canvas.getContext('2d')
-  const PARTICLE_COUNT = 90
-  const MOUSE_DIST     = 160   // radio de repulsión
-  const MOUSE_FORCE    = 3.5   // intensidad del empuje
-  const FRICTION       = 0.92  // amortiguación
-  const BASE_SPEED     = 0.4   // velocidad de deriva natural
+  const PARTICLE_COUNT = 120
+  const MOUSE_DIST     = 130
+  const MOUSE_FORCE    = 5
+  const FRICTION       = 0.88
+  const RISE_SPEED     = 0.35   // velocidad base de ascenso (anti-gravedad)
 
-  // Variaciones de turquesa para dar profundidad
   const COLORS = [
-    'rgba(7,122,122,',    // turquesa base
-    'rgba(9,153,153,',    // turquesa light
-    'rgba(5,85,85,',      // turquesa dark
-    'rgba(7,122,122,',    // turquesa base (peso doble)
-    'rgba(0,180,160,',    // acento verde-turquesa
+    'rgba(7,122,122,',
+    'rgba(9,153,153,',
+    'rgba(5,85,85,',
+    'rgba(7,122,122,',
+    'rgba(0,180,160,',
+    'rgba(7,122,122,',
   ]
 
   let W, H, particles, mouse = { x: -9999, y: -9999 }
@@ -27,18 +27,16 @@
     H = canvas.height = section ? section.offsetHeight : window.innerHeight
   }
 
-  function Particle() {
-    this.reset(true)
-  }
-
-  Particle.prototype.reset = function (initial) {
-    this.x    = Math.random() * W
-    this.y    = initial ? Math.random() * H : (Math.random() < 0.5 ? -10 : H + 10)
-    this.vx   = (Math.random() - 0.5) * BASE_SPEED * 2
-    this.vy   = (Math.random() - 0.5) * BASE_SPEED * 2
-    this.w    = Math.random() * 8 + 4    // largo del guión
-    this.h    = Math.random() * 1.5 + 1  // grosor
-    this.alpha = Math.random() * 0.4 + 0.3
+  function Particle(initial) {
+    this.x     = Math.random() * W
+    // En init inicial distribuir por toda la altura; en respawn entran por abajo
+    this.y     = initial ? Math.random() * H : H + 10
+    this.vx    = (Math.random() - 0.5) * 0.6   // leve deriva horizontal
+    this.vy    = -(Math.random() * RISE_SPEED + 0.15)  // siempre sube
+    this.w     = Math.random() * 9 + 3
+    this.h     = Math.random() * 1.8 + 1
+    this.alpha = Math.random() * 0.45 + 0.25
+    this.tilt  = (Math.random() - 0.5) * 0.8   // inclinación inicial
     this.color = COLORS[Math.floor(Math.random() * COLORS.length)]
   }
 
@@ -53,37 +51,42 @@
       this.vy += (dy / dist) * force * MOUSE_FORCE
     }
 
-    // Fricción + velocidad base mínima
+    // Fricción + restaurar deriva ascendente natural
     this.vx *= FRICTION
-    this.vy *= FRICTION
+    this.vy  = this.vy * FRICTION - RISE_SPEED * (1 - FRICTION)
 
-    // Mantener un poco de movimiento natural si está muy quieta
+    // Limitar velocidad máxima
     const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
-    if (speed < 0.1) {
-      this.vx += (Math.random() - 0.5) * 0.12
-      this.vy += (Math.random() - 0.5) * 0.12
+    if (speed > 8) {
+      this.vx = (this.vx / speed) * 8
+      this.vy = (this.vy / speed) * 8
     }
 
     this.x += this.vx
     this.y += this.vy
 
-    // Re-aparece por el lado opuesto (wrap)
+    // Wrap horizontal
     if (this.x < -20) this.x = W + 20
     if (this.x > W + 20) this.x = -20
-    if (this.y < -20) this.y = H + 20
-    if (this.y > H + 20) this.y = -20
+
+    // Respawn por abajo cuando sale por arriba (anti-gravedad)
+    if (this.y < -20) {
+      this.x     = Math.random() * W
+      this.y     = H + 10
+      this.vx    = (Math.random() - 0.5) * 0.6
+      this.vy    = -(Math.random() * RISE_SPEED + 0.15)
+      this.alpha = Math.random() * 0.45 + 0.25
+    }
   }
 
   Particle.prototype.draw = function () {
+    // Orientar el dash en la dirección de movimiento
     const angle = Math.atan2(this.vy, this.vx)
     ctx.save()
     ctx.translate(this.x, this.y)
     ctx.rotate(angle)
     ctx.beginPath()
-    // Rectángulo redondeado orientado en dirección del movimiento
-    const hw = this.w / 2
-    const hh = this.h / 2
-    ctx.roundRect(-hw, -hh, this.w, this.h, hh)
+    ctx.ellipse(0, 0, this.w / 2, this.h / 2, 0, 0, Math.PI * 2)
     ctx.fillStyle = `${this.color}${this.alpha})`
     ctx.fill()
     ctx.restore()
@@ -91,20 +94,19 @@
 
   function init() {
     resize()
-    particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle())
+    particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle(true))
   }
 
-  function draw() {
+  function drawFrame() {
     ctx.clearRect(0, 0, W, H)
     particles.forEach(p => { p.update(); p.draw() })
-    requestAnimationFrame(draw)
+    requestAnimationFrame(drawFrame)
   }
 
   window.addEventListener('resize', () => {
     resize()
     particles.forEach(p => {
-      p.x = Math.min(p.x, W)
-      p.y = Math.min(p.y, H)
+      if (p.x > W) p.x = Math.random() * W
     })
   })
 
@@ -119,14 +121,21 @@
       mouse.x = -9999
       mouse.y = -9999
     })
+    // Touch support para mobile
+    section.addEventListener('touchmove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.touches[0].clientX - rect.left
+      mouse.y = e.touches[0].clientY - rect.top
+    }, { passive: true })
   }
 
   if (document.readyState === 'complete') {
-    init(); draw()
+    init(); drawFrame()
   } else {
-    window.addEventListener('load', () => { init(); draw() })
+    window.addEventListener('load', () => { init(); drawFrame() })
   }
 })()
+
 
 
 // ===== HERO VIDEO CONTROL =====
