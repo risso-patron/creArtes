@@ -406,7 +406,7 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 550px;
+  width: 605px;
   height: auto;
   max-width: 90vw;
   z-index: 0;
@@ -2646,7 +2646,7 @@ p {
   }
   
   .hero-infinity {
-    width: 440px;
+    width: 484px;
     opacity: 0.75;
   }
   
