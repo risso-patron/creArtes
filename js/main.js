@@ -141,7 +141,7 @@
   }
 })()
 
-// ===== PARTICLE CIRCLES — WHY US BACKGROUND =====
+// ===== ZODIAC CONSTELLATIONS — WHY US BACKGROUND =====
 ;(function () {
   const canvas = document.getElementById('whyUsCanvas')
   if (!canvas) return
@@ -149,23 +149,82 @@
   const ctx = canvas.getContext('2d')
 
   // ---- Física ----
-  const ATTRACT_SPD = 0.055   // lerp hacia forma en hover
-  const RELEASE_SPD = 0.016   // lerp de vuelta al home al soltar
-  const DRIFT_SPD   = 0.13    // velocidad de deriva en reposo
-  const COLOR       = 'rgba(7,153,140,'
+  const ATTRACT_SPD = 0.052
+  const RELEASE_SPD = 0.015
+  const DRIFT_SPD   = 0.12
+  const SCATTER_R   = 6      // radio de dispersión por estrella (px)
+  const PTS_STAR    = 4      // partículas por estrella
+  const FREE_COUNT  = 55     // partículas libres de fondo
 
-  // ---- Definición de los 5 círculos (posiciones relativas 0-1) ----
-  const CIRCLES = [
-    { rx: 0.68, ry: 0.28, r: 0.17, count: 85 },
-    { rx: 0.84, ry: 0.50, r: 0.14, count: 72 },
-    { rx: 0.57, ry: 0.64, r: 0.13, count: 66 },
-    { rx: 0.78, ry: 0.76, r: 0.15, count: 76 },
-    { rx: 0.94, ry: 0.30, r: 0.11, count: 56 },
+  let W, H, particles = [], cdList = [], isHovered = false, time = 0
+
+  // ---- 12 Constelaciones del zodiaco ----
+  // rx, ry  = centro relativo (0-1) dentro del canvas
+  // scale   = tamaño relativo a Math.min(W,H)
+  // stars   = posiciones locales normalizadas [0-1, 0-1]
+  // edges   = pares de índices de estrellas que se unen con línea
+  const CONSTELLATIONS = [
+    {
+      name: 'Aries', rx: 0.10, ry: 0.14, scale: 0.10,
+      stars: [[0.0,0.55],[0.32,0.22],[0.62,0.12],[0.90,0.30],[1.0,0.0]],
+      edges: [[0,1],[1,2],[2,3],[3,4]]
+    },
+    {
+      name: 'Taurus', rx: 0.32, ry: 0.11, scale: 0.12,
+      stars: [[0.50,0.55],[0.68,0.35],[0.88,0.12],[0.28,0.38],[0.10,0.55],[0.30,0.72],[0.68,0.65],[0.10,0.10],[0.18,0.02],[0.28,0.10]],
+      edges: [[0,1],[1,2],[0,3],[3,4],[0,5],[0,6],[7,8],[8,9],[7,9]]
+    },
+    {
+      name: 'Gemini', rx: 0.57, ry: 0.10, scale: 0.11,
+      stars: [[0.22,0.0],[0.78,0.0],[0.20,0.32],[0.76,0.30],[0.24,0.60],[0.72,0.58],[0.18,0.90],[0.68,0.88]],
+      edges: [[0,2],[2,4],[4,6],[1,3],[3,5],[5,7],[2,3]]
+    },
+    {
+      name: 'Cancer', rx: 0.82, ry: 0.14, scale: 0.09,
+      stars: [[0.50,0.0],[0.50,0.42],[0.18,0.68],[0.82,0.68],[0.25,1.0],[0.75,1.0]],
+      edges: [[0,1],[1,2],[1,3],[2,4],[3,5]]
+    },
+    {
+      name: 'Leo', rx: 0.93, ry: 0.42, scale: 0.13,
+      stars: [[0.18,0.38],[0.05,0.08],[0.28,0.18],[0.58,0.06],[0.78,0.22],[0.72,0.52],[0.50,0.78],[0.88,0.65],[0.96,0.88]],
+      edges: [[0,1],[1,2],[2,3],[3,4],[4,5],[0,5],[5,6],[6,7],[7,8]]
+    },
+    {
+      name: 'Virgo', rx: 0.74, ry: 0.48, scale: 0.13,
+      stars: [[0.50,0.0],[0.50,0.28],[0.22,0.42],[0.78,0.40],[0.52,0.58],[0.28,0.78],[0.28,1.0],[0.72,0.75]],
+      edges: [[0,1],[1,2],[1,3],[1,4],[4,5],[5,6],[4,7]]
+    },
+    {
+      name: 'Libra', rx: 0.88, ry: 0.68, scale: 0.10,
+      stars: [[0.50,0.15],[0.18,0.50],[0.82,0.50],[0.50,0.65],[0.28,0.92],[0.72,0.92]],
+      edges: [[0,1],[0,2],[1,2],[1,3],[2,3],[3,4],[3,5]]
+    },
+    {
+      name: 'Scorpio', rx: 0.60, ry: 0.76, scale: 0.14,
+      stars: [[0.55,0.0],[0.40,0.08],[0.22,0.22],[0.10,0.42],[0.18,0.62],[0.35,0.72],[0.56,0.78],[0.76,0.72],[0.88,0.55],[0.90,0.34]],
+      edges: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]]
+    },
+    {
+      name: 'Sagittarius', rx: 0.38, ry: 0.80, scale: 0.13,
+      stars: [[0.50,0.02],[0.30,0.28],[0.52,0.35],[0.70,0.28],[0.15,0.60],[0.42,0.58],[0.64,0.60],[0.84,0.55],[0.12,0.85],[0.88,0.80]],
+      edges: [[0,1],[0,2],[0,3],[1,4],[2,5],[3,6],[4,5],[5,6],[6,7],[4,8],[7,9]]
+    },
+    {
+      name: 'Capricorn', rx: 0.14, ry: 0.72, scale: 0.11,
+      stars: [[0.02,0.06],[0.42,0.08],[0.28,0.42],[0.64,0.38],[0.52,0.70],[0.84,0.64],[0.96,0.88]],
+      edges: [[0,1],[0,2],[1,3],[2,3],[2,4],[3,5],[4,5],[5,6]]
+    },
+    {
+      name: 'Aquarius', rx: 0.82, ry: 0.88, scale: 0.11,
+      stars: [[0.22,0.02],[0.52,0.15],[0.76,0.12],[0.80,0.40],[0.32,0.50],[0.60,0.60],[0.36,0.75],[0.64,0.85]],
+      edges: [[0,1],[1,2],[2,3],[1,4],[3,4],[4,5],[5,6],[5,7]]
+    },
+    {
+      name: 'Pisces', rx: 0.30, ry: 0.90, scale: 0.12,
+      stars: [[0.04,0.32],[0.18,0.14],[0.34,0.30],[0.18,0.48],[0.50,0.50],[0.65,0.50],[0.72,0.22],[0.88,0.10],[1.0,0.30],[0.88,0.48]],
+      edges: [[0,1],[1,2],[2,3],[3,0],[2,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,5]]
+    }
   ]
-  const FREE_COUNT = 140   // partículas libres de fondo
-
-  let W, H, particles, time = 0
-  let isHovered = false
 
   function resize() {
     const s = canvas.closest('section')
@@ -173,104 +232,114 @@
     H = canvas.height = s ? s.offsetHeight : window.innerHeight
   }
 
-  // Genera posiciones objetivo sobre las circunferencias
-  function buildTargets() {
-    const pts = []
-    CIRCLES.forEach(c => {
-      for (let i = 0; i < c.count; i++) {
-        // Distribuir con ligero jitter para aspecto más orgánico
-        const a = (i / c.count) * Math.PI * 2 + (Math.random() - 0.5) * 0.18
-        pts.push({
-          x: c.rx * W + Math.cos(a) * c.r * Math.min(W, H),
-          y: c.ry * H + Math.sin(a) * c.r * Math.min(W, H)
-        })
-      }
+  // Convierte posiciones locales 0-1 a píxeles del canvas
+  function buildData() {
+    cdList = CONSTELLATIONS.map(c => {
+      const dim    = Math.min(W, H) * c.scale
+      const cx     = c.rx * W
+      const cy     = c.ry * H
+      const stars  = c.stars.map(([sx, sy]) => ({
+        x: cx + (sx - 0.5) * dim,
+        y: cy + (sy - 0.5) * dim
+      }))
+      const edges = c.edges.map(([a, b]) => ({ a: stars[a], b: stars[b] }))
+      return { name: c.name, stars, edges }
     })
-    return pts
   }
 
-  // ---- Partícula con dos modos ----
   function Particle(tx, ty) {
-    this.x  = Math.random() * W
-    this.y  = Math.random() * H
-    // Home — posición de deriva en reposo
+    this.x = Math.random() * (W || 800)
+    this.y = Math.random() * (H || 600)
     this.homeX = this.x
     this.homeY = this.y
-    // Velocidad de deriva del home (dirección aleatoria muy lenta)
     const a = Math.random() * Math.PI * 2
-    this.hdx = Math.cos(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
-    this.hdy = Math.sin(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
-    // Target de forma (undefined para partículas libres)
+    const spd = DRIFT_SPD * (0.5 + Math.random() * 0.5)
+    this.hdx = Math.cos(a) * spd
+    this.hdy = Math.sin(a) * spd
     this.tx = tx
     this.ty = ty
     this.hasTarget = (tx !== undefined)
-    // Fase para micro-pulso visual en hover
     this.phase = Math.random() * Math.PI * 2
-    // Visual
-    this.size  = Math.random() * 2.2 + 0.9
-    this.alpha = Math.random() * 0.32 + 0.20
+    this.size  = Math.random() * 1.8 + 0.9
+    this.alpha = Math.random() * 0.28 + 0.18
   }
 
   Particle.prototype.update = function () {
     if (isHovered && this.hasTarget) {
-      // --- MODO HOVER: atracción hacia posición en forma ---
       this.x += (this.tx - this.x) * ATTRACT_SPD
       this.y += (this.ty - this.y) * ATTRACT_SPD
-      // El home sigue a x/y para que la liberación sea suave desde aquí
       this.homeX = this.x
       this.homeY = this.y
     } else {
-      // --- MODO REPOSO: deriva libre + lerp hacia home ---
       this.homeX += this.hdx
       this.homeY += this.hdy
-      // Wrap del home en los 4 bordes
       if (this.homeX < -20) this.homeX = W + 20
       if (this.homeX > W + 20) this.homeX = -20
       if (this.homeY < -20) this.homeY = H + 20
       if (this.homeY > H + 20) this.homeY = -20
-      // Cambio de dirección ocasional — movimiento orgánico
       if (Math.random() < 0.003) {
         const a = Math.random() * Math.PI * 2
-        this.hdx = Math.cos(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
-        this.hdy = Math.sin(a) * DRIFT_SPD * (Math.random() * 0.5 + 0.5)
+        this.hdx = Math.cos(a) * DRIFT_SPD * (0.5 + Math.random() * 0.5)
+        this.hdy = Math.sin(a) * DRIFT_SPD * (0.5 + Math.random() * 0.5)
       }
-      // Partícula sigue al home suavemente
       this.x += (this.homeX - this.x) * RELEASE_SPD
       this.y += (this.homeY - this.y) * RELEASE_SPD
     }
   }
 
   Particle.prototype.draw = function () {
-    // Micro-pulso de tamaño cuando está en forma
     const pulse = (isHovered && this.hasTarget)
-      ? this.size * (1 + Math.sin(time * 3 + this.phase) * 0.12)
+      ? this.size * (1 + Math.sin(time * 2.5 + this.phase) * 0.14)
       : this.size
     ctx.beginPath()
     ctx.arc(this.x, this.y, pulse, 0, Math.PI * 2)
-    ctx.fillStyle = COLOR + this.alpha + ')'
+    ctx.fillStyle = 'rgba(7,153,140,' + this.alpha + ')'
     ctx.fill()
+  }
+
+  // Dibuja líneas de constelación solo en hover (fade-in implícito por ATTRACT_SPD)
+  function drawLines() {
+    if (!isHovered) return
+    ctx.lineWidth   = 0.7
+    ctx.strokeStyle = 'rgba(7,153,140,0.18)'
+    cdList.forEach(cd => {
+      cd.edges.forEach(e => {
+        ctx.beginPath()
+        ctx.moveTo(e.a.x, e.a.y)
+        ctx.lineTo(e.b.x, e.b.y)
+        ctx.stroke()
+      })
+    })
   }
 
   function init() {
     resize()
-    const targets = buildTargets()
-    particles = targets.map(t => new Particle(t.x, t.y))
-    // Partículas libres de fondo (sin target)
-    for (let i = 0; i < FREE_COUNT; i++) {
-      particles.push(new Particle())
-    }
-    // Empezar dispersas (modo libre desde el principio)
+    buildData()
+    particles = []
+    cdList.forEach(cd => {
+      cd.stars.forEach(star => {
+        for (let i = 0; i < PTS_STAR; i++) {
+          const a = Math.random() * Math.PI * 2
+          const r = Math.random() * SCATTER_R
+          particles.push(new Particle(
+            star.x + Math.cos(a) * r,
+            star.y + Math.sin(a) * r
+          ))
+        }
+      })
+    })
+    for (let i = 0; i < FREE_COUNT; i++) particles.push(new Particle())
+    // Empezar todas dispersas en modo reposo
     particles.forEach(p => {
-      p.x = Math.random() * W
-      p.y = Math.random() * H
-      p.homeX = p.x
-      p.homeY = p.y
+      p.x = Math.random() * W; p.y = Math.random() * H
+      p.homeX = p.x; p.homeY = p.y
     })
   }
 
   function drawFrame() {
     time += 0.016
     ctx.clearRect(0, 0, W, H)
+    drawLines()
     for (let i = 0; i < particles.length; i++) {
       particles[i].update()
       particles[i].draw()
@@ -278,7 +347,7 @@
     requestAnimationFrame(drawFrame)
   }
 
-  window.addEventListener('resize', () => { resize(); init() })
+  window.addEventListener('resize', () => { init() })
 
   const section = canvas.closest('section')
   if (section) {
