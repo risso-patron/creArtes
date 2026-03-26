@@ -10,10 +10,10 @@
   const REPEL_R    = 160    // radio de repulsión del cursor
   const REPEL_F    = 8      // fuerza del empuje
   const FRICTION   = 0.86   // amortiguación
-  const SPRING     = 0.022  // fuerza de retorno a posición base (ola)
-  const WAVE_AMP   = 16     // amplitud de la ola en px
-  const WAVE_FREQ  = 0.0038 // frecuencia espacial de la ola
-  const WAVE_SPEED = 0.55   // velocidad de avance de la ola
+  const SPRING     = 0.038  // fuerza de retorno a posición base (ola)
+  const WAVE_AMP   = 48     // amplitud de la ola en px
+  const WAVE_FREQ  = 0.007  // frecuencia espacial de la ola
+  const WAVE_SPEED = 0.85   // velocidad de avance de la ola
   const COLOR      = 'rgba(7,153,140,'
 
   let W, H, particles, time = 0
@@ -93,7 +93,7 @@
   }
 
   function drawFrame() {
-    time += 0.014   // velocidad de avance de la ola
+    time += 0.018   // velocidad de avance de la ola
     ctx.clearRect(0, 0, W, H)
     for (let i = 0; i < particles.length; i++) {
       particles[i].update()
