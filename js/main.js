@@ -1,3 +1,129 @@
+// ===== PARTICLE NETWORK — HERO BACKGROUND =====
+;(function () {
+  const canvas = document.getElementById('particleCanvas')
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  const PARTICLE_COUNT = 55
+  const CONNECTION_DIST = 140
+  const MOUSE_DIST = 120
+  const MOUSE_FORCE = 0.04
+  const COLOR = '7, 122, 122'   // --turquesa en RGB
+
+  let W, H, particles, mouse = { x: -9999, y: -9999 }
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth
+    H = canvas.height = canvas.offsetHeight
+  }
+
+  function Particle() {
+    this.x  = Math.random() * W
+    this.y  = Math.random() * H
+    this.vx = (Math.random() - 0.5) * 0.5
+    this.vy = (Math.random() - 0.5) * 0.5
+    this.r  = Math.random() * 1.8 + 1
+  }
+
+  Particle.prototype.update = function () {
+    // Atracción suave al cursor
+    const dx = mouse.x - this.x
+    const dy = mouse.y - this.y
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    if (dist < MOUSE_DIST) {
+      this.vx += (dx / dist) * MOUSE_FORCE
+      this.vy += (dy / dist) * MOUSE_FORCE
+    }
+    // Fricción para que no se disparen
+    this.vx *= 0.97
+    this.vy *= 0.97
+    this.x += this.vx
+    this.y += this.vy
+    // Rebote en bordes
+    if (this.x < 0 || this.x > W) this.vx *= -1
+    if (this.y < 0 || this.y > H) this.vy *= -1
+    this.x = Math.max(0, Math.min(W, this.x))
+    this.y = Math.max(0, Math.min(H, this.y))
+  }
+
+  function init() {
+    resize()
+    particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle())
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H)
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update()
+      const p = particles[i]
+
+      // Dibujar partícula
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(${COLOR}, 0.7)`
+      ctx.fill()
+
+      // Conexiones entre partículas
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j]
+        const dx = p.x - q.x
+        const dy = p.y - q.y
+        const d  = Math.sqrt(dx * dx + dy * dy)
+        if (d < CONNECTION_DIST) {
+          const alpha = (1 - d / CONNECTION_DIST) * 0.35
+          ctx.beginPath()
+          ctx.moveTo(p.x, p.y)
+          ctx.lineTo(q.x, q.y)
+          ctx.strokeStyle = `rgba(${COLOR}, ${alpha})`
+          ctx.lineWidth = 0.8
+          ctx.stroke()
+        }
+      }
+
+      // Conexión al cursor
+      const mx = mouse.x - p.x
+      const my = mouse.y - p.y
+      const md = Math.sqrt(mx * mx + my * my)
+      if (md < MOUSE_DIST) {
+        const alpha = (1 - md / MOUSE_DIST) * 0.6
+        ctx.beginPath()
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(mouse.x, mouse.y)
+        ctx.strokeStyle = `rgba(${COLOR}, ${alpha})`
+        ctx.lineWidth = 1
+        ctx.stroke()
+      }
+    }
+
+    requestAnimationFrame(draw)
+  }
+
+  // Reducir partículas en mobile para perf
+  window.addEventListener('resize', () => {
+    resize()
+    // Reposicionar partículas fuera de rango
+    particles.forEach(p => {
+      p.x = Math.min(p.x, W)
+      p.y = Math.min(p.y, H)
+    })
+  })
+
+  canvas.closest('section').addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect()
+    mouse.x = e.clientX - rect.left
+    mouse.y = e.clientY - rect.top
+  })
+
+  canvas.closest('section').addEventListener('mouseleave', () => {
+    mouse.x = -9999
+    mouse.y = -9999
+  })
+
+  init()
+  draw()
+})()
+
 // ===== HERO VIDEO CONTROL =====
 // Control video playback speed for smoother motion
 const heroVideo = document.getElementById("heroVideo")
