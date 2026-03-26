@@ -141,14 +141,209 @@
   }
 })()
 
+// ===== PARTICLE CIRCLES — WHY US BACKGROUND =====
+;(function () {
+  const canvas = document.getElementById('whyUsCanvas')
+  if (!canvas) return
 
+  const ctx = canvas.getContext('2d')
+
+  // Configuración general
+  const REPEL_R   = 120
+  const REPEL_F   = 7
+  const FRICTION  = 0.88
+  const SPRING    = 0.045   // rigidez del resorte hacia posición en círculo
+  const COLOR     = 'rgba(7,153,140,'
+
+  // Definición de los 5 círculos (posiciones relativas 0–1 del canvas)
+  // Se calculan en píxeles en resize()
+  const CIRCLE_DEFS = [
+    { rx: 0.72, ry: 0.28, r: 0.18, count: 90,  speed:  0.0004, amp: 10 },
+    { rx: 0.88, ry: 0.52, r: 0.15, count: 75,  speed: -0.0003, amp: 8  },
+    { rx: 0.58, ry: 0.60, r: 0.14, count: 70,  speed:  0.0005, amp: 9  },
+    { rx: 0.80, ry: 0.78, r: 0.16, count: 80,  speed: -0.0004, amp: 11 },
+    { rx: 0.95, ry: 0.30, r: 0.12, count: 60,  speed:  0.0006, amp: 7  },
+  ]
+  // Partículas libres de fondo (relleno disperso)
+  const FREE_COUNT = 120
+
+  let W, H, circles, freeParticles, time = 0
+  let mouse = { x: -9999, y: -9999 }
+
+  function resize() {
+    const s = canvas.closest('section')
+    W = canvas.width  = s ? s.offsetWidth  : window.innerWidth
+    H = canvas.height = s ? s.offsetHeight : window.innerHeight
+  }
+
+  // Partícula asignada a un círculo —
+  // base = punto en la circunferencia, resorte la jala de vuelta
+  function CircleParticle(circleDef) {
+    this.cd    = circleDef
+    this.angle = Math.random() * Math.PI * 2   // ángulo en la circunferencia
+    this.phase = Math.random() * Math.PI * 2   // fase para el pulso del radio
+    this.x     = 0; this.y = 0
+    this.vx    = 0; this.vy = 0
+    this.size  = Math.random() * 2.5 + 1
+    this.alpha = Math.random() * 0.35 + 0.3
+    this._updateBase()
+  }
+
+  CircleParticle.prototype._updateBase = function () {
+    const cd = this.cd
+    // Centro en píxeles
+    const cx = cd.rx * W
+    const cy = cd.ry * H
+    // Radio base + rotación lenta + pulso senoidal
+    const r  = cd.r * Math.min(W, H) + Math.sin(time * 1.8 + this.phase) * cd.amp
+    // El ángulo también rota lentamente (velocidad individual de cada círculo)
+    const a  = this.angle + time * cd.speed * 1000
+    this.baseX = cx + Math.cos(a) * r
+    this.baseY = cy + Math.sin(a) * r
+  }
+
+  CircleParticle.prototype.update = function () {
+    this._updateBase()
+
+    // Resorte hacia posición base
+    this.vx += (this.baseX - this.x) * SPRING
+    this.vy += (this.baseY - this.y) * SPRING
+
+    // Repulsión cursor
+    const dx = this.x - mouse.x
+    const dy = this.y - mouse.y
+    const d  = Math.sqrt(dx * dx + dy * dy)
+    if (d < REPEL_R && d > 0.5) {
+      const str = (REPEL_R - d) / REPEL_R
+      this.vx += (dx / d) * str * REPEL_F
+      this.vy += (dy / d) * str * REPEL_F
+    }
+
+    this.vx *= FRICTION
+    this.vy *= FRICTION
+    this.x  += this.vx
+    this.y  += this.vy
+  }
+
+  CircleParticle.prototype.draw = function () {
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+    ctx.fillStyle = COLOR + this.alpha + ')'
+    ctx.fill()
+  }
+
+  // Partícula libre — deriva suavemente por toda la sección
+  function FreeParticle() {
+    this.x  = Math.random() * W
+    this.y  = Math.random() * H
+    const a = Math.random() * Math.PI * 2
+    this.vx = Math.cos(a) * 0.15
+    this.vy = Math.sin(a) * 0.15
+    this.size  = Math.random() * 1.8 + 0.6
+    this.alpha = Math.random() * 0.18 + 0.08
+  }
+
+  FreeParticle.prototype.update = function () {
+    const dx = this.x - mouse.x
+    const dy = this.y - mouse.y
+    const d  = Math.sqrt(dx * dx + dy * dy)
+    if (d < REPEL_R && d > 0.5) {
+      const str = (REPEL_R - d) / REPEL_R
+      this.vx += (dx / d) * str * REPEL_F * 0.5
+      this.vy += (dy / d) * str * REPEL_F * 0.5
+    }
+    this.vx *= 0.96
+    this.vy *= 0.96
+    const spd = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
+    if (spd < 0.05) {
+      const a = Math.random() * Math.PI * 2
+      this.vx += Math.cos(a) * 0.04
+      this.vy += Math.sin(a) * 0.04
+    }
+    this.x += this.vx
+    this.y += this.vy
+    if (this.x < -10) this.x = W + 10
+    if (this.x > W + 10) this.x = -10
+    if (this.y < -10) this.y = H + 10
+    if (this.y > H + 10) this.y = -10
+  }
+
+  FreeParticle.prototype.draw = function () {
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+    ctx.fillStyle = COLOR + this.alpha + ')'
+    ctx.fill()
+  }
+
+  function init() {
+    resize()
+    // Inicializar partículas de círculos
+    circles = []
+    CIRCLE_DEFS.forEach(cd => {
+      for (let i = 0; i < cd.count; i++) {
+        const p = new CircleParticle(cd)
+        // Posición inicial = posición base
+        p.x = p.baseX; p.y = p.baseY
+        circles.push(p)
+      }
+    })
+    // Inicializar partículas libres
+    freeParticles = Array.from({ length: FREE_COUNT }, () => new FreeParticle())
+  }
+
+  function drawFrame() {
+    time += 0.016
+    ctx.clearRect(0, 0, W, H)
+    for (let i = 0; i < freeParticles.length; i++) {
+      freeParticles[i].update()
+      freeParticles[i].draw()
+    }
+    for (let i = 0; i < circles.length; i++) {
+      circles[i].update()
+      circles[i].draw()
+    }
+    requestAnimationFrame(drawFrame)
+  }
+
+  window.addEventListener('resize', () => {
+    resize()
+    // Reinicializar para recalcular posiciones proporcionales
+    init()
+  })
+
+  const section = canvas.closest('section')
+  if (section) {
+    section.addEventListener('mousemove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
+    })
+    section.addEventListener('mouseleave', () => {
+      mouse.x = -9999; mouse.y = -9999
+    })
+    section.addEventListener('touchmove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.touches[0].clientX - rect.left
+      mouse.y = e.touches[0].clientY - rect.top
+    }, { passive: true })
+    section.addEventListener('touchend', () => {
+      mouse.x = -9999; mouse.y = -9999
+    })
+  }
+
+  if (document.readyState === 'complete') {
+    init(); drawFrame()
+  } else {
+    window.addEventListener('load', () => { init(); drawFrame() })
+  }
+})()
 
 // ===== HERO VIDEO CONTROL =====
 // Control video playback speed for smoother motion
 const heroVideo = document.getElementById("heroVideo")
 if (heroVideo) {
   // Set playback rate — 0.85 = 15% más lento
-  heroVideo.playbackRate = 0.85
+  heroVideo.playbackRate = 0.55
   
   // Ensure video plays after load
   heroVideo.addEventListener("loadeddata", () => {
