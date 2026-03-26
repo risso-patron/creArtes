@@ -1,110 +1,134 @@
-// ===== ANTIGRAVITY FLOAT ITEMS — HERO BACKGROUND =====
-// Basado en el código de referencia: fricción 0.98, atracción al cursor
-class Antigravity {
-  constructor() {
-    this.hero   = document.querySelector('.hero')
-    this.items  = document.querySelectorAll('.float-item')
-    if (!this.hero || !this.items.length) return
+// ===== PARTICLE ANTIGRAVITY — HERO BACKGROUND =====
+;(function () {
+  const canvas = document.getElementById('particleCanvas')
+  if (!canvas) return
 
-    this.vx     = {}
-    this.vy     = {}
-    this.px     = {}
-    this.py     = {}
-    this.size   = {}
-    this.mouseX = -9999
-    this.mouseY = -9999
-    this.W      = this.hero.offsetWidth
-    this.H      = this.hero.offsetHeight
+  const ctx       = canvas.getContext('2d')
+  const COUNT     = 160
+  const REPEL_R   = 150    // radio de repulsión del cursor
+  const REPEL_F   = 6      // fuerza del empuje
+  const FRICTION  = 0.90   // amortiguación — frena después del empuje
+  const DRIFT     = 0.22   // velocidad de deriva natural (Browniana lenta)
+  const COLOR     = 'rgba(7,153,140,'  // turquesa visible en fondo negro
 
-    this.init()
+  let W, H, particles
+  let mouse = { x: -9999, y: -9999 }
+
+  function resize() {
+    const s = canvas.closest('section')
+    W = canvas.width  = s ? s.offsetWidth  : window.innerWidth
+    H = canvas.height = s ? s.offsetHeight : window.innerHeight
   }
 
-  init() {
-    this.items.forEach(item => {
-      const id = item.id
-      const iW = item.offsetWidth  || 120
-      const iH = item.offsetHeight || 36
+  function Particle() {
+    this.reset(true)
+  }
 
-      this.size[id] = { w: iW, h: iH }
-      this.px[id]   = Math.random() * Math.max(0, this.W - iW)
-      this.py[id]   = Math.random() * Math.max(0, this.H - iH)
-      item.style.left = this.px[id] + 'px'
-      item.style.top  = this.py[id] + 'px'
+  Particle.prototype.reset = function (initial) {
+    this.x  = Math.random() * W
+    this.y  = Math.random() * H
+    // Deriva inicial: dirección aleatoria, velocidad muy baja
+    const a = Math.random() * Math.PI * 2
+    this.vx = Math.cos(a) * DRIFT * (Math.random() * 0.6 + 0.2)
+    this.vy = Math.sin(a) * DRIFT * (Math.random() * 0.6 + 0.2)
+    this.w  = Math.random() * 8 + 3    // largo del dash
+    this.h  = Math.random() * 1.8 + 1  // grosor
+    this.a  = Math.random() * 0.3 + 0.25  // opacidad
+  }
 
-      // Velocidad inicial aleatoria para movimiento constante
-      this.vx[id] = (Math.random() - 0.5) * 1.8
-      this.vy[id] = (Math.random() - 0.5) * 1.2
-    })
+  Particle.prototype.update = function () {
+    // Repulsión del cursor — empuja en dirección opuesta
+    const dx   = this.x - mouse.x
+    const dy   = this.y - mouse.y
+    const dist = Math.sqrt(dx * dx + dy * dy)
+    if (dist < REPEL_R && dist > 0.5) {
+      const strength = (REPEL_R - dist) / REPEL_R
+      this.vx += (dx / dist) * strength * REPEL_F
+      this.vy += (dy / dist) * strength * REPEL_F
+    }
 
-    this.hero.addEventListener('mousemove', e => {
-      const rect  = this.hero.getBoundingClientRect()
-      this.mouseX = e.clientX - rect.left
-      this.mouseY = e.clientY - rect.top
+    // Fricción — desacelera naturalmente
+    this.vx *= FRICTION
+    this.vy *= FRICTION
+
+    // Micro-deriva: si casi quiet, añade un pequeño impulso aleatorio
+    const spd = Math.sqrt(this.vx * this.vx + this.vy * this.vy)
+    if (spd < 0.06) {
+      const a = Math.random() * Math.PI * 2
+      this.vx += Math.cos(a) * 0.05
+      this.vy += Math.sin(a) * 0.05
+    }
+
+    this.x += this.vx
+    this.y += this.vy
+
+    // Wrap en los 4 bordes — reaparece al lado contrario
+    if (this.x < -15) this.x = W + 15
+    if (this.x > W + 15) this.x = -15
+    if (this.y < -15) this.y = H + 15
+    if (this.y > H + 15) this.y = -15
+  }
+
+  Particle.prototype.draw = function () {
+    const angle = Math.atan2(this.vy, this.vx)
+    ctx.save()
+    ctx.translate(this.x, this.y)
+    ctx.rotate(angle)
+    ctx.beginPath()
+    ctx.ellipse(0, 0, this.w / 2, this.h / 2, 0, 0, Math.PI * 2)
+    ctx.fillStyle = COLOR + this.a + ')'
+    ctx.fill()
+    ctx.restore()
+  }
+
+  function init() {
+    resize()
+    particles = Array.from({ length: COUNT }, () => new Particle())
+  }
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, W, H)
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update()
+      particles[i].draw()
+    }
+    requestAnimationFrame(drawFrame)
+  }
+
+  window.addEventListener('resize', () => {
+    resize()
+    particles.forEach(p => {
+      if (p.x > W) p.x = Math.random() * W
+      if (p.y > H) p.y = Math.random() * H
     })
-    this.hero.addEventListener('mouseleave', () => {
-      this.mouseX = -9999
-      this.mouseY = -9999
+  })
+
+  const section = canvas.closest('section')
+  if (section) {
+    section.addEventListener('mousemove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.clientX - rect.left
+      mouse.y = e.clientY - rect.top
     })
-    this.hero.addEventListener('touchmove', e => {
-      const rect  = this.hero.getBoundingClientRect()
-      this.mouseX = e.touches[0].clientX - rect.left
-      this.mouseY = e.touches[0].clientY - rect.top
+    section.addEventListener('mouseleave', () => {
+      mouse.x = -9999; mouse.y = -9999
+    })
+    section.addEventListener('touchmove', e => {
+      const rect = section.getBoundingClientRect()
+      mouse.x = e.touches[0].clientX - rect.left
+      mouse.y = e.touches[0].clientY - rect.top
     }, { passive: true })
-
-    window.addEventListener('resize', () => {
-      this.W = this.hero.offsetWidth
-      this.H = this.hero.offsetHeight
-    })
-
-    requestAnimationFrame(() => this.animate())
-  }
-
-  animate() {
-    requestAnimationFrame(() => this.animate())
-
-    this.items.forEach(item => {
-      const id = item.id
-      const iW = this.size[id].w
-      const iH = this.size[id].h
-
-      // Fricción suave (del código de referencia: 0.98)
-      this.vx[id] *= 0.98
-      this.vy[id] *= 0.98
-
-      // Atracción al cursor (del código de referencia: dx * 0.0005)
-      const dx = this.mouseX - this.px[id] - iW / 2
-      const dy = this.mouseY - this.py[id] - iH / 2
-      this.vx[id] += dx * 0.0005
-      this.vy[id] += dy * 0.0005
-
-      // Mantener movimiento mínimo — evita que los items se detengan
-      const spd = Math.sqrt(this.vx[id] ** 2 + this.vy[id] ** 2)
-      if (spd < 0.25) {
-        this.vx[id] += (Math.random() - 0.5) * 0.15
-        this.vy[id] += (Math.random() - 0.5) * 0.1
-      }
-
-      // Actualizar posición
-      this.px[id] += this.vx[id]
-      this.py[id] += this.vy[id]
-
-      // Rebotar en los bordes de la sección hero
-      if (this.px[id] < 0)           { this.px[id] = 0;           this.vx[id] *= -0.65 }
-      if (this.px[id] > this.W - iW) { this.px[id] = this.W - iW; this.vx[id] *= -0.65 }
-      if (this.py[id] < 0)           { this.py[id] = 0;           this.vy[id] *= -0.65 }
-      if (this.py[id] > this.H - iH) { this.py[id] = this.H - iH; this.vy[id] *= -0.65 }
-
-      item.style.left = this.px[id] + 'px'
-      item.style.top  = this.py[id] + 'px'
+    section.addEventListener('touchend', () => {
+      mouse.x = -9999; mouse.y = -9999
     })
   }
-}
 
-if (document.readyState === 'complete') {
-  new Antigravity()
-} else {
-  window.addEventListener('load', () => new Antigravity())
-}
+  if (document.readyState === 'complete') {
+    init(); drawFrame()
+  } else {
+    window.addEventListener('load', () => { init(); drawFrame() })
+  }
+})()
 
 
 
