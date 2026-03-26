@@ -9,21 +9,21 @@ const files = fs.readdirSync(sourceDir);
 
 const jpegFiles = files.filter(f => f.endsWith('.jpeg') || f.endsWith('.jpg'));
 
-console.log('📸 Archivos JPEG encontrados:', jpegFiles.length);
-console.log('\n🔄 Para convertir a WebP, necesitas instalar Sharp primero:');
+console.log(' Archivos JPEG encontrados:', jpegFiles.length);
+console.log('\n Para convertir a WebP, necesitas instalar Sharp primero:');
 console.log('   npm install --save-dev sharp --legacy-peer-deps');
-console.log('\n📋 Lista de archivos a convertir:');
+console.log('\n Lista de archivos a convertir:');
 jpegFiles.forEach((file, i) => {
   console.log(`  ${i + 1}. ${file} → ${file.replace(/\.jpe?g$/, '.webp')}`);
 });
 
-console.log('\n✅ Una vez instalado Sharp, ejecuta este script nuevamente.');
+console.log('\n Una vez instalado Sharp, ejecuta este script nuevamente.');
 console.log('   node convert-to-webp.js --convert');
 
 // Si se ejecuta con --convert y Sharp está disponible
 if (process.argv.includes('--convert')) {
   try {
-    const sharp = require('sharp');
+    const sharp = require('sharp'); 
     
     console.log('\n🚀 Iniciando conversión...\n');
     
