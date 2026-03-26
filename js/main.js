@@ -27,18 +27,12 @@ if (scrollIndicator) {
 // ===== SERVICIOS TABS SYSTEM =====
 // Tab switching functionality for services section
 window.addEventListener('load', function() {
-  console.log("=== Inicializando sistema de tabs ===")
-  
   const servicioTabs = document.querySelectorAll(".servicio-tab")
   const servicioPanels = document.querySelectorAll(".servicio-panel")
-
-  console.log("Tabs encontrados:", servicioTabs.length)
-  console.log("Paneles encontrados:", servicioPanels.length)
 
   servicioTabs.forEach(function(tab) {
     tab.addEventListener("click", function() {
       const targetId = tab.getAttribute("data-servicio")
-      console.log("Tab clicked:", targetId)
       
       // Remove active class from all tabs and panels
       servicioTabs.forEach(function(t) {
@@ -53,17 +47,11 @@ window.addEventListener('load', function() {
       
       // Show corresponding panel
       const targetPanel = document.getElementById(targetId)
-      console.log("Target panel found:", targetPanel)
       if (targetPanel) {
         targetPanel.classList.add("active")
-        console.log("Panel activado:", targetId)
-      } else {
-        console.error("No se encontró el panel con ID:", targetId)
       }
     })
   })
-  
-  console.log("=== Sistema de tabs inicializado ===")
 })
 
 // ===== PORTFOLIO FILTERS =====
@@ -111,10 +99,12 @@ window.addEventListener('load', function() {
 const navToggle = document.getElementById("navToggle")
 const navMenu = document.getElementById("navMenu")
 
-navToggle.addEventListener("click", () => {
-  navMenu.classList.toggle("active")
-  navToggle.classList.toggle("active")
-})
+if (navToggle && navMenu) {
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active")
+    navToggle.classList.toggle("active")
+  })
+}
 
 // Close mobile menu when clicking on a link
 const navLinks = document.querySelectorAll(".nav-link")
@@ -212,9 +202,6 @@ if (contactForm) {
       alert("Por favor ingresa un correo electrónico válido.")
       return
     }
-
-    // Log form data (in production, this would be sent to a server)
-    console.log("Form submitted with data:", formData)
 
     // Show success message
     contactForm.classList.add("hidden")
@@ -334,11 +321,11 @@ if (logo) {
 if (contactForm) {
   const submitBtn = contactForm.querySelector('button[type="submit"]')
   contactForm.addEventListener('submit', () => {
-    submitBtn.innerHTML = 'Enviando...'
+    submitBtn.textContent = 'Enviando...'
     submitBtn.disabled = true
     
     setTimeout(() => {
-      submitBtn.innerHTML = 'Enviar Consulta'
+      submitBtn.textContent = 'Enviar Consulta'
       submitBtn.disabled = false
     }, 3000)
   })
@@ -384,31 +371,7 @@ document.querySelectorAll('.btn').forEach(button => {
   })
 })
 
-// Add CSS for ripple effect
-const style = document.createElement('style')
-style.textContent = `
-  .btn {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    pointer-events: none;
-  }
-  
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
-`
-document.head.appendChild(style)
+
 
 // Intersection Observer for card fade-ins
 const elementObserver = new IntersectionObserver((entries) => {

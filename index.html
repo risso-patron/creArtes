@@ -14,7 +14,8 @@
     <meta property="og:image" content="https://studiocreartes.com/assets/Logo-Creartes.webp">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/Logo-Creartes.webp">
+    <link rel="icon" type="image/webp" href="assets/Logo-Creartes.webp">
+    <link rel="canonical" href="https://studiocreartes.com/">
     
     <link rel="stylesheet" href="css/main-new.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,9 +32,10 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
                 <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                <li><a href="https://wa.me/50769347097" class="btn btn-primary btn-nav-cta">💬 Cotiza Gratis</a></li>
+                <li><a href="https://wa.me/50769347097" class="btn btn-primary btn-nav-cta" target="_blank" rel="noopener noreferrer">💬 Cotiza Gratis</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
@@ -45,7 +47,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
-        <video id="heroVideo" class="hero-infinity" autoplay loop muted playsinline preload="auto">
+        <video id="heroVideo" class="hero-infinity" autoplay loop muted playsinline preload="none">
             <source src="crearte/simbolo-infinito-motion-01.mp4" type="video/mp4">
             <!-- Fallback image if video fails -->
             <img src="crearte/simbolo-infinito-01.png" alt="Infinito - Creatividad sin límites">
@@ -757,6 +759,10 @@
                             <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
                         </div>
 
+                        <div class="honeypot" aria-hidden="true">
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <button type="submit" class="btn btn-primary btn-submit">
                             ENVIAR MENSAJE
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -863,10 +869,11 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">ESPECIALIDADES</h4>
                     <ul class="footer-list">
-                        <li><a href="#servicios">Branding</a></li>
-                        <li><a href="#servicios">Diseño UI/UX</a></li>
-                        <li><a href="#servicios">Motion Graphics</a></li>
-                        <li><a href="#servicios">Estrategia Digital</a></li>
+                        <li><a href="#servicios">Publicidad e Impresión</a></li>
+                        <li><a href="#servicios">Branding Físico</a></li>
+                        <li><a href="#servicios">Diseño & Marketing Digital</a></li>
+                        <li><a href="#servicios">Servicios Digitales</a></li>
+                        <li><a href="#servicios">Eventos</a></li>
                     </ul>
                 </div>
 
