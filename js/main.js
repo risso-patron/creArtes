@@ -147,8 +147,8 @@
 // Control video playback speed for smoother motion
 const heroVideo = document.getElementById("heroVideo")
 if (heroVideo) {
-  // Set playback rate — 0.9 = 10% más lento
-  heroVideo.playbackRate = 0.9
+  // Set playback rate — 0.85 = 15% más lento
+  heroVideo.playbackRate = 0.85
   
   // Ensure video plays after load
   heroVideo.addEventListener("loadeddata", () => {
