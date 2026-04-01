@@ -1,145 +1,143 @@
-// ===== PARTICLE WAVE — HERO BACKGROUND =====
+// ===== ANTIGRAVITY EFFECT — FLUID CAPE / CAPA AL VIENTO (ULTIMATE FIDELITY) =====
 ;(function () {
-  const canvas = document.getElementById('particleCanvas')
-  if (!canvas) return
+  const canvas = document.getElementById('antigravityCanvas');
+  if (!canvas) return;
 
-  const ctx = canvas.getContext('2d')
-
-  // Configuración
-  const COUNT      = 480    // partículas totales
-  const REPEL_R    = 160    // radio de repulsión del cursor
-  const REPEL_F    = 8      // fuerza del empuje
-  const FRICTION   = 0.86   // amortiguación
-  const SPRING     = 0.038  // fuerza de retorno a posición base (ola)
-  const WAVE_AMP   = 48     // amplitud de la ola en px
-  const WAVE_FREQ  = 0.007  // frecuencia espacial de la ola
-  const WAVE_SPEED = 0.85   // velocidad de avance de la ola
-  const COLOR      = 'rgba(7,153,140,'
-
-  let W, H, particles, time = 0
-  let mouse = { x: -9999, y: -9999 }
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const PARTICLE_COUNT = 300;
+  let time = 0;
+  
+  const COLORS = {
+    top: '#00f2f2', 
+    mid: '#7000ff',
+    bottom: '#ff007a'
+  };
+  
+  let focalPoint = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let targetFocalPoint = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let lastMouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let mouseVel = { x: 0, y: 0 };
 
   function resize() {
-    const s = canvas.closest('section')
-    W = canvas.width  = s ? s.offsetWidth  : window.innerWidth
-    H = canvas.height = s ? s.offsetHeight : window.innerHeight
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    targetFocalPoint.x = w / 2;
+    targetFocalPoint.y = h / 2;
   }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', (e) => {
+    targetFocalPoint.x = e.clientX;
+    targetFocalPoint.y = e.clientY;
+    
+    // Calculate mouse velocity for the "Wind/Cape" momentum
+    mouseVel.x = (e.clientX - lastMouse.x) * 0.2;
+    mouseVel.y = (e.clientY - lastMouse.y) * 0.2;
+    lastMouse.x = e.clientX;
+    lastMouse.y = e.clientY;
+  });
 
   function Particle() {
-    // Distribución inicial uniforme
-    this.baseX = Math.random() * W
-    this.baseY = Math.random() * H
-    this.x  = this.baseX
-    this.y  = this.baseY
-    this.vx = 0
-    this.vy = 0
-    // Fase individual — cada partícula está en punto distinto de la ola
-    this.phase = Math.random() * Math.PI * 2
-    // Amplitud personal: variación natural en la intensidad de la ola
-    this.amp  = WAVE_AMP * (Math.random() * 0.6 + 0.7)
-    // Visual
-    this.w = Math.random() * 5 + 2
-    this.h = Math.random() * 1.4 + 0.7
-    this.a = Math.random() * 0.28 + 0.18
+    this.init();
   }
 
-  Particle.prototype.update = function () {
-    // Posición objetivo según ola senoidal bidireccional
-    // Ola horizontal (ondula en Y según posición X del base)
-    const waveY = Math.sin(this.baseX * WAVE_FREQ + time * WAVE_SPEED + this.phase) * this.amp
-    // Ola vertical secundaria más suave (profundidad)
-    const waveX = Math.cos(this.baseY * WAVE_FREQ * 0.8 + time * WAVE_SPEED * 0.65 + this.phase) * this.amp * 0.4
+  Particle.prototype.init = function() {
+    this.angle = Math.random() * Math.PI * 2;
+    // Huge spread to match the reference majestically
+    this.radius = Math.random() * 600 + 40; 
+    
+    this.x = focalPoint.x + Math.cos(this.angle) * this.radius;
+    this.y = focalPoint.y + Math.sin(this.angle) * this.radius;
+    
+    this.speed = Math.random() * 0.4 + 0.1;
+    this.vx = (this.x - focalPoint.x) * 0.005;
+    this.vy = (this.y - focalPoint.y) * 0.005;
+    
+    this.vx += mouseVel.x * (Math.random() * 0.4 + 0.3);
+    this.vy += mouseVel.y * (Math.random() * 0.4 + 0.3);
 
-    const targetX = this.baseX + waveX
-    const targetY = this.baseY + waveY
+    this.size = Math.random() * 1.2 + 0.8; // Very small and sharp
+    this.life = Math.random() * 150 + 100;
+    this.currentLife = this.life;
+    this.offset = Math.random() * 100;
+  };
 
-    // Spring — atrae suavemente hacia la posición ondulatoria
-    this.vx += (targetX - this.x) * SPRING
-    this.vy += (targetY - this.y) * SPRING
+  Particle.prototype.update = function() {
+    // Friction/Inertia
+    this.vx *= 0.98;
+    this.vy *= 0.98;
 
-    // Repulsión del cursor
-    const dx   = this.x - mouse.x
-    const dy   = this.y - mouse.y
-    const dist = Math.sqrt(dx * dx + dy * dy)
-    if (dist < REPEL_R && dist > 0.5) {
-      const str = (REPEL_R - dist) / REPEL_R
-      this.vx += (dx / dist) * str * REPEL_F
-      this.vy += (dy / dist) * str * REPEL_F
+    // Wind Wave Effect (Cape undulation)
+    const windX = Math.sin(time + this.y * 0.01) * 0.3;
+    const windY = Math.cos(time + this.x * 0.01) * 0.3;
+    
+    this.x += this.vx + windX;
+    this.y += this.vy + windY;
+    
+    // Fading
+    this.currentLife--;
+    this.alpha = (this.currentLife / this.life) * 0.7;
+
+    if (this.currentLife <= 0) {
+      this.init();
     }
+  };
 
-    // Fricción
-    this.vx *= FRICTION
-    this.vy *= FRICTION
+  Particle.prototype.draw = function() {
+    let color;
+    const relativeY = this.y / h;
+    if (relativeY < 0.4) color = COLORS.top;
+    else if (relativeY < 0.7) color = COLORS.mid;
+    else color = COLORS.bottom;
 
-    this.x += this.vx
-    this.y += this.vy
-  }
-
-  Particle.prototype.draw = function () {
-    const angle = Math.atan2(this.vy, this.vx)
-    ctx.save()
-    ctx.translate(this.x, this.y)
-    ctx.rotate(angle)
-    ctx.beginPath()
-    ctx.ellipse(0, 0, this.w / 2, this.h / 2, 0, 0, Math.PI * 2)
-    ctx.fillStyle = COLOR + this.a + ')'
-    ctx.fill()
-    ctx.restore()
-  }
+    ctx.beginPath();
+    ctx.globalAlpha = this.alpha;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = this.size;
+    
+    // Final Fidelity Ticks: Very short, almost like stars
+    const length = 4;
+    const angle = Math.atan2(this.vy, this.vx);
+    
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x + Math.cos(angle) * length, this.y + Math.sin(angle) * length);
+    ctx.stroke();
+  };
 
   function init() {
-    resize()
-    particles = Array.from({ length: COUNT }, () => new Particle())
-  }
-
-  function drawFrame() {
-    time += 0.018   // velocidad de avance de la ola
-    ctx.clearRect(0, 0, W, H)
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update()
-      particles[i].draw()
+    resize();
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const p = new Particle();
+      p.currentLife = Math.random() * p.life;
+      particles.push(p);
     }
-    requestAnimationFrame(drawFrame)
   }
 
-  window.addEventListener('resize', () => {
-    resize()
-    // Recalcular bases proporcionales al nuevo tamaño
+  function render() {
+    ctx.clearRect(0, 0, w, h);
+    time += 0.05;
+
+    // Smooth focal point
+    focalPoint.x += (targetFocalPoint.x - focalPoint.x) * 0.08;
+    focalPoint.y += (targetFocalPoint.y - focalPoint.y) * 0.08;
+    
+    // Decay mouse velocity
+    mouseVel.x *= 0.9;
+    mouseVel.y *= 0.9;
+
     particles.forEach(p => {
-      p.baseX = Math.random() * W
-      p.baseY = Math.random() * H
-      p.x = p.baseX
-      p.y = p.baseY
-      p.vx = 0; p.vy = 0
-    })
-  })
-
-  const section = canvas.closest('section')
-  if (section) {
-    section.addEventListener('mousemove', e => {
-      const rect = section.getBoundingClientRect()
-      mouse.x = e.clientX - rect.left
-      mouse.y = e.clientY - rect.top
-    })
-    section.addEventListener('mouseleave', () => {
-      mouse.x = -9999; mouse.y = -9999
-    })
-    section.addEventListener('touchmove', e => {
-      const rect = section.getBoundingClientRect()
-      mouse.x = e.touches[0].clientX - rect.left
-      mouse.y = e.touches[0].clientY - rect.top
-    }, { passive: true })
-    section.addEventListener('touchend', () => {
-      mouse.x = -9999; mouse.y = -9999
-    })
+      p.update();
+      p.draw();
+    });
+    
+    requestAnimationFrame(render);
   }
 
-  if (document.readyState === 'complete') {
-    init(); drawFrame()
-  } else {
-    window.addEventListener('load', () => { init(); drawFrame() })
-  }
-})()
+  init();
+  render();
+})();
+
 
 // ===== ZODIAC CONSTELLATIONS — WHY US BACKGROUND =====
 ;(function () {
@@ -1137,4 +1135,3 @@ initParallax();
 
 // Initialize benefits scroll reveal
 initBenefitsReveal();
-initParallax();
