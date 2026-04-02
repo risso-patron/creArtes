@@ -243,9 +243,9 @@ p {
   height: 320px;
   width: auto;
   filter: brightness(0) invert(1) 
-          drop-shadow(0 0 5px rgba(0, 242, 242, 0.9)) 
-          drop-shadow(0 0 15px rgba(0, 242, 242, 0.6))
-          drop-shadow(0 0 30px rgba(0, 242, 242, 0.3));
+          drop-shadow(0 0 8px #00f2f2) 
+          drop-shadow(0 0 20px rgba(0, 242, 242, 0.4))
+          drop-shadow(0 0 35px rgba(0, 242, 242, 0.2));
   transition: var(--transition);
   object-fit: cover;
   object-position: center;
@@ -2566,13 +2566,15 @@ p {
   
   /* Servicios responsive */
   .servicios-layout {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
   }
   
   .servicios-sidebar {
-    position: static;
-    gap: var(--spacing-lg);
+    position: relative;
+    width: 100%;
+    gap: var(--spacing-md);
   }
 
   .sidebar-header h2 {
@@ -2650,7 +2652,11 @@ p {
   }
 
   .btn-sidebar-cta {
-    max-width: 280px;
+    width: 100%;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: block;
+    text-align: center;
   }
 
   .servicios-sidebar {
@@ -2671,7 +2677,8 @@ p {
 
   .servicio-panel h3 {
     font-size: 1.8rem;
-    margin-top: 2rem; /* Avoid overlap with tab system in mobile */
+    margin-top: 1rem;
+    clear: both;
   }
 
   .servicio-grid {
@@ -2729,7 +2736,7 @@ p {
 }
 
 .nav-brand .logo {
-  height: 160px;
+  height: 120px; /* Adjusted slightly smaller for mobile balance */
 }
 
 .hero-cta {
