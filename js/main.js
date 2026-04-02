@@ -537,33 +537,22 @@ if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault()
 
-    // Anti-spam honeypot: si el campo "website" está lleno, es un bot
+    // Anti-spam honeypot
     const honeypot = document.getElementById("website");
     if (honeypot && honeypot.value !== "") {
-      // Silenciosamente ignorar el envío (no alertar al bot)
       return false;
     }
 
-    // Get form data
+    // Get form data (Only fields currently in the HTML)
     const formData = {
       nombre: document.getElementById("name").value,
-      email: document.getElementById("email").value,
       telefono: document.getElementById("phone").value,
-      empresa: document.getElementById("company").value,
-      servicio: document.getElementById("service").value,
       mensaje: document.getElementById("message").value,
     }
 
     // Basic validation
-    if (!formData.nombre || !formData.email || !formData.telefono || !formData.servicio || !formData.mensaje) {
+    if (!formData.nombre || !formData.telefono || !formData.mensaje) {
       alert("Por favor completa todos los campos obligatorios.")
-      return
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
-      alert("Por favor ingresa un correo electrónico válido.")
       return
     }
 
@@ -571,26 +560,26 @@ if (contactForm) {
     contactForm.classList.add("hidden")
     formSuccess.classList.remove("hidden")
 
-    // Create WhatsApp message
-    const whatsappMessage = `Hola! Me gustaría solicitar información sobre ${formData.servicio}.
+    // Create WhatsApp message (Higher conversion focus)
+    const whatsappMessage = `¡Hola Studio CreArtes! 👋 
 
-*Datos de contacto:*
-• Nombre: ${formData.nombre}
-• Email: ${formData.email}
-• Teléfono: ${formData.telefono}
-${formData.empresa ? `• Empresa: ${formData.empresa}` : ''}
+Me gustaría solicitar una cotización para mi proyecto.
 
-*Mensaje:*
+*Mis datos:*
+👤 Nombre: ${formData.nombre}
+📱 WhatsApp: ${formData.telefono}
+
+*¿Qué necesito?*
 ${formData.mensaje}
 
-¡Espero su respuesta!`
+¡Espero su respuesta pronto!`
 
     const whatsappUrl = `https://wa.me/50769347097?text=${encodeURIComponent(whatsappMessage)}`
 
-    // Auto-redirect to WhatsApp after 2 seconds
+    // Auto-redirect to WhatsApp after 1.5 seconds
     setTimeout(() => {
       window.open(whatsappUrl, '_blank')
-    }, 2000)
+    }, 1500)
   })
 }
 
