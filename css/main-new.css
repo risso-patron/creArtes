@@ -2823,6 +2823,10 @@ p {
 }
 
 /* Sections & Layout */
+section {
+  scroll-margin-top: 100px;
+}
+
 .why-us-layout {
   grid-template-columns: 1fr;
   gap: var(--spacing-2xl);
@@ -2849,7 +2853,7 @@ p {
 
 /* Spacing adjustments */
 section {
-  padding: 5rem 0 var(--spacing-2xl) 0; /* More top padding on mobile to clear fixed header */
+  padding: 8rem 0 var(--spacing-2xl) 0; /* Extra top padding to clear fixed header on mobile */
 }
 
 .section-header {
