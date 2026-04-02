@@ -2822,7 +2822,26 @@ p {
   font-size: 1.1rem;
 }
 
-/* Contact */
+/* Sections & Layout */
+.why-us-layout {
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+}
+
+.why-us-content {
+  max-width: 100%;
+  text-align: center;
+}
+
+.why-us-cta {
+  justify-content: center;
+}
+
+.benefits-cards {
+  width: 100%;
+}
+
+/* Contact features mobile */
 .contact-features {
   flex-direction: column;
   gap: var(--spacing-sm);
@@ -2830,7 +2849,7 @@ p {
 
 /* Spacing adjustments */
 section {
-  padding: var(--spacing-2xl) 0;
+  padding: 5rem 0 var(--spacing-2xl) 0; /* More top padding on mobile to clear fixed header */
 }
 
 .section-header {
