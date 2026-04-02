@@ -243,9 +243,9 @@ p {
   height: 320px;
   width: auto;
   filter: brightness(0) invert(1) 
-          drop-shadow(0 0 8px #00f2f2) 
-          drop-shadow(0 0 20px rgba(0, 242, 242, 0.4))
-          drop-shadow(0 0 35px rgba(0, 242, 242, 0.2));
+          drop-shadow(0 0 10px #00f2f2) 
+          drop-shadow(0 0 25px rgba(0, 242, 242, 0.4))
+          drop-shadow(0 0 45px rgba(0, 242, 242, 0.15));
   transition: var(--transition);
   object-fit: cover;
   object-position: center;
@@ -2574,7 +2574,12 @@ p {
   .servicios-sidebar {
     position: relative;
     width: 100%;
-    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .servicios-content {
+    position: static;
+    min-height: auto;
   }
 
   .sidebar-header h2 {
@@ -2653,10 +2658,12 @@ p {
 
   .btn-sidebar-cta {
     width: 100%;
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    margin-bottom: 2rem;
     display: block;
     text-align: center;
+    position: relative;
+    z-index: 10;
   }
 
   .servicios-sidebar {
@@ -2677,7 +2684,9 @@ p {
 
   .servicio-panel h3 {
     font-size: 1.8rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     clear: both;
   }
 
@@ -2736,7 +2745,7 @@ p {
 }
 
 .nav-brand .logo {
-  height: 120px; /* Adjusted slightly smaller for mobile balance */
+  height: 110px; /* Reduced for better mobile proportion */
 }
 
 .hero-cta {
