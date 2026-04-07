@@ -388,32 +388,33 @@ if (scrollIndicator) {
   })
 }
 
-// ===== SERVICIOS TABS SYSTEM =====
-// Tab switching functionality for services section
-window.addEventListener('load', function() {
-  const servicioTabs = document.querySelectorAll(".servicio-tab")
-  const servicioPanels = document.querySelectorAll(".servicio-panel")
-
-  servicioTabs.forEach(function(tab) {
-    tab.addEventListener("click", function() {
-      const targetId = tab.getAttribute("data-servicio")
-      
-      // Remove active class from all tabs and panels
-      servicioTabs.forEach(function(t) {
-        t.classList.remove("active")
+// ===== SERVICIOS ACCORDION =====
+window.addEventListener('load', function () {
+  var acordItems = document.querySelectorAll('.acord-item')
+  acordItems.forEach(function (item) {
+    var header = item.querySelector('.acord-header')
+    if (!header) return
+    header.addEventListener('click', function () {
+      var isOpen = item.classList.contains('is-open')
+      // Close all
+      acordItems.forEach(function (i) {
+        i.classList.remove('is-open')
+        var h = i.querySelector('.acord-header')
+        if (h) h.setAttribute('aria-expanded', 'false')
       })
-      servicioPanels.forEach(function(p) {
-        p.classList.remove("active")
-      })
-      
-      // Add active class to clicked tab
-      tab.classList.add("active")
-      
-      // Show corresponding panel
-      const targetPanel = document.getElementById(targetId)
-      if (targetPanel) {
-        targetPanel.classList.add("active")
+      // Open clicked (unless it was already open)
+      if (!isOpen) {
+        item.classList.add('is-open')
+        header.setAttribute('aria-expanded', 'true')
+        if (window.innerWidth < 768) {
+          setTimeout(function () {
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+          }, 50)
+        }
       }
+    })
+    header.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click() }
     })
   })
 })
