@@ -630,17 +630,6 @@ function animateCounter(element) {
   }, 40)
 }
 
-// Service card hover effects
-const serviceCards = document.querySelectorAll('.servicio-card')
-serviceCards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transform = 'translateY(-8px) scale(1.02)'
-  })
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateY(0) scale(1)'
-  })
-})
 
 // Logo loading animation
 window.addEventListener("load", () => {
@@ -649,14 +638,7 @@ window.addEventListener("load", () => {
     logo.style.opacity = "1"
     logo.style.transform = "scale(1)"
   }
-  
-  // Animate hero stats on load
-  const heroStats = document.querySelectorAll(".stat-number")
-  heroStats.forEach(stat => {
-    setTimeout(() => {
-      animateCounter(stat)
-    }, 1000)
-  })
+  // Animate hero stats on load (disabled — no hay .stat-number en el HTML actual)
 })
 
 // Scroll to top when clicking logo
@@ -671,40 +653,7 @@ if (logo) {
   })
 }
 
-// Add loading state to form button
-if (contactForm) {
-  const submitBtn = contactForm.querySelector('button[type="submit"]')
-  contactForm.addEventListener('submit', () => {
-    submitBtn.textContent = 'Enviando...'
-    submitBtn.disabled = true
-    
-    setTimeout(() => {
-      submitBtn.textContent = 'Enviar Consulta'
-      submitBtn.disabled = false
-    }, 3000)
-  })
-}
 
-// Parallax effect for hero section (optimized with requestAnimationFrame)
-let parallaxTicking = false;
-
-window.addEventListener("scroll", () => {
-  if (!parallaxTicking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector(".hero");
-      
-      if (hero && scrolled < hero.offsetHeight) {
-        const speed = scrolled * 0.5;
-        hero.style.transform = `translateY(${speed}px)`;
-      }
-      
-      parallaxTicking = false;
-    });
-    
-    parallaxTicking = true;
-  }
-})
 
 // Add ripple effect to buttons
 document.querySelectorAll('.btn').forEach(button => {
@@ -763,110 +712,8 @@ ctaButtons.forEach((button) => {
   })
 })
 
-// ===== LIGHTBOX GALLERY =====
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxTitle = document.getElementById('lightboxTitle');
-const lightboxTag = document.getElementById('lightboxTag');
-const lightboxDescription = document.getElementById('lightboxDescription');
-const lightboxCounter = document.getElementById('lightboxCounter');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-
-// Get all showcase images
-const showcaseImages = document.querySelectorAll('.showcase-image')
-
-// Only initialize lightbox if elements exist
-if (lightbox && lightboxClose && showcaseImages.length > 0) {
-  let currentImageIndex = 0;
-
-  // Open lightbox
-  function openLightbox(index) {
-    currentImageIndex = index;
-    updateLightboxContent();
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent scroll
-  }
-
-  // Close lightbox
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scroll
-  }
-
-  // Update lightbox content
-  function updateLightboxContent() {
-    const img = showcaseImages[currentImageIndex];
-    
-    if (lightboxImage) lightboxImage.src = img.src;
-    if (lightboxImage) lightboxImage.alt = img.alt;
-    if (lightboxTitle) lightboxTitle.textContent = img.dataset.title || img.alt;
-    if (lightboxTag) lightboxTag.textContent = img.dataset.tag || '';
-    if (lightboxDescription) lightboxDescription.textContent = img.dataset.description || '';
-    if (lightboxCounter) lightboxCounter.textContent = `${currentImageIndex + 1} / ${showcaseImages.length}`;
-    
-    // Add fade animation
-    if (lightboxImage) {
-      lightboxImage.style.animation = 'none';
-      setTimeout(() => {
-        lightboxImage.style.animation = 'lightboxZoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-      }, 10);
-    }
-  }
-
-  // Navigate to previous image
-  function showPrevImage() {
-    currentImageIndex = (currentImageIndex - 1 + showcaseImages.length) % showcaseImages.length;
-    updateLightboxContent();
-  }
-
-  // Navigate to next image
-  function showNextImage() {
-    currentImageIndex = (currentImageIndex + 1) % showcaseImages.length;
-    updateLightboxContent();
-  }
-
-  // Add click event to all showcase images
-  showcaseImages.forEach((img, index) => {
-    img.addEventListener('click', () => openLightbox(index));
-    img.style.cursor = 'pointer';
-  });
-
-  // Close button
-  lightboxClose.addEventListener('click', closeLightbox);
-
-  // Navigation buttons
-  if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
-  if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
-
-  // Close on background click
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
-    
-    switch(e.key) {
-      case 'Escape':
-        closeLightbox();
-        break;
-      case 'ArrowLeft':
-        showPrevImage();
-        break;
-      case 'ArrowRight':
-        showNextImage();
-        break;
-    }
-  });
-
-  // Prevent image drag
-  if (lightboxImage) lightboxImage.addEventListener('dragstart', (e) => e.preventDefault());
-}
+// NOTA: Lightbox eliminado — no hay elementos #lightbox en el HTML actual.
+// Para re-activarlo, agregar el HTML del lightbox al index y descomentar.
 
 // ===== PARALLAX SCROLL EFFECT =====
 const heroSection = document.querySelector('.hero');
@@ -1013,62 +860,8 @@ function initTestimonios() {
   });
 }
 
-// ==========================================
-// PARALLAX EFFECT
-// ==========================================
-function initParallax() {
-  const parallaxCircles = document.querySelectorAll('.parallax-circle');
-  const testimoniosSection = document.querySelector('.testimonios-section');
-  
-  if (!parallaxCircles.length || !testimoniosSection) return;
+// initParallax eliminado — .parallax-circle no existe en el HTML actual.
 
-  let ticking = false;
-  let sectionTop = 0;
-  let sectionHeight = 0;
-
-  // Calcular posición de la sección
-  function updateSectionBounds() {
-    const rect = testimoniosSection.getBoundingClientRect();
-    sectionTop = window.pageYOffset + rect.top;
-    sectionHeight = rect.height;
-  }
-
-  // Efecto parallax
-  function handleParallax() {
-    const scrollY = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-    
-    // Verificar si la sección está en el viewport
-    if (scrollY + windowHeight > sectionTop && scrollY < sectionTop + sectionHeight) {
-      const relativeScroll = scrollY - sectionTop + windowHeight;
-      const parallaxOffset = relativeScroll * 0.5; // Velocidad 0.5x
-      
-      parallaxCircles.forEach((circle, index) => {
-        // Diferentes velocidades para cada círculo (más rápido y evidente)
-        const speed = 0.5 + (index * 0.15); // 0.5, 0.65, 0.8
-        const offset = relativeScroll * speed;
-        circle.style.transform = `translateY(${offset}px)`;
-      });
-    }
-    
-    ticking = false;
-  }
-
-  // Request animation frame para optimizar performance
-  function requestTick() {
-    if (!ticking) {
-      window.requestAnimationFrame(handleParallax);
-      ticking = true;
-    }
-  }
-
-  // Event listeners
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', updateSectionBounds);
-  
-  // Inicializar
-  updateSectionBounds();
-}
 
 // ==========================================
 // BENEFITS SCROLL REVEAL
@@ -1119,9 +912,6 @@ initBackToTop();
 
 // Initialize testimonios scroll reveal
 initTestimonios();
-
-// Initialize parallax effect
-initParallax();
 
 // Initialize benefits scroll reveal
 initBenefitsReveal();

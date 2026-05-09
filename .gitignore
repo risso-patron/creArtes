@@ -2,6 +2,9 @@ image-categorizer*.html
 package-lock.json  
 node_modules
 
+# SDD infrastructure (agent tooling — not project code)
+.atl/
+
 # Scripts de utilidad para conversión de imágenes
 # convert-to-webp.js
 # update-html-refs.js
